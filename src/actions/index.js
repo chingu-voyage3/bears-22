@@ -19,7 +19,7 @@ export function getUserInfo(json) {
 
 //start fetching data using Axios
 export const FETCHING_DATA = 'FETCHING_DATA';
-export function fetchAPI() {
+export function fetchUserAPI() {
 	return dispatch => {
 		return axios.get('/users')
 		  .then(dispatch(fetchStatus(true)))
