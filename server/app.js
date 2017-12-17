@@ -18,23 +18,24 @@ const app = express();
 app.use(cors());
 
 //Set up session handling
-app.use(cookieSession({
-	maxAge: 60 * 60 * 1000, //Expires in an hour
-	keys: [keys.session.encryptionKey]
-}));
+app.use(
+  cookieSession({
+    maxAge: 60 * 60 * 1000, //Expires in an hour
+    keys: [ keys.session.encryptionKey ]
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
 //Connect to mongodb
 mongoose.Promise = global.Promise;
 const connection = mongoose
-	.connect(keys.mongodb.dbURI, {
-		useMongoClient: true
-	})
-	.then(() => {
-		console.log('Connected to mongodb!');
-	});
-
+  .connect(keys.mongodb.dbURI, {
+    useMongoClient: true
+  })
+  .then(() => {
+    console.log('Connected to mongodb!');
+  });
 
 // app.use(express.static('public')); // Serve static files
 
@@ -44,10 +45,8 @@ app.get('/users', (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
-	if(req.user)
-		res.send(req.user);
-	else
-		res.send("Not logged in");
+  if (req.user) res.send(req.user);
+  else res.send('Not logged in');
 });
 
 // app.use('/api', api);

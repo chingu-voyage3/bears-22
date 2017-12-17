@@ -1,3 +1,62 @@
+$browser-context: 16; // Default
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+  //get font-size from px to em
+}
+
 h1 {
   color: red;
+}
+
+//==================
+//User form style
+//==================
+.user__headline {
+  font-size: em(30);
+  color: black;
+  font-family: Arial;
+  font-weight: 600;
+  padding: em(10) 0;
+}
+
+.user__list {
+  width: 100%;
+  padding: em(10);
+  margin: 0 auto;
+}
+
+.user__header {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  padding: em(10);
+  border-bottom: solid 2px #616161;
+}
+
+.user__cell {
+  word-wrap: break-word;
+  padding: em(10);
+  text-align: center;
+  p {
+    margin: em(5) 0;
+  }
+  .small {
+    color: #9e9e9e;
+  }
+}
+
+.user__male {
+  font-size: 2em;
+  color: #0074d9;
+  margin: em(5) 0;
+}
+
+.user__female {
+  @extend .user__male;
+  color: #f012be;
+}
+
+.loading {
+  color: #616161;
+  transition: 300ms;
 }
