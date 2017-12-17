@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 
 class App extends Component {
   render () {
-    return (
-      <div>
-        <h1>Bears-22 Project</h1>
-      </div>
-    );
+    return <h1>Bear-22 Project</h1>;
   }
 }
 
