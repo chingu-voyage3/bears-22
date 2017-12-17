@@ -34,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/chingu-voyage3/bears-22/issues"
   },
-  "homepage": "https://github.com/chingu-voyage3/bears-22#readme"
+  "homepage": "https://github.com/chingu-voyage3/bears-22#readme",
+  "devDependencies": {
+    "husky": "^0.14.3"
+  }
 }
