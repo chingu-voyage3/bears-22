@@ -5,8 +5,10 @@ const Schema = mongoose.Schema;
 // create user schema and model
 const UserSchema = new Schema({
 	googleID: {
-		type: String,
-		required: [true, 'ID field is required']
+		type: String
+	},
+	facebookID: {
+		type: String
 	},
     name: {
         type: String,
@@ -16,9 +18,16 @@ const UserSchema = new Schema({
 const User = mongoose.model('user', UserSchema);
 
 var userModules = {}
-userModules.addUser = (profile) => {
+userModules.addGoogleUser = (profile) => {
 	return new User({
 		googleID: profile.id,
+		name: profile.displayName
+		}).save();
+}
+
+userModules.addFacebookUser = (profile) => {
+	return new User({
+		facebookID: profile.id,
 		name: profile.displayName
 		}).save();
 }
@@ -29,6 +38,10 @@ userModules.findUserByID = (id) => {
 
 userModules.findUserByGoogleID = (id) => {
 	return User.findOne({googleID: id});
+}
+
+userModules.findUserByFacebookID = (id) => {
+	return User.findOne({facebookID: id});
 }
 
 // Export models

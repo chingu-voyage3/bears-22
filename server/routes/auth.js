@@ -15,6 +15,14 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 	res.send('Authenticated with Google! User: ' + req.user);
 });
 
+// Authenticate with Facebook
+router.get('/facebook', passport.authenticate('facebook'));
+
+// Facebook redirect
+router.get('/facebook/redirect', passport.authenticate('facebook'), (req, res) => {
+	res.send('Authenticated with Facebook! User: ' + req.user);
+});
+
 // Logout
 router.get('/logout', (req, res) => {
 	req.logout();
