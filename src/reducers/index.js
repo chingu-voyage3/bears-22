@@ -7,27 +7,37 @@ import {
 	RECEIVE_INFO
 	} from '../actions'
 
-function fetchData ( state = { isFetching: false } , action ) {
+//set fetching status
+function fetchData ( state = initialState , action ) {
 	switch(action.type) {
 		case FETCH_STATUS:
-			return Object.assign({}, state, { isFetching: true })
+			return Object.assign({}, state, { isFetching: action.isFetching });
 		default: 
 		return state;
 	}
 }
 
-function getUserInfo ( state = { users: [] }, action ) {
+//set user info state
+function getUserInfo ( state = initialState, action ) {
 	switch(action.type) {
-		case FETCH_STATUS:
+		case RECEIVE_INFO:
 			return Object.assign({}, state, { users: action.users })
 		default: 
 			return state;
 	}
 }
 
+
+const initialState = { 
+  isFetching: false,
+  users: [],
+};
+
+
 const mainReducer = combineReducers({
   fetchData,
-  getUserInfo
+  getUserInfo,
+  initialState
 })
 
 export default mainReducer

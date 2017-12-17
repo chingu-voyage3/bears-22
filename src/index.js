@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { createStore } from 'redux'
-import App from './components/App';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import Root from './components/Root';
 import mainReducer from './reducers';
 
-let store = createStore(mainReducer);
+let store = createStore(
+	mainReducer, 
+	applyMiddleware(thunk)
+);
 
 ReactDOM.render(
 	<Root store={store} />, 
