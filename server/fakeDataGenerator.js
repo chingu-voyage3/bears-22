@@ -1,42 +1,42 @@
-const faker = require('faker');
-const fs = require('fs');
-const path = require('path');
+const faker = require('faker')
+const fs = require('fs')
+const path = require('path')
 
-const data = {};
+const data = {}
 
-function randomGender () {
-  const rand = Math.round(Math.random());
-  return rand ? 'Male' : 'Female';
+function randomGender() {
+  const rand = Math.round(Math.random())
+  return rand ? 'Male' : 'Female'
 }
 
-function randomAge () {
-  return Math.floor(Math.random() * 101);
+function randomAge() {
+  return Math.floor(Math.random() * 101)
 }
 
-function randomType () {
-  const rand = Math.floor(Math.random() * 5);
+function randomType() {
+  const rand = Math.floor(Math.random() * 5)
   if (rand <= 3) {
-    return 'Developer';
+    return 'Developer'
   } else {
-    return 'Non Profit';
+    return 'Non Profit'
   }
 }
 
-function randomDate () {
-  const rand = Math.floor(Math.random() * 7);
+function randomDate() {
+  const rand = Math.floor(Math.random() * 7)
   if (rand <= 3) {
-    return faker.date.recent();
+    return faker.date.recent()
   }
   if (rand <= 5) {
-    return faker.date.past();
+    return faker.date.past()
   } else {
-    return faker.date.future();
+    return faker.date.future()
   }
 }
 
-function userGenerator (num) {
-  let id = 1;
-  let users = [];
+function userGenerator(num) {
+  let id = 1
+  let users = []
   for (let i = 0; i < num; i++) {
     users.push({
       id,
@@ -48,12 +48,12 @@ function userGenerator (num) {
       sex: randomGender(),
       age: randomAge(),
       type: randomType()
-    });
-    id += 1;
+    })
+    id += 1
   }
-  return users;
+  return users
 }
 
-data.users = userGenerator(1000);
+data.users = userGenerator(1000)
 
-fs.writeFileSync(path.resolve('server', 'data.json'), JSON.stringify(data));
+fs.writeFileSync(path.resolve('server', 'data.json'), JSON.stringify(data))

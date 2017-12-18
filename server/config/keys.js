@@ -36,4 +36,4 @@ module.exports = {
   session: {
     encryptionKey: 'B5QSjXjHg38xgcem'
   }
-};
+}
