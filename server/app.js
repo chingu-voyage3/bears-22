@@ -44,11 +44,6 @@ app.get('/users', (req, res) => {
   res.send(data)
 })
 
-app.get('/profile', (req, res) => {
-  if (req.user) res.send(req.user)
-  else res.send('Not logged in')
-})
-
 // app.use('/api', api);
 app.use('/auth', auth)
 
