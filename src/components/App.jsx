@@ -15,6 +15,7 @@ import thunk from 'redux-thunk'
 import mainReducer from '../reducers'
 import User from './User'
 import Landing from './Landing'
+import Login from './Login'
 
 const history = createBrowserHistory()
 const store = createStore(mainReducer, applyMiddleware(thunk))
@@ -25,6 +26,7 @@ const App = () => (
       <div>
         <Route path="/" component={Landing} />
         <Route path="/user-list" component={User} />
+        <Route path="/login" component={Login} />
       </div>
     </ConnectedRouter>
   </Provider>

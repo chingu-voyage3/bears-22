@@ -4,6 +4,8 @@ $browser-context: 16; // Default
   //get font-size from px to em
 }
 
+$theme-color: #00BCD4;
+
 h1 {
   color: red;
 }
@@ -59,4 +61,60 @@ h1 {
 .loading {
   color: #616161;
   transition: 300ms;
+}
+
+// =============
+// Login Page
+// =============
+
+.login__button-google {
+  display: inline-block;
+  padding: em(10) em(20);
+  background-color: #ea4335;
+  color: #ffffff;
+  transition: 300ms;
+  margin: 0 em(10)
+  i {
+    color: #ffffff;
+    margin-right: em(10);
+  }
+  &:hover {
+    background-color: rgba(234,67,53,0.9);
+    cursor: pointer;
+  }
+  &:focus, &:active, &:hover {
+    text-decoration: none;
+  }
+}
+
+.user__headline--white {
+  @extend .user__headline;
+  color: #ffffff;
+}
+
+.login__ul {
+  list-style-type: none;
+  &:before {
+    font-family: FontAwesome;
+    content: \f00c;
+    font-size: 1em;
+    color: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.login__introblock {
+  height: 100wh;
+  background-color: $theme-color;
+  color: #ffffff;
+}
+
+.login__button-facebook {
+  @extend .login__button-google;
+  background-color: #3b5998;
+  &:hover {
+    background-color: rgba(59,89,152,0.9)
+  }
 }

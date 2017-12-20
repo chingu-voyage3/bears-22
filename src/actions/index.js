@@ -17,6 +17,16 @@ export function getUserInfo(json) {
   }
 }
 
+//get login status
+export const VERIFY_LOGIN = 'VERIFY_LOGIN'
+export function verifyLogin(data) {
+  return {
+    type: RECEIVE_INFO,
+    isLogin: data.isLogin,
+    userInfo: data.userInfo
+  }
+}
+
 //start fetching data using Axios
 export const FETCHING_DATA = 'FETCHING_DATA'
 export function fetchUserAPI() {
@@ -29,6 +39,23 @@ export function fetchUserAPI() {
         console.log(res.data.users)
       })
       .then(dispatch(fetchStatus(false)))
+      .catch(function(error) {
+        console.log(error)
+      })
+  }
+}
+
+//start fetching data using Axios
+export const USER_LOGIN = 'USER_LOGIN'
+export function startLogin() {
+  return dispatch => {
+    return axios
+      .post('/google')
+      .then(dispatch(fetchStatus(true)))
+      .then(function(res) {
+        //dispatch(getUserInfo(res));
+        console.log(res)
+      })
       .catch(function(error) {
         console.log(error)
       })

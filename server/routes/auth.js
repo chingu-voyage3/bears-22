@@ -19,7 +19,7 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 })
 
 // Authenticate with Facebook
-router.get('/facebook', passport.authenticate('facebook'))
+router.get('/auth/facebook', passport.authenticate('facebook'))
 
 // Facebook redirect
 router.get(

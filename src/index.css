@@ -1,7 +1,7 @@
 h1 {
   color: red; }
 
-.user__headline {
+.user__headline, .user__headline--white {
   font-size: 1.875em;
   color: black;
   font-family: Arial;
@@ -40,3 +40,42 @@ h1 {
 .loading {
   color: #616161;
   transition: 300ms; }
+
+.login__button-google, .login__button-facebook {
+  display: inline-block;
+  padding: 0.625em 1.25em;
+  background-color: #ea4335;
+  color: #ffffff;
+  transition: 300ms;
+  margin: 0 0.625em i;
+    margin-color: #ffffff;
+    margin-margin-right: 0.625em; }
+  .login__button-google:hover, .login__button-facebook:hover {
+    background-color: rgba(234, 67, 53, 0.9);
+    cursor: pointer; }
+  .login__button-google:focus, .login__button-facebook:focus, .login__button-google:active, .login__button-facebook:active, .login__button-google:hover, .login__button-facebook:hover {
+    text-decoration: none; }
+
+.user__headline--white {
+  color: #ffffff; }
+
+.login__ul {
+  list-style-type: none; }
+  .login__ul:before {
+    font-family: FontAwesome;
+    content: \f00c;
+    font-size: 1em;
+    color: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0; }
+
+.login__introblock {
+  height: 100wh;
+  background-color: #00BCD4;
+  color: #ffffff; }
+
+.login__button-facebook {
+  background-color: #3b5998; }
+  .login__button-facebook:hover {
+    background-color: rgba(59, 89, 152, 0.9); }
