@@ -101,10 +101,22 @@ passport_middleware = {
   facebook: {}
 }
 
-passport_middleware.google.dev = function(req,res,next){passport.use(new googleStrategy(googleOptions, googleDevCB)); next();}
-passport_middleware.google.ngo = function(req,res,next){passport.use(new googleStrategy(googleOptions, googleNGOCB)); next();}
-passport_middleware.facebook.dev = function(req,res,next){passport.use(new facebookStrategy(facebookOptions, facebookDevCB)); next();}
-passport_middleware.facebook.ngo = function(req,res,next){passport.use(new facebookStrategy(facebookOptions, facebookNGOCB)); next();}
+passport_middleware.google.dev = function(req, res, next) {
+  passport.use(new googleStrategy(googleOptions, googleDevCB))
+  next()
+}
+passport_middleware.google.ngo = function(req, res, next) {
+  passport.use(new googleStrategy(googleOptions, googleNGOCB))
+  next()
+}
+passport_middleware.facebook.dev = function(req, res, next) {
+  passport.use(new facebookStrategy(facebookOptions, facebookDevCB))
+  next()
+}
+passport_middleware.facebook.ngo = function(req, res, next) {
+  passport.use(new facebookStrategy(facebookOptions, facebookNGOCB))
+  next()
+}
 
 module.exports = passport_middleware
 //TODO: Handle rejected promises

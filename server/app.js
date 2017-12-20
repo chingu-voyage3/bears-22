@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const passport = require('passport')
 const cookieSession = require('cookie-session')
+const bodyParser = require('body-parser')
 
 const api = require('./routes/api')
 const auth = require('./routes/auth')
@@ -16,6 +17,7 @@ const app = express()
 
 // Set up middlewares
 app.use(cors())
+app.use(bodyParser.json())
 
 //Set up session handling
 app.use(
@@ -44,7 +46,7 @@ app.get('/users', (req, res) => {
   res.send(data)
 })
 
-// app.use('/api', api);
+app.use('/api', api);
 app.use('/auth', auth)
 
 // Listen for requests on port 8080

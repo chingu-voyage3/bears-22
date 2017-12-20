@@ -16,13 +16,13 @@ const UserSchema = new Schema({
   },
   bio: {
     type: String,
-    default: ""
+    default: ''
   },
   skills: {
     type: [String],
     default: []
   },
-  location:{
+  location: {
     type: String
   },
   picture: {
@@ -45,7 +45,7 @@ userModules.addGoogleDevUser = profile => {
   return new User({
     googleID: profile.id,
     name: profile.displayName,
-    role: "dev"
+    role: 'dev'
   }).save()
 }
 
@@ -53,7 +53,7 @@ userModules.addGoogleNGOUser = profile => {
   return new User({
     googleID: profile.id,
     name: profile.displayName,
-    role: "ngo"
+    role: 'ngo'
   }).save()
 }
 
@@ -61,7 +61,7 @@ userModules.addFacebookDevUser = profile => {
   return new User({
     facebookID: profile.id,
     name: profile.displayName,
-    role: "dev"
+    role: 'dev'
   }).save()
 }
 
@@ -69,7 +69,7 @@ userModules.addFacebookNGOUser = profile => {
   return new User({
     facebookID: profile.id,
     name: profile.displayName,
-    role: "ngo"
+    role: 'ngo'
   }).save()
 }
 
@@ -83,6 +83,14 @@ userModules.findUserByGoogleID = id => {
 
 userModules.findUserByFacebookID = id => {
   return User.findOne({ facebookID: id })
+}
+
+userModules.updateUser = (id,updation) => {
+  return User.findByIdAndUpdate(id, updation)
+}
+
+userModules.deleteUser = id => {
+  return User.findByIdAndRemove({_id: id})
 }
 
 // Export models
