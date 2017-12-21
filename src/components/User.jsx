@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchStatus, fetchUserAPI } from '../actions'
+import { fetchStatus } from '../actions'
+import { fetchUserAPI } from '../actions/sagas'
 
 class User extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class User extends Component {
               <div className="col-xs-12 col-lg-1 user__cell">
                 <i
                   className={
-                    user.sex == 'Male'
+                    user.sex === 'Male'
                       ? 'fa fa-male user__male'
                       : 'fa fa-female user__female'
                   }
@@ -92,11 +93,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClick: () => {
-      dispatch(fetchStatus(!ownProps.isFetching))
-    }, //starting fetching
-    fetchUser: () => {
-      dispatch(fetchUserAPI())
+    fetchUser: () => { 
+      console.log("fetching");
+     fetchUserAPI();
     } // fetching user
   }
 }

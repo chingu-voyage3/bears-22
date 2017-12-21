@@ -2,14 +2,14 @@
 
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-
 import {
   FETCH_STATUS,
-  FETCH_USER,
   RECEIVE_INFO,
-  VERIFY_LOGIN,
-  USER_LOGIN
 } from '../actions'
+
+import {
+  USER_LOGIN_FACEBOOK
+} from '../actions/sagas'
 
 // set fetching status
 
@@ -28,7 +28,19 @@ function getUserInfo(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_INFO:
       return Object.assign({}, state, { users: action.users })
-    case USER_LOGIN:
+    case USER_LOGIN_FACEBOOK:
+      return Object.assign({}, state, {
+        isLogin: action.isLogin,
+        userInfo: action.userInfo
+      })
+    default:
+      return state
+  }
+}
+
+function userLogin(state = initialState, action) {
+  switch (action.type) {
+    case USER_LOGIN_FACEBOOK:
       return Object.assign({}, state, {
         isLogin: action.isLogin,
         userInfo: action.userInfo

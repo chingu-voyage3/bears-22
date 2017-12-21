@@ -1,7 +1,5 @@
 //actions for redux
 
-import axios from 'axios'
-
 //get fetching status action
 export const FETCH_STATUS = 'FETCH_STATUS'
 export function fetchStatus(status) {
@@ -27,37 +25,36 @@ export function verifyLogin(data) {
   }
 }
 
-//start fetching data using Axios
-export const FETCHING_DATA = 'FETCHING_DATA'
-export function fetchUserAPI() {
-  return dispatch => {
-    return axios
-      .get('/users')
-      .then(dispatch(fetchStatus(true)))
-      .then(function(res) {
-        dispatch(getUserInfo(res.data.users))
-        console.log(res.data.users)
-      })
-      .then(dispatch(fetchStatus(false)))
-      .catch(function(error) {
-        console.log(error)
-      })
-  }
-}
+// //start fetching data using Axios
+// export const FETCHING_DATA = 'FETCHING_DATA'
+// export function fetchUserAPI() {
+//   return dispatch => {
+//     return axios
+//       .get('/users')
+//       .then(dispatch(fetchStatus(true)))
+//       .then(function(res) {
+//         dispatch(getUserInfo(res.data.users))
+//         console.log(res.data.users)
+//       })
+//       .then(dispatch(fetchStatus(false)))
+//       .catch(function(error) {
+//         console.log(error)
+//       })
+//   }
+// }
 
 //start fetching data using Axios
-export const USER_LOGIN = 'USER_LOGIN'
-export function startLogin() {
-  return dispatch => {
-    return axios
-      .post('/google')
-      .then(dispatch(fetchStatus(true)))
-      .then(function(res) {
-        //dispatch(getUserInfo(res));
-        console.log(res)
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-  }
-}
+// export function startLogin() {
+//   return dispatch => {
+//     return axios
+//       .get('/auth/google/callback')
+//       .then(dispatch(fetchStatus(true)))
+//       .then(function(res) {
+//         //dispatch(getUserInfo(res));
+//         console.log(res)
+//       })
+//       .catch(function(error) {
+//         console.log(error)
+//       })
+//   }
+// }
