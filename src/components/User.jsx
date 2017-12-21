@@ -93,9 +93,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchUser: () => { 
-      console.log("fetching");
-     fetchUserAPI();
+    fetchUser: () => {
+      console.log('fetching')
+      fetchUserAPI()
     } // fetching user
   }
 }

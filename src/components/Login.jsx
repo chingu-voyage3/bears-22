@@ -23,11 +23,17 @@ class Login extends Component {
           </div>
           <div className="col-sm-6">
             <h1 className="user__headline">Login</h1>
-            <div className="login__button-google" onClick={this.props.startLoginGoogle}>
+            <div
+              className="login__button-google"
+              onClick={this.props.startLoginGoogle}
+            >
               <i className="fa fa-facebook-official" aria-hidden="true" />
               Login using Google
             </div>
-            <div className="login__button-facebook"  onClick={this.props.startLoginFacebook}>
+            <div
+              className="login__button-facebook"
+              onClick={this.props.startLoginFacebook}
+            >
               <i className="fa fa-google" aria-hidden="true" />
               Login using Facebook
             </div>
@@ -52,16 +58,24 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    startLoginGoogle: (e) =>  {
-      console.log("Google");
-      fetch("/auth/google", { method: 'GET', credentials: 'include', mode: "no-cors",redirect: 'follow', })
-      .then(function(res) {
+    startLoginGoogle: e => {
+      console.log('Google')
+      fetch('/auth/google', {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'no-cors',
+        redirect: 'follow'
+      }).then(function(res) {
         console.log(res)
       })
     },
-    startLoginFacebook: (e) =>  {
-      fetch("/auth/facebook", { method: 'POST', credentials: 'include', mode: "no-cors",redirect: 'follow', })
-      .then(function(res) {
+    startLoginFacebook: e => {
+      fetch('/auth/facebook', {
+        method: 'POST',
+        credentials: 'include',
+        mode: 'no-cors',
+        redirect: 'follow'
+      }).then(function(res) {
         console.log(res)
       })
     }

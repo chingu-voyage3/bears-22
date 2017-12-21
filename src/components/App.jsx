@@ -10,7 +10,7 @@ import {
   routerMiddleware,
   push
 } from 'react-router-redux'
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware from 'redux-saga'
 import rootSaga from '../actions/sagas'
 //import thunk from 'redux-thunk'
 import mainReducer from '../reducers'
@@ -21,9 +21,9 @@ import Login from './Login'
 const history = createBrowserHistory()
 //const store = createStore(mainReducer, applyMiddleware(thunk))
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware()
 const store = createStore(mainReducer, applyMiddleware(sagaMiddleware))
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga)
 
 const App = () => (
   <Provider store={store}>

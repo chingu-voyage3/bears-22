@@ -2,14 +2,9 @@
 
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import {
-  FETCH_STATUS,
-  RECEIVE_INFO,
-} from '../actions'
+import { FETCH_STATUS, RECEIVE_INFO } from '../actions'
 
-import {
-  USER_LOGIN_FACEBOOK
-} from '../actions/sagas'
+import { USER_LOGIN_FACEBOOK } from '../actions/sagas'
 
 // set fetching status
 
