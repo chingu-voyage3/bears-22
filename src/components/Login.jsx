@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
@@ -10,33 +11,28 @@ class Login extends Component {
       <div>
         <div className="row">
           <div className="col-sm-6 login__introblock">
-            <h1 className="user__headline--white">Our site name</h1>
-            <p>In our site, you can...</p>
+            <h1 className="user__headline--white">You can...</h1>
             <ul className="login__ul">
               <li>Find developers</li>
-              <li>Showcase your skills</li>
-              <li>Find NGOs</li>
+              <li>Communicate with Chingu teams</li>
+              <li>Contribute!</li>
             </ul>
-            <div className="mb-auto">
-              <p>Not a developer?</p>
-            </div>
+            <p>Login now!</p>
           </div>
           <div className="col-sm-6">
             <h1 className="user__headline">Login</h1>
-            <div
+            <a href="/auth/google"><div
               className="login__button-google"
-              onClick={this.props.startLoginGoogle}
             >
               <i className="fa fa-facebook-official" aria-hidden="true" />
               Login using Google
-            </div>
-            <div
+            </div></a>
+            <a href="/auth/auth/facebook"><div
               className="login__button-facebook"
-              onClick={this.props.startLoginFacebook}
             >
               <i className="fa fa-google" aria-hidden="true" />
               Login using Facebook
-            </div>
+            </div></a>
           </div>
         </div>
         <div>
@@ -59,25 +55,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     startLoginGoogle: e => {
-      console.log('Google')
-      fetch('/auth/google', {
-        method: 'GET',
-        credentials: 'include',
-        mode: 'no-cors',
-        redirect: 'follow'
-      }).then(function(res) {
-        console.log(res)
-      })
-    },
-    startLoginFacebook: e => {
-      fetch('/auth/facebook', {
-        method: 'POST',
-        credentials: 'include',
-        mode: 'no-cors',
-        redirect: 'follow'
-      }).then(function(res) {
-        console.log(res)
-      })
+      
     }
   }
 }
