@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchUserAPI } from '../actions/sagas'
+import { USER_LIST_REQUEST } from '../actions/sagas'
+import { userListReq } from '../actions'
 import { Link } from 'react-router-dom'
 
 class User extends Component {
@@ -84,15 +85,16 @@ class User extends Component {
 const mapStateToProps = state => {
   return {
     isFetching: state.fetchData.isFetching,
-    users: state.getUserInfo.users
+    users: state.getUserInfo.users,
+    isLogin: state.getUserInfo.isLogin,
+    userInfo: state.getUserInfo.userInfo,
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchUser: () => {
-      console.log('fetching')
-      fetchUserAPI()
+      dispatch(userListReq());
     } // fetching user
   }
 }

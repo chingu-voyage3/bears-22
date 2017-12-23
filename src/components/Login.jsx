@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { FETCH_LOGIN_STATUS } from '../actions/sagas'
+import { verifyLogin } from '../actions'
 
 class Login extends Component {
   constructor(props) {
     super(props)
   }
   componentDidMount() {
-    this.props.checkLoginStatus()
+    this.props.checkLoginStatus();
+    console.log(this.props.userInfo);
   }
   render() {
     return (
@@ -25,22 +26,22 @@ class Login extends Component {
           <div className="col-sm-6">
             <h1 className="user__headline">Login</h1>
             <div className="login__button">
-            <a href="/auth/google">
-              <div className="login__button-google">
-              <span>
-                <i className="fa fa-google" aria-hidden="true" />
-                Login via Google
-                </span>
-              </div>
-            </a>
-            <a href="/auth/facebook">
-              <div className="login__button-facebook">
-              <span>
-                <i className="fa fa-facebook-official" aria-hidden="true" />
-                Login via Facebook
-                </span>
-              </div>
-            </a>
+              <a href="/auth/google">
+                <div className="login__button-google">
+                  <span>
+                    <i className="fa fa-google" aria-hidden="true" />
+                    Login via Google
+                  </span>
+                </div>
+              </a>
+              <a href="/auth/facebook">
+                <div className="login__button-facebook">
+                  <span>
+                    <i className="fa fa-facebook-official" aria-hidden="true" />
+                    Login via Facebook
+                  </span>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -61,10 +62,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     checkLoginStatus: e => {
-      dispatch({ type: FETCH_LOGIN_STATUS })
-      if (typeof ownProps.userInfo === 'object') {
-        console.log('user logined')
-      }
+        verifyLogin();
     }
   }
 }
