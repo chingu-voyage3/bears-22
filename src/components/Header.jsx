@@ -13,6 +13,11 @@ class Header extends Component {
           <Link to={'/'}>
             <li>Home</li>
           </Link>
+          {this.props.isLogin ? (
+            <Link to={'/profile'}>
+              <li>My Dashboard</li>
+           </Link>
+          ) : ''}
           <Link to={'/user-list'}>
             <li>User List</li>
           </Link>

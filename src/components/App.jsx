@@ -19,6 +19,7 @@ import Landing from './Landing'
 import Login from './Login'
 import Header from './Header'
 import Footer from './Footer'
+import Profile from './Profile'
 
 const history = createBrowserHistory()
 //const store = createStore(mainReducer, applyMiddleware(thunk))
@@ -51,6 +52,7 @@ const App = () => (
           <Route exact path="/" component={Landing} />
           <Route exact path="/user-list" component={User} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/profile" component={Profile} />
         </Switch>
         <Route path="/" component={Footer} />
       </div>
