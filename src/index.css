@@ -83,18 +83,26 @@ a {
   background-color: #1abc9c;
   color: #ffffff; }
 
-.login__button-google, .login__button-facebook {
+.login__button {
   display: block;
+  width: 50%;
+  margin: 0 auto; }
+  .login__button span {
+    margin: 0 auto; }
+
+.login__button-google, .login__button-facebook {
+  display: inline-flex;
   padding: 0.625em 1.25em;
   background-color: #ea4335;
   color: #ffffff;
   transition: 300ms;
-  width: 50%;
-  margin-top: 0.625em;
-  text-align: center; }
+  margin-top: 0.5625em;
+  width: 100%;
+  vertical-align: middle; }
   .login__button-google i, .login__button-facebook i {
     color: #ffffff;
-    margin-right: 0.625em; }
+    margin-right: 0.625em;
+    margin-top: 0.3125em; }
   .login__button-google:hover, .login__button-facebook:hover {
     background-color: rgba(234, 67, 53, 0.9);
     cursor: pointer; }

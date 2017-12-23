@@ -24,18 +24,24 @@ class Login extends Component {
           </div>
           <div className="col-sm-6">
             <h1 className="user__headline">Login</h1>
+            <div className="login__button">
             <a href="/auth/google">
               <div className="login__button-google">
+              <span>
                 <i className="fa fa-google" aria-hidden="true" />
                 Login via Google
+                </span>
               </div>
             </a>
             <a href="/auth/facebook">
               <div className="login__button-facebook">
+              <span>
                 <i className="fa fa-facebook-official" aria-hidden="true" />
                 Login via Facebook
+                </span>
               </div>
             </a>
+            </div>
           </div>
         </div>
       </div>
@@ -55,9 +61,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     checkLoginStatus: e => {
-      dispatch({type: FETCH_LOGIN_STATUS });
-      if(typeof ownProps.userInfo === "object") {
-        console.log("user logined");
+      dispatch({ type: FETCH_LOGIN_STATUS })
+      if (typeof ownProps.userInfo === 'object') {
+        console.log('user logined')
       }
     }
   }
