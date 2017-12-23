@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchStatus } from '../actions'
 import { fetchUserAPI } from '../actions/sagas'
+import { Link } from 'react-router-dom'
 
 class User extends Component {
-  constructor(props) {
-    super(props)
-  }
   componentDidMount() {
     this.props.fetchUser()
   }
@@ -77,7 +74,7 @@ class User extends Component {
           ))}
         </div>
         <div>
-          <a href="/home">Back to Home</a>
+          <Link to={'/'}>Back to Home</Link>
         </div>
       </div>
     )

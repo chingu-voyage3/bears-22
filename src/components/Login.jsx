@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { FETCH_LOGIN_STATUS } from '../actions/sagas'
 
 class Login extends Component {
   constructor(props) {
     super(props)
+  }
+  componentDidMount() {
+    this.props.checkLoginStatus()
   }
   render() {
     return (
@@ -21,22 +24,19 @@ class Login extends Component {
           </div>
           <div className="col-sm-6">
             <h1 className="user__headline">Login</h1>
-            <a href="/auth/google"><div
-              className="login__button-google"
-            >
-              <i className="fa fa-facebook-official" aria-hidden="true" />
-              Login using Google
-            </div></a>
-            <a href="/auth/auth/facebook"><div
-              className="login__button-facebook"
-            >
-              <i className="fa fa-google" aria-hidden="true" />
-              Login using Facebook
-            </div></a>
+            <a href="/auth/google">
+              <div className="login__button-google">
+                <i className="fa fa-google" aria-hidden="true" />
+                Login via Google
+              </div>
+            </a>
+            <a href="/auth/facebook">
+              <div className="login__button-facebook">
+                <i className="fa fa-facebook-official" aria-hidden="true" />
+                Login via Facebook
+              </div>
+            </a>
           </div>
-        </div>
-        <div>
-          <a href="/home">Back to Home</a>
         </div>
       </div>
     )
@@ -54,8 +54,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    startLoginGoogle: e => {
-      
+    checkLoginStatus: e => {
+      dispatch({type: FETCH_LOGIN_STATUS });
+      if(typeof ownProps.userInfo === "object") {
+        console.log("user logined");
+      }
     }
   }
 }
