@@ -16,11 +16,15 @@ class Header extends Component {
           <Link to={'/user-list'}>
             <li>User List</li>
           </Link>
-          {this.props.isLogin? <a href='/auth/logout'>
-            <li>Logout</li>
-          </a> : <Link to={'/login'}>
-            <li>Login</li>
-          </Link>}
+          {this.props.isLogin ? (
+            <a href="/auth/logout">
+              <li>Logout</li>
+            </a>
+          ) : (
+            <Link to={'/login'}>
+              <li>Login</li>
+            </Link>
+          )}
         </ul>
       </div>
     )
@@ -29,10 +33,8 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-    isFetching: state.fetchData.isFetching,
-    users: state.getUserInfo.users,
     isLogin: state.getUserInfo.isLogin,
-    userInfo: state.getUserInfo.userInfo,
+    userInfo: state.getUserInfo.userInfo
   }
 }
 

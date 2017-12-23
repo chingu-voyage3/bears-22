@@ -1,8 +1,5 @@
 //actions for redux
-import { 
-  FETCH_LOGIN_STATUS, 
-  USER_LIST_REQUEST
-   } from './sagas'
+import { FETCH_LOGIN_STATUS, USER_LIST_REQUEST, IS_FETCHING } from './sagas'
 
 //get fetching status action
 export const FETCH_STATUS = 'FETCH_STATUS'
@@ -19,9 +16,16 @@ export function getUserInfo(json) {
   }
 }
 
-export function userListReq () {
+export function userListReq() {
   return {
     type: USER_LIST_REQUEST
+  }
+}
+
+export function isFetching() {
+  return {
+    type: IS_FETCHING,
+    isFetching
   }
 }
 

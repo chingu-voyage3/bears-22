@@ -7,8 +7,8 @@ class Login extends Component {
     super(props)
   }
   componentDidMount() {
-    this.props.checkLoginStatus();
-    console.log(this.props.userInfo);
+    this.props.checkLoginStatus()
+    console.log(this.props.userInfo)
   }
   render() {
     return (
@@ -62,7 +62,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     checkLoginStatus: e => {
-        verifyLogin();
+      verifyLogin()
     }
   }
 }

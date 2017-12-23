@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { USER_LIST_REQUEST } from '../actions/sagas'
 import { userListReq } from '../actions'
 import { Link } from 'react-router-dom'
 
@@ -37,7 +36,8 @@ class User extends Component {
             className="loading"
             style={{ display: this.props.isFetching ? 'block' : 'none' }}
           >
-            Loading...
+            <i className="fa fa-spinner fa-pulse fa-2x fa-fw" />
+            <span className="sr-only">Loading...</span> Loading...
           </p>
           {this.props.users.map((user, index) => (
             <div
@@ -87,14 +87,14 @@ const mapStateToProps = state => {
     isFetching: state.fetchData.isFetching,
     users: state.getUserInfo.users,
     isLogin: state.getUserInfo.isLogin,
-    userInfo: state.getUserInfo.userInfo,
+    userInfo: state.getUserInfo.userInfo
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchUser: () => {
-      dispatch(userListReq());
+      dispatch(userListReq())
     } // fetching user
   }
 }
