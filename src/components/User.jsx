@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchStatus, fetchUserAPI } from '../actions'
+import { userListReq } from '../actions'
+import { Link } from 'react-router-dom'
 
 class User extends Component {
-  constructor(props) {
-    super(props)
-  }
   componentDidMount() {
     this.props.fetchUser()
   }
@@ -38,7 +36,8 @@ class User extends Component {
             className="loading"
             style={{ display: this.props.isFetching ? 'block' : 'none' }}
           >
-            Loading...
+            <i className="fa fa-spinner fa-pulse fa-2x fa-fw" />
+            <span className="sr-only">Loading...</span> Loading...
           </p>
           {this.props.users.map((user, index) => (
             <div
@@ -48,7 +47,7 @@ class User extends Component {
               <div className="col-xs-12 col-lg-1 user__cell">
                 <i
                   className={
-                    user.sex == 'Male'
+                    user.sex === 'Male'
                       ? 'fa fa-male user__male'
                       : 'fa fa-female user__female'
                   }
@@ -76,7 +75,7 @@ class User extends Component {
           ))}
         </div>
         <div>
-          <a href="/home">Back to Home</a>
+          <Link to={'/'}>Back to Home</Link>
         </div>
       </div>
     )
@@ -86,17 +85,16 @@ class User extends Component {
 const mapStateToProps = state => {
   return {
     isFetching: state.fetchData.isFetching,
-    users: state.getUserInfo.users
+    users: state.getUserInfo.users,
+    isLogin: state.getUserInfo.isLogin,
+    userInfo: state.getUserInfo.userInfo
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClick: () => {
-      dispatch(fetchStatus(!ownProps.isFetching))
-    }, //starting fetching
     fetchUser: () => {
-      dispatch(fetchUserAPI())
+      dispatch(userListReq())
     } // fetching user
   }
 }
