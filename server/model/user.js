@@ -4,12 +4,6 @@ const Schema = mongoose.Schema
 
 // create user schema and model
 const UserSchema = new Schema({
-  googleID: {
-    type: String
-  },
-  facebookID: {
-    type: String
-  },
   githubID:{
     type: String
   },
@@ -21,21 +15,9 @@ const UserSchema = new Schema({
 const User = mongoose.model('user', UserSchema)
 
 var userModules = {}
-userModules.addGoogleUser = profile => {
-  return new User({
-    googleID: profile.id,
-    name: profile.displayName
-  }).save()
-}
-
-userModules.addFacebookUser = profile => {
-  return new User({
-    facebookID: profile.id,
-    name: profile.displayName
-  }).save()
-}
 
 userModules.addGithubUser = profile => {
+  console.log(profile)
   return new User({
     githubID: profile.id,
     name: profile.displayName
@@ -44,14 +26,6 @@ userModules.addGithubUser = profile => {
 
 userModules.findUserByID = id => {
   return User.findById(id)
-}
-
-userModules.findUserByGoogleID = id => {
-  return User.findOne({ googleID: id })
-}
-
-userModules.findUserByFacebookID = id => {
-  return User.findOne({ facebookID: id })
 }
 
 userModules.findUserByGithubID = id => {

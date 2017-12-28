@@ -24,15 +24,6 @@ module.exports = {
     dbURI:
       'mongodb://bears-22-db-user:2hhm473js2xR2fhX@ds137206.mlab.com:37206/bears-22-db'
   },
-  google: {
-    clientID:
-      '187207518271-v31gaa4la0q6p8qf23cpffcbihfep26b.apps.googleusercontent.com',
-    clientSecret: '7F2BlKSBNtG7x3ZXqbR1TzZl'
-  },
-  facebook: {
-    clientID: '505230999822700',
-    clientSecret: '5371fd20614fe2edc126ca7864e90ab5'
-  },
   session: {
     encryptionKey: 'B5QSjXjHg38xgcem'
   },
