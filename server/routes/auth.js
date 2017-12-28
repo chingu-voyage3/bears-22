@@ -34,6 +34,20 @@ router.get(
   }
 )
 
+// Authenticate with Github
+router.get(
+  '/github',
+  passport.authenticate('github', {
+    scope: ['profile']
+  })
+)
+
+// Github redirect
+router.get('/github/redirect', passport.authenticate('github'), (req, res) => {
+  console.log('Authenticated with Github! User: ' + req.user)
+  res.redirect('/')
+})
+
 //get user object
 function isAuthenticated(req, res, next) {
   if (req.user) return next()

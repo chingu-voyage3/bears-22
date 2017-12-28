@@ -2,7 +2,7 @@
 const passport = require('passport')
 const googleStrategy = require('passport-google-oauth20')
 const facebookStrategy = require('passport-facebook').Strategy
-
+const githubStrategy = require('passport-github2')
 const user = require('../model/user')
 const keys = require('./keys')
 
@@ -76,3 +76,32 @@ facebookCB = (accessToken, refreshToken, profile, done) => {
 
 //TODO: Handle rejected promises
 passport.use(new facebookStrategy(facebookOptions, facebookCB))
+
+// Set up Google Authentication
+githubOptions = {
+  clientID: keys.github.clientID,
+  clientSecret: keys.github.clientSecret,
+  callbackURL: '/auth/github/redirect'
+}
+
+githubCB = (accessToken, refreshToken, profile, done) => {
+  console.log('Authenticated! Reached the callback')
+
+  //Check if user in database
+  user.findUserByGithubID(profile.id).then(current_user => {
+    if (current_user) {
+      //if user in DB send user data
+      console.log('User exists: ' + current_user)
+      done(null, current_user)
+    } else {
+      //Else Create new user then send data
+      user.addGithubUser(profile).then(created_user => {
+        console.log('Added the user to database: ' + created_user)
+        done(null, created_user)
+      })
+    }
+  })
+}
+
+//TODO: Handle rejected promises
+passport.use(new githubStrategy(githubOptions, githubCB))

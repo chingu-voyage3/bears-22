@@ -10,6 +10,9 @@ const UserSchema = new Schema({
   facebookID: {
     type: String
   },
+  githubID:{
+    type: String
+  },
   name: {
     type: String,
     required: [true, 'Name field is required']
@@ -32,6 +35,13 @@ userModules.addFacebookUser = profile => {
   }).save()
 }
 
+userModules.addGithubUser = profile => {
+  return new User({
+    githubID: profile.id,
+    name: profile.displayName
+  }).save()
+}
+
 userModules.findUserByID = id => {
   return User.findById(id)
 }
@@ -42,6 +52,10 @@ userModules.findUserByGoogleID = id => {
 
 userModules.findUserByFacebookID = id => {
   return User.findOne({ facebookID: id })
+}
+
+userModules.findUserByGithubID = id => {
+  return User.findOne({ GithubID: id })
 }
 
 // Export models
