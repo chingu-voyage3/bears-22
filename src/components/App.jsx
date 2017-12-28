@@ -33,11 +33,9 @@ const sagaMiddleware = createSagaMiddleware()
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
-        {
-          // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-        }
-      )
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+      })
     : compose
 
 const enhancer = composeEnhancers(
@@ -59,14 +57,14 @@ const App = () => (
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Route path='/' component={Header} />
+          <Route path="/" component={Header} />
           <Switch>
-            <Route exact path='/' component={Landing} />
-            <Route exact path='/user-list' component={User} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/profile' component={Profile} />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/user-list" component={User} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={Profile} />
           </Switch>
-          <Route path='/' component={Footer} />
+          <Route path="/" component={Footer} />
         </div>
       </ConnectedRouter>
     </Provider>
