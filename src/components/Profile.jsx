@@ -6,10 +6,12 @@ class Profile extends Component {
   render() {
     return (
       <div className="profile">
-      <h1 className="profile__header">Profile</h1>
+        <h1 className="profile__header">Profile</h1>
         <strong>Username: </strong>
         <p>{this.props.userInfo.name}</p>
-        <Link to={'/'}><p>Back to Home</p></Link>
+        <Link to={'/'}>
+          <p>Back to Home</p>
+        </Link>
       </div>
     )
   }
