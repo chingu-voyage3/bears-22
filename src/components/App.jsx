@@ -20,6 +20,7 @@ import Login from './Login'
 import Header from './Header'
 import Footer from './Footer'
 import Profile from './Profile'
+import Search from './Search'
 
 const history = createBrowserHistory()
 //const store = createStore(mainReducer, applyMiddleware(thunk))
@@ -53,6 +54,7 @@ const App = () => (
           <Route exact path="/user-list" component={User} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/search" component={Search} />
         </Switch>
         <Route path="/" component={Footer} />
       </div>
