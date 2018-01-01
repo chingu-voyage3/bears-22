@@ -13,8 +13,8 @@ export const Actions = {
   FETCH_FAILED: 'FETCH_FAILED'
 }
 
-export function fetchStatus(status) {
-  return { type: Actions.FETCH_STATUS, isFetching: status }
+export function fetchStatus() {
+  return { type: Actions.FETCH_STATUS, isFetching }
 }
 
 // receive user list info
@@ -31,10 +31,10 @@ export function userListReq() {
   }
 }
 
-export function isFetching() {
+export function isFetching(status) {
   return {
     type: Actions.IS_FETCHING,
-    isFetching
+    isFetching: status
   }
 }
 

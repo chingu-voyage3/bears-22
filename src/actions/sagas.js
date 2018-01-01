@@ -1,7 +1,6 @@
 import { call, put, all, fork, takeEvery, takeLatest } from 'redux-saga/effects'
 import { Actions } from './index'
-import { getUserInfo } from './index'
-import gql from 'graphql-tag'
+import { getUserInfo, isFetching } from './index'
 
 //start fetching data using fetch
 export function* watchAnyAction() {
@@ -17,14 +16,11 @@ export function* watchUserListReq() {
 export function* fetchUserAPI() {
   try {
     console.log('fetching user lists...')
-    yield put({ type: Actions.IS_FETCHING, isFetching: true })
+    yield put(isFetching(true))
     const response = yield call(fetch, '/users')
     if (response.status === 200) {
       const res = yield response.json()
-      yield all([
-        put(getUserInfo(res)),
-        put({ type: Actions.IS_FETCHING, isFetching: false })
-      ])
+      yield all([put(getUserInfo(res)), put(isFetching(false))])
     }
   } catch (err) {
     console.log(err)
@@ -65,23 +61,6 @@ export function* checkLoginStatus() {
   }
 }
 //end of login status check
-
-export function* fetchUserProfile() {
-  try {
-    console.log('fetching user profile...')
-    yield put({ type: Actions.IS_FETCHING, isFetching: true })
-    const response = yield call(fetch, '/users')
-    if (response.status === 200) {
-      const res = yield response.json()
-      yield all([
-        put(getUserInfo(res)),
-        put({ type: Actions.IS_FETCHING, isFetching: false })
-      ])
-    }
-  } catch (err) {
-    console.log(err)
-  }
-}
 
 //export all sagas
 export default function* rootSaga() {
