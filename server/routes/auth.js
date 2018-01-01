@@ -49,7 +49,7 @@ router.get('/user', isAuthenticated, function(req, res) {
 // Logout
 router.get('/logout', (req, res) => {
   req.logout()
-  res.redirect('/ ')
+  res.redirect('/')
   //res.send('Succesfully logged out!')
 })
 
