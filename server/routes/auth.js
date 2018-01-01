@@ -17,7 +17,7 @@ router.get(
 // Google redirect
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   console.log('Authenticated with Google! User: ' + req.user)
-  res.redirect('/ ')
+  res.redirect('/')
 })
 
 // Authenticate with Facebook
@@ -30,7 +30,7 @@ router.get(
   (req, res) => {
     //res.send('Authenticated with Facebook! User: ' + req.user)
     console.log('Authenticated with Facebook! User: ' + req.user)
-    res.redirect('/ ')
+    res.redirect('/')
   }
 )
 
