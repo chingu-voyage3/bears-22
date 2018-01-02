@@ -128,3 +128,18 @@ a {
     color: #ffffff;
     position: absolute;
     left: 1.25em; }
+
+.list__inline li {
+  display: inline-block;
+  margin-right: 20px; }
+
+.list__border li {
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid black; }
+
+.list__header {
+  background-color: gray; }
+
+.search__result__logo {
+  width: 20%; }
