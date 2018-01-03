@@ -15,10 +15,13 @@ router.get(
 )
 
 // Github redirect
-router.get('/github/redirect', passport.authenticate('github'), (req, res) => {
-  console.log('Authenticated with Github! User: ' + req.user)
-  res.redirect('/')
-})
+router.get(
+  '/github/redirect',
+  passport.authenticate('github', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  })
+)
 
 //get user object
 function isAuthenticated(req, res, next) {

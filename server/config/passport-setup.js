@@ -26,19 +26,19 @@ githubOptions = {
 
 githubCB = (accessToken, refreshToken, profile, done) => {
   console.log('Authenticated! Reached the callback')
+  console.log(profile)
+  user_github_email = profile._json.email
+  console.log('User email: ' + user_github_email)
 
-  //Check if user in database
-  user.findUserByGithubID(profile.id).then(current_user => {
+  //Check if user is a chingu member
+  user.findUserByGithubEmail(user_github_email, function(current_user) {
     if (current_user) {
-      //if user in DB send user data
       console.log('User exists: ' + current_user)
       done(null, current_user)
     } else {
-      //Else Create new user then send data
-      user.addGithubUser(profile).then(created_user => {
-        console.log('Added the user to database: ' + created_user)
-        done(null, created_user)
-      })
+      console.log('Not a chingu member')
+      var err = 'Not a chingu member'
+      done(err)
     }
   })
 }

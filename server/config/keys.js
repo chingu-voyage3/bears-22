@@ -27,7 +27,7 @@ module.exports = {
   session: {
     encryptionKey: 'B5QSjXjHg38xgcem'
   },
-  github:{
+  github: {
     clientID: 'c98d30933daf12e3aa79',
     clientSecret: '6d05ed88a99ca10370151d5495e848d051f25fd0'
   }

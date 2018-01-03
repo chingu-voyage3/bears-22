@@ -1,46 +1,37 @@
 // Imports
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-
-// create user schema and model
-const UserSchema = new Schema({
-  githubID:{
-    type: String
-  },
-  name: {
-    type: String,
-    required: [true, 'Name field is required']
-  }
-})
-const User = mongoose.model('user', UserSchema)
-
+var graphqlClient = require('graphql-client')
 var userModules = {}
 
-userModules.addGithubUser = profile => {
-  console.log(profile)
-  return new User({
-    githubID: profile.id,
-    name: profile.displayName
-  }).save()
-}
+var client = graphqlClient({
+  url: 'http://localhost:5000/graphql'
+})
+userModules.findUserByGithubEmail = function(email, cb) {
+  var query = `
+    query{
+        user(user_email: "${email}") {
+          first_name,
+          last_name
+        }
+    }`
+  console.log('Query: ' + query)
 
-userModules.findUserByID = id => {
-  return User.findById(id)
-}
-
-userModules.findUserByGithubID = id => {
-  return User.findOne({ githubID: id })
+  client
+    .query(query, function(req, res) {
+      if (res.status === 401) {
+        throw new Error('Not authorized')
+        cb(null)
+      }
+    })
+    .then(function(body) {
+      console.log(body)
+      if (body.data.user == null) cb(null)
+      else cb(body.data)
+    })
+    .catch(function(err) {
+      console.log(err.message)
+      cb(null)
+    })
 }
 
 // Export models
 module.exports = userModules
-
-/*
-grapqhl query
-query{
-  user(user_email: "averghes@usc.edu"){
-    first_name,
-    last_name
-  }
-}
-*/
