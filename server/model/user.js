@@ -29,8 +29,18 @@ userModules.findUserByID = id => {
 }
 
 userModules.findUserByGithubID = id => {
-  return User.findOne({ GithubID: id })
+  return User.findOne({ githubID: id })
 }
 
 // Export models
 module.exports = userModules
+
+/*
+grapqhl query
+query{
+  user(user_email: "averghes@usc.edu"){
+    first_name,
+    last_name
+  }
+}
+*/
