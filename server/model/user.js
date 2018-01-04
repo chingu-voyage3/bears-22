@@ -1,9 +1,10 @@
 // Imports
 var graphqlClient = require('graphql-client')
+const keys = require('../config/keys')
 var userModules = {}
 
 var client = graphqlClient({
-  url: 'http://localhost:5000/graphql'
+  url: keys.chingu_api.endpoint
 })
 
 var user_fields = `id,

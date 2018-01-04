@@ -11,7 +11,7 @@ passport.serializeUser((user, done) => {
 
 //Deserialize user -> unique user ID(from cookie) to user object
 passport.deserializeUser((id, done) => {
-  user.findUserByID(id, function(user){
+  user.findUserByID(id, function(user) {
     done(null, user)
   })
   //TODO: If user not found?

@@ -14,9 +14,13 @@ router.get(
   })
 )
 
-router.get('/github/redirect',
-  passport.authenticate('github', { successRedirect: '/', failureRedirect: '/login' }),
-);
+router.get(
+  '/github/redirect',
+  passport.authenticate('github', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  })
+)
 
 //get user object
 function isAuthenticated(req, res, next) {
@@ -34,7 +38,6 @@ router.get('/user', isAuthenticated, function(req, res) {
 router.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
-  //res.send('Succesfully logged out!')
 })
 
 // Export Routes
