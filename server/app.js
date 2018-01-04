@@ -1,6 +1,5 @@
 // Imports
 const express = require('express')
-const mongoose = require('mongoose')
 const cors = require('cors')
 const passport = require('passport')
 const cookieSession = require('cookie-session')
@@ -26,16 +25,6 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
-
-//Connect to mongodb
-mongoose.Promise = global.Promise
-const connection = mongoose
-  .connect(keys.mongodb.dbURI, {
-    useMongoClient: true
-  })
-  .then(() => {
-    console.log('Connected to mongodb!')
-  })
 
 // app.use(express.static('public')); // Serve static files
 

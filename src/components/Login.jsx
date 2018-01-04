@@ -26,19 +26,11 @@ class Login extends Component {
           <div className="col-sm-6">
             <h1 className="user__headline">Login</h1>
             <div className="login__button">
-              <a href="/auth/google">
-                <div className="login__button-google">
+              <a href="/auth/github">
+                <div className="login__button-github">
                   <span>
-                    <i className="fa fa-google" aria-hidden="true" />
-                    Login via Google
-                  </span>
-                </div>
-              </a>
-              <a href="/auth/facebook">
-                <div className="login__button-facebook">
-                  <span>
-                    <i className="fa fa-facebook-official" aria-hidden="true" />
-                    Login via Facebook
+                    <i className="fa fa-github" aria-hidden="true" />
+                    Login via Github
                   </span>
                 </div>
               </a>
