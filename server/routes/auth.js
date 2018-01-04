@@ -3,12 +3,23 @@
 const express = require('express')
 const passport = require('passport')
 
+const passport_modules = require('../config/passport-modules')
+
 // Set up Router
 const router = express.Router()
 
 // Authenticate with Google
 router.get(
-  '/google',
+  '/dev/google',
+  passport_modules.google.dev,
+  passport.authenticate('google', {
+    scope: ['profile']
+  })
+)
+
+router.get(
+  '/ngo/google',
+  passport_modules.google.ngo,
   passport.authenticate('google', {
     scope: ['profile']
   })
@@ -21,7 +32,16 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 })
 
 // Authenticate with Facebook
-router.get('/facebook', passport.authenticate('facebook'))
+router.get(
+  '/dev/facebook',
+  passport_modules.facebook.dev,
+  passport.authenticate('facebook')
+)
+router.get(
+  '/ngo/facebook',
+  passport_modules.facebook.ngo,
+  passport.authenticate('facebook')
+)
 
 // Facebook redirect
 router.get(

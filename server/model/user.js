@@ -13,22 +13,63 @@ const UserSchema = new Schema({
   name: {
     type: String,
     required: [true, 'Name field is required']
+  },
+  bio: {
+    type: String,
+    default: ''
+  },
+  skills: {
+    type: [String],
+    default: []
+  },
+  location: {
+    type: String
+  },
+  picture: {
+    type: String
+  },
+  contact: {
+    type: String
+  },
+  team_pref: {
+    type: [String]
+  },
+  role: {
+    type: String
   }
 })
 const User = mongoose.model('user', UserSchema)
 
 var userModules = {}
-userModules.addGoogleUser = profile => {
+userModules.addGoogleDevUser = profile => {
   return new User({
     googleID: profile.id,
-    name: profile.displayName
+    name: profile.displayName,
+    role: 'dev'
   }).save()
 }
 
-userModules.addFacebookUser = profile => {
+userModules.addGoogleNGOUser = profile => {
+  return new User({
+    googleID: profile.id,
+    name: profile.displayName,
+    role: 'ngo'
+  }).save()
+}
+
+userModules.addFacebookDevUser = profile => {
   return new User({
     facebookID: profile.id,
-    name: profile.displayName
+    name: profile.displayName,
+    role: 'dev'
+  }).save()
+}
+
+userModules.addFacebookNGOUser = profile => {
+  return new User({
+    facebookID: profile.id,
+    name: profile.displayName,
+    role: 'ngo'
   }).save()
 }
 
@@ -42,6 +83,14 @@ userModules.findUserByGoogleID = id => {
 
 userModules.findUserByFacebookID = id => {
   return User.findOne({ facebookID: id })
+}
+
+userModules.updateUser = (id,updation) => {
+  return User.findByIdAndUpdate(id, updation)
+}
+
+userModules.deleteUser = id => {
+  return User.findByIdAndRemove({_id: id})
 }
 
 // Export models
