@@ -11,7 +11,7 @@ passport.serializeUser((user, done) => {
 
 //Deserialize user -> unique user ID(from cookie) to user object
 passport.deserializeUser((id, done) => {
-  user.findUserByID(id).then(user => {
+  user.findUserByID(id, function(user){
     done(null, user)
   })
   //TODO: If user not found?
@@ -34,6 +34,7 @@ githubCB = (accessToken, refreshToken, profile, done) => {
   user.findUserByGithubEmail(user_github_email, function(current_user) {
     if (current_user) {
       console.log('User exists: ' + current_user)
+      console.log(JSON.stringify(current_user))
       done(null, current_user)
     } else {
       console.log('Not a chingu member')
