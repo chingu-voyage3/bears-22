@@ -13,8 +13,8 @@ class Search extends Component {
       isSearchToggleOn: true,
       isSearchFilterOpen: true
     }
-    this.handleSearchToggleClick = this.handleSearchToggleClick.bind(this);
-    this.handleSearchFilterClick = this.handleSearchFilterClick.bind(this);
+    this.handleSearchToggleClick = this.handleSearchToggleClick.bind(this)
+    this.handleSearchFilterClick = this.handleSearchFilterClick.bind(this)
   }
 
   handleSearchToggleClick() {
@@ -33,8 +33,12 @@ class Search extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-
-          <div className="sidebar" className={this.state.isSearchFilterOpen ? 'd-none' : 'col-xs-12 col-sm-3'}>
+          <div
+            className="sidebar"
+            className={
+              this.state.isSearchFilterOpen ? 'd-none' : 'col-xs-12 col-sm-3'
+            }
+          >
             <h5 className="pt-4 text-center pb-4">Search categories</h5>
             <ul className="list-group">
               <li className="list-group-item list-group-item-secondary">
@@ -58,8 +62,12 @@ class Search extends Component {
             </ul>
           </div>
 
-
-          <div className="main" className={this.state.isSearchFilterOpen ? 'col-12' : 'col-xs-12 col-sm-9'}>
+          <div
+            className="main"
+            className={
+              this.state.isSearchFilterOpen ? 'col-12' : 'col-xs-12 col-sm-9'
+            }
+          >
             <div>
               <form>
                 <div className="form-group row justify-content-between">
@@ -90,18 +98,27 @@ class Search extends Component {
             </div>
 
             <div className="search__filter-buttons search__responsive-text-align pb-2">
-            <button onClick={this.handleSearchToggleClick} className="btn btn-link pt-0">
-              {this.state.isSearchToggleOn ? 'Show me devs!' : 'Show me non-profits!'}
-            </button>
+              <button
+                onClick={this.handleSearchToggleClick}
+                className="btn btn-link pt-0"
+              >
+                {this.state.isSearchToggleOn
+                  ? 'Show me devs!'
+                  : 'Show me non-profits!'}
+              </button>
 
-            <button onClick={this.handleSearchFilterClick} className="btn btn-link pt-0">
-              {this.state.isSearchFilterOpen ? 'Show Filters' : 'Hide Filters'}
-            </button>
+              <button
+                onClick={this.handleSearchFilterClick}
+                className="btn btn-link pt-0"
+              >
+                {this.state.isSearchFilterOpen
+                  ? 'Show Filters'
+                  : 'Hide Filters'}
+              </button>
             </div>
 
             <div>
               <ul className="list-group">
-
                 <li className="list-group-item mb-4">
                   <div className="row">
                     <div className="col-xs-12 col-sm-6">
@@ -109,9 +126,7 @@ class Search extends Component {
                         <li>
                           <img src={genericlogo} alt="Logo" />
                         </li>
-                        <li>
-                          Habitat for Humanity
-                        </li>
+                        <li>Habitat for Humanity</li>
                       </ul>
                     </div>
                     <div className="col-xs-12 col-sm-6">
@@ -156,9 +171,7 @@ class Search extends Component {
                         <li>
                           <img src={genericlogo} alt="Logo" />
                         </li>
-                        <li>
-                          Doctors Without Borders
-                        </li>
+                        <li>Doctors Without Borders</li>
                       </ul>
                     </div>
                     <div className="col-xs-12 col-sm-6">
@@ -172,19 +185,19 @@ class Search extends Component {
                     <div className="row">
                       <div className="col-12">
                         <p>
-                        We help people worldwide where the need is greatest,
-                        delivering emergency medical aid to people affected by
-                        conflict, epidemics, disasters, or exclusion from
-                        healthcare.
+                          We help people worldwide where the need is greatest,
+                          delivering emergency medical aid to people affected by
+                          conflict, epidemics, disasters, or exclusion from
+                          healthcare.
                         </p>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-12">
                         <ul className="list__inline list__border">
-                        <li>Node.js</li>
-                        <li>Express.js</li>
-                        <li>Back End</li>
+                          <li>Node.js</li>
+                          <li>Express.js</li>
+                          <li>Back End</li>
                         </ul>
                       </div>
                     </div>
@@ -197,9 +210,7 @@ class Search extends Component {
                         <li>
                           <img src={genericlogo} alt="Logo" />
                         </li>
-                        <li>
-                          Greenpeace
-                        </li>
+                        <li>Greenpeace</li>
                       </ul>
                     </div>
                     <div className="col-xs-12 col-sm-6">
@@ -213,26 +224,25 @@ class Search extends Component {
                     <div className="row">
                       <div className="col-12">
                         <p>
-                        Greenpeace is an independent campaigning organisation,
-                        which uses non-violent, creative confrontation to
-                        expose global environmental problems, and to force the
-                        solutions which are essential to a green and peaceful
-                        future.
+                          Greenpeace is an independent campaigning organisation,
+                          which uses non-violent, creative confrontation to
+                          expose global environmental problems, and to force the
+                          solutions which are essential to a green and peaceful
+                          future.
                         </p>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-12">
                         <ul className="list__inline list__border">
-                        <li>Front End</li>
-                        <li>JavaScript</li>
-                        <li>React.js</li>
+                          <li>Front End</li>
+                          <li>JavaScript</li>
+                          <li>React.js</li>
                         </ul>
                       </div>
                     </div>
                   </div>
                 </li>
-
               </ul>
             </div>
           </div>
