@@ -123,3 +123,58 @@ a {
     color: #ffffff;
     position: absolute;
     left: 1.25em; }
+
+.search__header-text-align {
+  text-align: center; }
+
+.search__header-text-align input {
+  text-align: center; }
+
+.search__filter-buttons {
+  text-align: center; }
+
+.list__inline {
+  padding: 0px; }
+
+.list__inline li {
+  display: inline-block;
+  margin-right: 10px; }
+
+.list__border li {
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid black; }
+
+.list__header {
+  background-color: gray; }
+
+.search__result__logo {
+  width: 50%;
+  display: inline; }
+
+.search__result__need {
+  padding: 0px;
+  text-align: center; }
+
+.search__result__need li {
+  display: inline; }
+
+.search__result__need li img {
+  width: 20%; }
+
+.search__result__title {
+  padding: 0px;
+  font-size: 1.5rem; }
+
+.search__result__title li {
+  display: inline;
+  list-style-type: none; }
+
+.search__result__title img {
+  width: 25%; }
+
+@media (min-width: 576px) {
+  .search__responsive-text-align {
+    text-align: left; }
+  .search__responsive-text-align input {
+    text-align: left; } }
