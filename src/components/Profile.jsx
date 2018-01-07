@@ -42,11 +42,17 @@ const Profile = ({ userInfo, data: { user, refetch, error, loading } }) => {
           <strong>ID: </strong>
           <p>{userInfo.id}</p>
           <div key={user.first_name + '-user'}>
-            <span><strong>First Name: </strong> </span>
+            <span>
+              <strong>First Name: </strong>{' '}
+            </span>
             <p>{user.first_name}</p>
-            <span><strong>Last Name: </strong> </span>
+            <span>
+              <strong>Last Name: </strong>{' '}
+            </span>
             <p>{user.last_name}</p>
-            <span><strong>Email:</strong> </span>
+            <span>
+              <strong>Email:</strong>{' '}
+            </span>
             <p>
               <a href={'mailto:' + user.email}>{user.email}</a>
             </p>
@@ -94,10 +100,13 @@ const mapStateToProps = state => {
 
 //export default connect(mapStateToProps)(Profile)
 
-export default connect(mapStateToProps)(graphql(profileQuery, {
-  options: (ownProps) => ({
-    variables: {
-      user_id: ownProps.userInfo.id,
-      email: ownProps.userInfo.email,
-    },
-  })})(Profile));
+export default connect(mapStateToProps)(
+  graphql(profileQuery, {
+    options: ownProps => ({
+      variables: {
+        user_id: ownProps.userInfo.id,
+        email: ownProps.userInfo.email
+      }
+    })
+  })(Profile)
+)
