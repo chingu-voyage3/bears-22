@@ -90,29 +90,24 @@ a {
   .login__button span {
     margin: 0 auto; }
 
-.login__button-google, .login__button-facebook {
+.login__button-github {
   display: inline-flex;
   padding: 0.625em 1.25em;
-  background-color: #ea4335;
+  background-color: #24292e;
   color: #ffffff;
   transition: 300ms;
   margin-top: 0.5625em;
   width: 100%;
   vertical-align: middle; }
-  .login__button-google i, .login__button-facebook i {
+  .login__button-github i {
     color: #ffffff;
     margin-right: 0.625em;
     margin-top: 0.3125em; }
-  .login__button-google:hover, .login__button-facebook:hover {
-    background-color: rgba(234, 67, 53, 0.9);
+  .login__button-github:hover {
+    background-color: rgba(36, 41, 46, 0.8);
     cursor: pointer; }
-  .login__button-google:focus, .login__button-facebook:focus, .login__button-google:active, .login__button-facebook:active, .login__button-google:hover, .login__button-facebook:hover {
+  .login__button-github:focus, .login__button-github:active, .login__button-github:hover {
     text-decoration: none; }
-
-.login__button-facebook {
-  background-color: #3b5998; }
-  .login__button-facebook:hover {
-    background-color: rgba(59, 89, 152, 0.9); }
 
 .user__headline--white {
   box-shadow: inset 0 -3px 0 0 #ffffff;

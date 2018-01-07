@@ -129,10 +129,10 @@ a {
   }
 }
 
-.login__button-google {
+.login__button-github {
   display: inline-flex;
   padding: em(10) em(20);
-  background-color: #ea4335;
+  background-color: rgba(36,41,46,1);
   color: #ffffff;
   transition: 300ms;
   margin-top: em(9);
@@ -144,19 +144,11 @@ a {
     margin-top: em(5);
   }
   &:hover {
-    background-color: rgba(234,67,53,0.9);
+    background-color: rgba(36,41,46,0.8);
     cursor: pointer;
   }
   &:focus, &:active, &:hover {
     text-decoration: none;
-  }
-}
-
-.login__button-facebook {
-  @extend .login__button-google;
-  background-color: #3b5998;
-  &:hover {
-    background-color: rgba(59,89,152,0.9)
   }
 }
 

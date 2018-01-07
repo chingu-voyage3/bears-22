@@ -1,47 +1,81 @@
 // Imports
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-
-// create user schema and model
-const UserSchema = new Schema({
-  googleID: {
-    type: String
-  },
-  facebookID: {
-    type: String
-  },
-  name: {
-    type: String,
-    required: [true, 'Name field is required']
-  }
-})
-const User = mongoose.model('user', UserSchema)
-
+var graphqlClient = require('graphql-client')
+const keys = require('../config/keys')
 var userModules = {}
-userModules.addGoogleUser = profile => {
-  return new User({
-    googleID: profile.id,
-    name: profile.displayName
-  }).save()
-}
 
-userModules.addFacebookUser = profile => {
-  return new User({
-    facebookID: profile.id,
-    name: profile.displayName
-  }).save()
-}
+var client = graphqlClient({
+  url: keys.chingu_api.endpoint
+})
 
-userModules.findUserByID = id => {
-  return User.findById(id)
-}
+var user_fields = `id,
+email,
+username,
+first_name,
+last_name,
+bio,
+linkedin_url,
+portfolio_url,
+website_url,
+twitter_url,
+blog_url,
+country {
+  name
+},
+city {
+  name
+}`
 
-userModules.findUserByGoogleID = id => {
-  return User.findOne({ googleID: id })
-}
+userModules.findUserByID = function(id, cb) {
+  var query = `
+    query{
+        user(user_id: "${id}") {
+          ${user_fields}
+        }
+    }`
+  console.log('Query: ' + query)
 
-userModules.findUserByFacebookID = id => {
-  return User.findOne({ facebookID: id })
+  client
+    .query(query, function(req, res) {
+      if (res.status === 401) {
+        throw new Error('Not authorized')
+        cb(null)
+      }
+    })
+    .then(function(body) {
+      console.log(body)
+      if (body.data.user == null) cb(null)
+      else cb(body.data.user)
+    })
+    .catch(function(err) {
+      console.log(err.message)
+      cb(null)
+    })
+}
+userModules.findUserByGithubEmail = function(email, cb) {
+  var query = `
+    query{
+        user(email: "${email}") {
+          ${user_fields}
+        }
+    }`
+  console.log('Query: ' + query)
+
+  client
+    .query(query, function(req, res) {
+      if (res.status === 401) {
+        throw new Error('Not authorized')
+        cb(null)
+      }
+    })
+    .then(function(body) {
+      console.log(body)
+      if (body.data.user == null) cb(null)
+      else cb(body.data.user)
+    })
+    .catch(function(err) {
+      console.log(err.message)
+      cb(null)
+    })
 }
 
 // Export models
