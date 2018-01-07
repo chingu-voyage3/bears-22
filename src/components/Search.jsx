@@ -4,6 +4,8 @@ import { userListReq } from '../actions'
 import { Link } from 'react-router-dom'
 import genericlogo from '../generic-logo.jpg'
 
+import SearchBar from './SearchBar'
+
 class Search extends Component {
   constructor(props) {
     super(props)
@@ -60,16 +62,11 @@ class Search extends Component {
                     </h3>
                   </label>
                   <div className="col-6 text-right pt-2 pb-0">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder={
+                    <SearchBar placeholder = {
                         this.state.isToggleOn
                           ? 'Search for a non-profit'
                           : 'Search for a user'
-                      }
-                      required
-                    />
+                      } items = {["Habitat for Humanity", 'Doctors Without Borders', 'Greenpeace']} />
                   </div>
                 </div>
               </form>
