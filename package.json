@@ -50,7 +50,10 @@
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "data": "node server/fakeDataGenerator.js",
     "format": "prettier --write --single-quote --no-semi --parser=flow --print-width=80 \"src/**/*.{js,jsx}\"   \"server/**/*.js\" ",
-    "precommit": "npm run format"
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [ "npm run prettier", "git add" ]
   },
   "description": "",
   "main": "app.js",
