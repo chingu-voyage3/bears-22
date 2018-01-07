@@ -9,6 +9,7 @@
     "cookie-session": "^2.0.0-beta.3",
     "cors": "^2.8.4",
     "date-fns": "^1.29.0",
+    "downshift": "^1.23.1",
     "express": "^4.16.2",
     "graphql": "^0.12.3",
     "graphql-client": "^2.0.0",
@@ -50,7 +51,10 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": [ "npm run format", "git add" ]
+    "*.js": [
+      "npm run format",
+      "git add"
+    ]
   },
   "description": "",
   "main": "app.js",
