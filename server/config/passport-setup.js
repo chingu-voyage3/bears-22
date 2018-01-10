@@ -32,8 +32,8 @@ githubCB = (accessToken, refreshToken, profile, done) => {
   console.log('User email: ' + profile.emails[0].value)
 
   //Check if user is a chingu member
-  user.findUserByID(profile._json.id, function(current_user) {
-    //user.findUserByGithubEmail(user_github_email, function(current_user) {
+  //user.findUserByID(profile._json.id, function(current_user) {
+  user.findUserByGithubEmail(user_github_email, function(current_user) {
     if (current_user) {
       console.log('User exists: ' + current_user)
       console.log(JSON.stringify(current_user))
