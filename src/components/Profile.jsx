@@ -42,12 +42,12 @@ const Profile = ({ userInfo, data: { user, refetch, error, loading } }) => {
           {/*Image and Basic Info*/}
           <section className="profile__bg-grey row">
             <div className="col-4">
-              <img src={u14} alt="Profile Image" className="profile__image col-4"/>
+              <img src={u14} alt="Profile Image" className="profile__image"/>
             </div>
             <div className="profile__header-text col-8">
-              <h3 className="align-middle">Richard Ellery</h3>
-              <p className="align-middle">Busan, South Korea</p>
-              <a href="http://localhost:3000/profile"  className="align-middle">http://elleredddddddddddddddddddddeeee.github.io</a>
+              <h3>Richard Ellery</h3>
+              <p>Busan, South Korea</p>
+              <a href="http://localhost:3000/profile" >http://ellereeeee.github.io</a>
             </div>
             <button className="profile__button-contact">Contact</button>
           </section>

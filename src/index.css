@@ -185,26 +185,20 @@ a {
 
 .profile__bg-grey {
   background-color: #4E6571;
-  display: block; }
+  display: flex;
+  align-items: center;
+  padding-top: 2rem; }
 
 .profile__image {
   border-radius: 50%;
   background-color: #FFEB3B;
-  margin: 0px;
   padding: 3px;
   max-width: 100%;
-  height: auto;
-  position: relative;
-  top: 50%;
-  transform: translateY(50%); }
+  height: auto; }
 
 .profile__header-text {
   padding: 0;
-  margin: 0;
-  position: relative;
-  top: 50%;
-  left: 66.5%;
-  transform: translate(-50%, -50%); }
+  margin: 0; }
 
 .profile__header-text h3 {
   margin: 0;
@@ -225,12 +219,11 @@ a {
   border: 2px solid #333333;
   border-radius: 5px;
   color: #333333;
+  font-weight: bold;
   padding: 5px 20px;
-  display: block;
-  position: absolute;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  font-weight: bold; }
+  margin: 0 auto;
+  position: relative;
+  top: 18px; }
 
 .profile__bg-black {
   background-color: #333;
