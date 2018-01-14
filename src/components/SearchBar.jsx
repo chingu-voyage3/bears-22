@@ -1,21 +1,17 @@
 import React, { Component } from 'react'
 import Downshift from 'downshift'
+import { connect } from 'react-redux'
 
 class SearchBar extends Component {
   constructor(props) {
     super(props)
-    this.onChange = this.onChange.bind(this)
-  }
-
-  onChange(selectedItem) {
-    console.log(selectedItem)
   }
 
   render() {
     return (
       <div className="searchbar">
         <Downshift
-          onChange={this.onChange}
+          onChange={this.props.onChange}
           render={({
             getInputProps,
             getItemProps,
@@ -24,8 +20,9 @@ class SearchBar extends Component {
             selectedItem,
             highlightedIndex
           }) => (
-            <div>
+          <div>
               <input
+                type="search"
                 className="form-control"
                 {...getInputProps({ placeholder: this.props.placeholder })}
                 required
@@ -60,5 +57,6 @@ class SearchBar extends Component {
     )
   }
 }
+
 
 export default SearchBar

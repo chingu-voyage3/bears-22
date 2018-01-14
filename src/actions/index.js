@@ -10,8 +10,26 @@ export const Actions = {
   FETCH_LOGIN_SUCCESS: 'FETCH_LOGIN_SUCCESS',
   GUEST: 'GUEST',
   FETCH_FAILED: 'FETCH_FAILED'
+  // SEARCH_START: 'SEARCH_START',
+  // SEARCH_FAILED: 'SEARCH_FAILED'
 }
 
+// //search related
+// export function watchSearch(search) {
+//   return {
+//     type: Actions.SEARCH_START,
+//     search
+//   }
+// }
+
+// export function watchSearchFailed(err) {
+//   return {
+//     type: Actions.SEARCH_FAILED,
+//     errorMsg: err
+//   }
+// }
+
+//fetch related
 export function fetchStatus() {
   return { type: Actions.FETCH_STATUS, isFetching }
 }

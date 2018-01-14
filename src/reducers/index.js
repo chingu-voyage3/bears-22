@@ -36,6 +36,21 @@ function getUserInfo(state = initialState, action) {
   }
 }
 
+// function getSearch(state = initialState, action) {
+//   switch (action.type) {
+//     case Actions.START_SEARCH:
+//       return Object.assign({}, state, {
+//         search: action.search
+//       })
+//     case Actions.SEARCH_START:
+//       return Object.assign({}, state, {
+//         errMsg: action.errMsg
+//       })
+//     default:
+//       return state
+//   }
+// }
+
 const initialState = {
   isFetching: false,
   users: [],
