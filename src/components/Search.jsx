@@ -3,8 +3,28 @@ import { connect } from 'react-redux'
 import genericlogo from './temp_assets/generic-logo.jpg'
 import u14 from './temp_assets/u14.png'
 import u16 from './temp_assets/u16.png'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import SearchBar from './SearchBar'
+//  query searchQuery($search: String!) {
+const searchQuery = gql`
+  query {
+  projects {
+    id
+    title
+    users {
+      id
+      username
+      first_name
+      email
+    }
+    github_url
+    project_url
+    description
+  } 
+  }
+`
 
 class Search extends Component {
   constructor(props) {
@@ -30,6 +50,8 @@ class Search extends Component {
   }
 
   render() {
+    const { data } = this.props;
+    console.log(data.projects);
     return (
       <div className="container-fluid">
         <div className="row">
@@ -123,59 +145,14 @@ class Search extends Component {
 
             <div>
               <ul className="list-group">
-                <li className="list-group-item mb-4">
+                {!data.loading ? (data.projects && data.projects.map((item, index) => (<li className="list-group-item mb-4" key={index}>
                   <div className="row">
                     <div className="col-xs-12 col-sm-6">
                       <ul className="search__result__title">
                         <li>
                           <img src={genericlogo} alt="Logo" />
                         </li>
-                        <li>Habitat for Humanity</li>
-                      </ul>
-                    </div>
-                    <div className="col-xs-12 col-sm-6">
-                      <ul className="search__result__need search__responsive-text-align">
-                        <li>Need:</li>
-                        <li>
-                          <img src={u14} alt="dev" />
-                        </li>
-                        <li>
-                          <img src={u16} alt="frontend" />
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <p>
-                          Seeking to put God's love into action, Habitat for
-                          Humanity brings people together to build homes,
-                          communities, and hope.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <ul className="list__inline list__border">
-                          <li>JavaScript</li>
-                          <li>React.js</li>
-                          <li>Front End</li>
-                          <li>Node.js</li>
-                          <li>Express.js</li>
-                          <li>Back End</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="list-group-item mb-4">
-                  <div className="row">
-                    <div className="col-xs-12 col-sm-6">
-                      <ul className="search__result__title">
-                        <li>
-                          <img src={genericlogo} alt="Logo" />
-                        </li>
-                        <li>Doctors Without Borders</li>
+                        <li>{item.title}</li>
                       </ul>
                     </div>
                     <div className="col-xs-12 col-sm-6">
@@ -206,47 +183,10 @@ class Search extends Component {
                       </div>
                     </div>
                   </div>
-                </li>
-                <li className="list-group-item mb-4">
-                  <div className="row">
-                    <div className="col-xs-12 col-sm-6">
-                      <ul className="search__result__title">
-                        <li>
-                          <img src={genericlogo} alt="Logo" />
-                        </li>
-                        <li>Greenpeace</li>
-                      </ul>
-                    </div>
-                    <div className="col-xs-12 col-sm-6">
-                      <ul className="search__result__need search__responsive-text-align">
-                        <li>Need:</li>
-                        <li>
-                          <img src={u16} alt="frontend" />
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <p>
-                          Greenpeace is an independent campaigning organisation,
-                          which uses non-violent, creative confrontation to
-                          expose global environmental problems, and to force the
-                          solutions which are essential to a green and peaceful
-                          future.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <ul className="list__inline list__border">
-                          <li>Front End</li>
-                          <li>JavaScript</li>
-                          <li>React.js</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                </li>))) : (
+                <div>Loading...</div>
+                )}
+
               </ul>
             </div>
           </div>
@@ -262,4 +202,21 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Search)
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    checkLoginStatus: e => {
+    }
+  }
+}
+
+export default connect(mapStateToProps)(
+  graphql(searchQuery, {
+    options: ownProps => ({
+      variables: {
+        search: "1233131"
+      }
+    })
+  })(Search)
+)
+
