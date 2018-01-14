@@ -35,7 +35,9 @@ class Search extends Component {
         <div className="row">
           <div
             className={
-              this.state.isSearchFilterOpen ? 'sidebar d-none' : 'sidebar col-xs-12 col-sm-3'
+              this.state.isSearchFilterOpen
+                ? 'sidebar d-none'
+                : 'sidebar col-xs-12 col-sm-3'
             }
           >
             <h5 className="pt-4 text-center pb-4">Search categories</h5>
@@ -63,7 +65,9 @@ class Search extends Component {
 
           <div
             className={
-              this.state.isSearchFilterOpen ? 'main col-12' : 'main col-xs-12 col-sm-9'
+              this.state.isSearchFilterOpen
+                ? 'main col-12'
+                : 'main col-xs-12 col-sm-9'
             }
           >
             <div>
@@ -254,7 +258,7 @@ class Search extends Component {
 
 const mapStateToProps = state => {
   return {
-    isLogin: state.getUserInfo.isLogin,
+    isLogin: state.getUserInfo.isLogin
   }
 }
 
