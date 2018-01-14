@@ -5,8 +5,8 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const profileQuery = gql`
-  query profileQuery($user_id: ID!) {
-    user(user_id: $user_id) {
+  query profileQuery($email: String!) {
+    user(email: $email) {
       email
       username
       first_name
