@@ -7,6 +7,6 @@ module.exports = {
     clientSecret: 'e7821556902562790ff344110da9f80f11ce28d5'
   },
   chingu_api: {
-    endpoint: 'http://localhost:5000/graphql'
+    endpoint: 'http://localhost:5000/graphiql'
   }
 }

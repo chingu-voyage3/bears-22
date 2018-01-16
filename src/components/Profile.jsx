@@ -6,8 +6,9 @@ import gql from 'graphql-tag'
 import u14 from './temp_assets/u14.png';
 
 const profileQuery = gql`
-  {
-    user(user_id: 1) {
+query {
+    user (user_id: 1) {
+      id
       email
       username
       first_name
@@ -20,8 +21,19 @@ const profileQuery = gql`
         title
         description
       }
+      bio
+      country {
+        name
+      },
+      city {
+        name
+      }
+    skills {
+      id
+      name
     }
   }
+}
 `
 
 const Profile = ({ userInfo, data: { user, refetch, error, loading } }) => {
@@ -45,19 +57,19 @@ const Profile = ({ userInfo, data: { user, refetch, error, loading } }) => {
               <img src={u14} alt="Profile Image" className="profile__image"/>
             </div>
             <div className="profile__header-text col-8">
-              <h3>Richard Ellery</h3>
-              <p>Busan, South Korea</p>
-              <a href="http://localhost:3000/profile" >http://ellereeeee.github.io</a>
+              <h3>{user.first_name} {user.last_name}</h3>
+              <p>{user.city}, {user.country}</p>
+              <a href={user.portfolio_url}>{user.portfolio_url}</a>
             </div>
-            <button className="profile__button-contact">Contact</button>
+            <a href={'mailto:' + user.email} className="profile__button-contact">Contact</a>
           </section>
           {/*About and Skills*/}
           <section className="profile__bg-black row">
             <div className="col-12">
               <h3 className="profile__category-text">About</h3>
-              <p>My name is Richard. I have experience using HTML, CSS, JavaScript, and React in a team setting. I've also helped design UI/UX. I hope I can help your team finish your project!</p>
+              <p>{user.bio}</p>
               <h3 className="profile__category-text">Skills</h3>
-              <p>HTML, CSS, JavaScript, React, UI, UX</p>
+              <p>Add skills to query</p>
             </div>
           </section>
         </div>

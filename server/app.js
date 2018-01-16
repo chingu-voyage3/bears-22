@@ -44,5 +44,5 @@ app.use('/auth', auth)
 // Listen for requests on port 8080
 const PORT = process.env.port || 8080
 app.listen(PORT, () => {
-  console.log(`Sever running at http://localhost:${PORT} ... `)
+  console.log(`Server running at http://localhost:${PORT} ... `)
 })
