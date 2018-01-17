@@ -5,8 +5,8 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const profileQuery = gql`
-  {
-    user(user_id: 1) {
+  query profileQuery($email: String!) {
+    user(email: $email) {
       email
       username
       first_name
@@ -39,21 +39,27 @@ const Profile = ({ userInfo, data: { user, refetch, error, loading } }) => {
       return (
         <div className="profile">
           <h1 className="profile__header">Profile</h1>
-          <strong>Username: </strong>
-          {userInfo.name}
-          <div key={user.id + '-' + 'user'}>
-            <span>First Name: </span>
+          <strong>ID: </strong>
+          <p>{userInfo.id}</p>
+          <div key={user.first_name + '-user'}>
+            <span>
+              <strong>First Name: </strong>{' '}
+            </span>
             <p>{user.first_name}</p>
-            <span>Last Name: </span>
+            <span>
+              <strong>Last Name: </strong>{' '}
+            </span>
             <p>{user.last_name}</p>
-            <span>Last Name: </span>
+            <span>
+              <strong>Email:</strong>{' '}
+            </span>
             <p>
               <a href={'mailto:' + user.email}>{user.email}</a>
             </p>
           </div>
           {user &&
             user.projects.map((item, index) => (
-              <div key={item.id + '-' + 'project'}>
+              <div key={item.id + '-project'}>
                 <span>Project: </span>
                 <p>{item.title}</p>
                 {item.description ? (
@@ -94,4 +100,13 @@ const mapStateToProps = state => {
 
 //export default connect(mapStateToProps)(Profile)
 
-export default graphql(profileQuery)(connect(mapStateToProps)(Profile))
+export default connect(mapStateToProps)(
+  graphql(profileQuery, {
+    options: ownProps => ({
+      variables: {
+        user_id: ownProps.userInfo.id,
+        email: ownProps.userInfo.email
+      }
+    })
+  })(Profile)
+)
