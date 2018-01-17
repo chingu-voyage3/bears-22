@@ -23,49 +23,55 @@ const profileQuery = gql`
   }
 `
 
-const Profile = ({ userInfo, data: { user, refetch, error, loading } }) => {
-  if (error) {
-    return (
-      <div className="profile">
-        <h1 className="profile__header">Profile</h1>
-        <p>Failed to fetch data now, please try again.</p>
-        <Link to={'/'}>
-          <p>Back to Home</p>
-        </Link>
-      </div>
-    )
-  } else {
-    if (!loading) {
-      return (
-        <div>
-          {/*Image and Basic Info*/}
-          <section>
-            <img src="" alt=""/>
-            <h3></h3>
-            <p></p>
-            <p></p>
-            <button>Contact</button>
-          </section>
-          {/*About and Skills*/}
-          <section>
-            <h3>About</h3>
-            <p></p>
-            <h3>Skills</h3>
-            <p></p>
-          </section>
-        </div>
-      )
-    } else {
-      return (
-        <div className="profile">
-          <h1 className="profile__header">Profile</h1>
-          <p>Loading...</p>
-          <Link to={'/'}>
-            <p>Back to Home</p>
-          </Link>
-        </div>
-      )
-    }
+class Profile extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    const {data} = this.props;
+      if (data.error) {
+        return (
+          <div className="profile">
+            <h1 className="profile__header">Profile</h1>
+            <p>Failed to fetch data now, please try again.</p>
+            <Link to={'/'}>
+              <p>Back to Home</p>
+            </Link>
+          </div>
+        )
+      } else {
+        if (!data.loading) {
+          return (
+            <div>
+              {/*Image and Basic Info*/}
+              <section>
+                <img src="" alt=""/>
+                <h3></h3>
+                <p></p>
+                <p></p>
+                <button>Contact</button>
+              </section>
+              {/*About and Skills*/}
+              <section>
+                <h3>About</h3>
+                <p></p>
+                <h3>Skills</h3>
+                <p></p>
+              </section>
+            </div>
+          )
+        } else {
+          return (
+            <div className="profile">
+              <h1 className="profile__header">Profile</h1>
+              <p>Loading...</p>
+              <Link to={'/'}>
+                <p>Back to Home</p>
+              </Link>
+            </div>
+          )
+        }
+      }
   }
 }
 
