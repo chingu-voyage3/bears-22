@@ -26,6 +26,9 @@ const profileQuery = gql`
 class Profile extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      EditProfile: true
+    }
   }
   render() {
     const {data} = this.props;
@@ -42,24 +45,49 @@ class Profile extends React.Component {
       } else {
         if (!data.loading) {
           return (
-            <div>
-              {/*Image and Basic Info*/}
-              <section>
-                <img src="" alt=""/>
-                <h3></h3>
-                <p></p>
-                <p></p>
-                <button>Contact</button>
-              </section>
-              {/*About and Skills*/}
-              <section>
-                <h3>About</h3>
-                <p></p>
-                <h3>Skills</h3>
-                <p></p>
-              </section>
-            </div>
-          )
+            this.state.EditProfile ?
+              <div>
+                <h3>Account Basics</h3>
+                <img src="http://res.cloudinary.com/devvzv96d/image/upload/v1516176891/new_years_small_nvsldx.jpg" alt="" />
+                <button><i class="material-icons">add</i></button>
+                <form>
+                  <input type="text" placeholder=" First Name"/>
+                  <input type="text" placeholder=" Last Name"/>
+                  <input type="text" placeholder=" Username"/>
+                  <input type="text" placeholder=" E-mail Address"/>
+                </form>
+                <h3>Profile</h3>
+                <form>
+                  <input type="text" placeholder=" Location"/>
+                  <input type="text" placeholder=" Website" />
+                  <textarea rows="4" cols="16" placeholder=" About Me">
+                  </textarea>
+                  <textarea rows="2" cols="16" placeholder=" Skills">
+                  </textarea>
+                </form>
+                <footer>
+                  <button>View Profile</button>
+                  <button><i class="material-icons">save</i>Save Changes</button>
+                </footer> 
+              </div> :
+              <div>
+                {/*Image and Basic Info*/}
+                <section>
+                  <img src="" alt=""/>
+                  <h3></h3>
+                  <p></p>
+                  <p></p>
+                  <button>Contact</button>
+                </section>
+                {/*About and Skills*/}
+                <section>
+                  <h3>About</h3>
+                  <p></p>
+                  <h3>Skills</h3>
+                  <p></p>
+                </section>
+              </div>
+            )
         } else {
           return (
             <div className="profile">
