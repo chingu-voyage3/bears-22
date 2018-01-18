@@ -30,6 +30,11 @@ class Profile extends React.Component {
       EditProfile: true
     }
   }
+  handleViewProfile = () => {
+    this.setState(({EditProfile}) => ({
+      EditProfile: false,
+    }))
+  }
   render() {
 //    const FirstName = this.props.user.first_name ? this.props.user.first_name : this.state.first_name;
     const {data} = this.props;
@@ -68,7 +73,7 @@ class Profile extends React.Component {
                   </textarea>
                 </form>
                 <footer>
-                  <button>View Profile</button>
+                  <p onClick={this.handleViewProfile}>View Profile</p>
                   <button><i class="material-icons">save</i>Save Changes</button>
                 </footer> 
               </div> :
