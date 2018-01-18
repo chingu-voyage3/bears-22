@@ -31,6 +31,7 @@ class Profile extends React.Component {
     }
   }
   render() {
+//    const FirstName = this.props.user.first_name ? this.props.user.first_name : this.state.first_name;
     const {data} = this.props;
       if (data.error) {
         return (
@@ -45,13 +46,14 @@ class Profile extends React.Component {
       } else {
         if (!data.loading) {
           return (
+            // Display edit profile page if EditProfile state is true, else show view profile page
             this.state.EditProfile ?
               <div>
                 <h3>Account Basics</h3>
                 <img src="http://res.cloudinary.com/devvzv96d/image/upload/v1516176891/new_years_small_nvsldx.jpg" alt="" />
                 <button><i class="material-icons">add</i></button>
                 <form>
-                  <input type="text" placeholder=" First Name"/>
+                  <input type="text" placeholder=" First Name" value={this.props.data.user.first_name}/>
                   <input type="text" placeholder=" Last Name"/>
                   <input type="text" placeholder=" Username"/>
                   <input type="text" placeholder=" E-mail Address"/>
