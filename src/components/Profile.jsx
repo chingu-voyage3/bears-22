@@ -6,9 +6,8 @@ import gql from 'graphql-tag'
 import u14 from './temp_assets/u14.png'
 
 const profileQuery = gql`
-  query {
-    user(user_id: 1) {
-      id
+  query profileQuery($email: String!) {
+    user(email: $email) {
       email
       username
       first_name
@@ -50,37 +49,44 @@ const Profile = ({ userInfo, data: { user, refetch, error, loading } }) => {
   } else {
     if (!loading) {
       return (
-        <div className="profile__body container-fluid">
-          {/*Image and Basic Info*/}
-          <section className="profile__bg-grey row">
-            <div className="col-4">
-              <img src={u14} alt="Profile Image" className="profile__image" />
-            </div>
-            <div className="profile__header-text col-8">
-              <h3>
-                {user.first_name} {user.last_name}
-              </h3>
-              <p>
-                {user.city}, {user.country}
-              </p>
-              <a href={user.portfolio_url}>{user.portfolio_url}</a>
-            </div>
-            <a
-              href={'mailto:' + user.email}
-              className="profile__button-contact"
-            >
-              Contact
-            </a>
-          </section>
-          {/*About and Skills*/}
-          <section className="profile__bg-black row">
-            <div className="col-12">
-              <h3 className="profile__category-text">About</h3>
-              <p>{user.bio}</p>
-              <h3 className="profile__category-text">Skills</h3>
-              <p>Add skills to query</p>
-            </div>
-          </section>
+        <div className="profile">
+          <h1 className="profile__header">Profile</h1>
+          <strong>ID: </strong>
+          <p>{userInfo.id}</p>
+          <div key={user.first_name + '-user'}>
+            <span>
+              <strong>First Name: </strong>{' '}
+            </span>
+            <p>{user.first_name}</p>
+            <span>
+              <strong>Last Name: </strong>{' '}
+            </span>
+            <p>{user.last_name}</p>
+            <span>
+              <strong>Email:</strong>{' '}
+            </span>
+            <p>
+              <a href={'mailto:' + user.email}>{user.email}</a>
+            </p>
+          </div>
+          {user &&
+            user.projects.map((item, index) => (
+              <div key={item.id + '-project'}>
+                <span>Project: </span>
+                <p>{item.title}</p>
+                {item.description ? (
+                  <div>
+                    <span>Description:</span>
+                    <p>{item.description}</p>
+                  </div>
+                ) : (
+                  ''
+                )}
+              </div>
+            ))}
+          <Link to={'/'}>
+            <p>Back to Home</p>
+          </Link>
         </div>
       )
     } else {
@@ -106,4 +112,13 @@ const mapStateToProps = state => {
 
 //export default connect(mapStateToProps)(Profile)
 
-export default graphql(profileQuery)(connect(mapStateToProps)(Profile))
+export default connect(mapStateToProps)(
+  graphql(profileQuery, {
+    options: ownProps => ({
+      variables: {
+        user_id: ownProps.userInfo.id,
+        email: ownProps.userInfo.email
+      }
+    })
+  })(Profile)
+)

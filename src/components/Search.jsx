@@ -1,28 +1,75 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { userListReq } from '../actions'
-import { Link } from 'react-router-dom'
-import genericlogo from './temp_assets/generic-logo.jpg'
 import u14 from './temp_assets/u14.png'
-import u16 from './temp_assets/u16.png'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import SearchBar from './SearchBar'
+import SearchFilter from './SearchFilter'
+
+//  query searchQuery($search: String!) {
+const searchQuery = gql`
+  query {
+    user(user_id: 1) {
+      id
+      username
+      first_name
+      email
+      bio
+      skills {
+        id
+        name
+      }
+    }
+    projects {
+      id
+      title
+      users {
+        id
+        username
+        first_name
+        email
+      }
+      github_url
+      project_url
+      description
+      skills {
+        id
+        name
+      }
+    }
+  }
+`
 
 class Search extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isSearchToggleOn: true,
-      isSearchFilterOpen: true
+      isSearchFilterOpen: true,
+      selectedItem: '',
+      search: 'projects'
     }
     this.handleSearchToggleClick = this.handleSearchToggleClick.bind(this)
     this.handleSearchFilterClick = this.handleSearchFilterClick.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.resetSearch = this.resetSearch.bind(this)
   }
 
   handleSearchToggleClick() {
+    const search = () => (this.state.search == 'projects' ? 'user' : 'projects')
     this.setState(prevState => ({
-      isSearchToggleOn: !prevState.isSearchToggleOn
+      isSearchToggleOn: !prevState.isSearchToggleOn,
+      search: search()
     }))
+    document.getElementById('search__title').classList.add('flip-animation')
+    setTimeout(
+      () =>
+        document
+          .getElementById('search__title')
+          .classList.remove('flip-animation'),
+      500
+    )
   }
 
   handleSearchFilterClick() {
@@ -31,43 +78,30 @@ class Search extends Component {
     }))
   }
 
+  onChange(selectedItem) {
+    this.setState((prevState, props) => ({
+      selectedItem
+    }))
+  }
+
+  resetSearch() {
+    this.setState((prevState, props) => ({
+      selectedItem: ''
+    }))
+    this.props.data.refetch()
+  }
+
   render() {
+    const { data } = this.props
     return (
       <div className="container-fluid">
         <div className="row">
+          <SearchFilter isSearchFilterOpen={this.state.isSearchFilterOpen} />
           <div
-            className="sidebar"
             className={
-              this.state.isSearchFilterOpen ? 'd-none' : 'col-xs-12 col-sm-3'
-            }
-          >
-            <h5 className="pt-4 text-center pb-4">Search categories</h5>
-            <ul className="list-group">
-              <li className="list-group-item list-group-item-secondary">
-                Search for solo devs of teams
-              </li>
-              <li className="list-group-item">Solo</li>
-              <li className="list-group-item">Team</li>
-            </ul>
-            <ul className="list-group">
-              <li className="list-group-item list-group-item-secondary">
-                Search by skills
-              </li>
-              <li className="list-group-item">JavaScript</li>
-              <li className="list-group-item active">React</li>
-              <li className="list-group-item">Front End</li>
-              <li className="list-group-item">Back End</li>
-              <li className="list-group-item">Node.js</li>
-              <li className="list-group-item">Express.js</li>
-              <li className="list-group-item">Vue.js</li>
-              <li className="list-group-item active">UI/UX</li>
-            </ul>
-          </div>
-
-          <div
-            className="main"
-            className={
-              this.state.isSearchFilterOpen ? 'col-12' : 'col-xs-12 col-sm-9'
+              this.state.isSearchFilterOpen
+                ? 'main col-12'
+                : 'main col-xs-12 col-sm-9'
             }
           >
             <div>
@@ -77,176 +111,86 @@ class Search extends Component {
                     htmlFor="inputSearch"
                     className="col-xs-12 col-sm-6 col-form-label"
                   >
-                    <h3 className="search__header-text-align search__responsive-text-align">
+                    <h3 id="search__title">
                       {this.state.isSearchToggleOn
-                        ? 'Find a non-profit.'
-                        : 'Find a user.'}
+                        ? 'Find projects.'
+                        : 'Find users.'}
                     </h3>
                   </label>
                   <div className="col-6 text-right pt-2 pb-0">
                     <SearchBar
                       placeholder={
-                        this.state.isToggleOn
-                          ? 'Search for a non-profit'
-                          : 'Search for a user'
+                        this.state.isSearchToggleOn
+                          ? 'Search projects'
+                          : 'Search users'
                       }
-                      items={[
-                        'Habitat for Humanity',
-                        'Doctors Without Borders',
-                        'Greenpeace'
-                      ]}
+                      items={
+                        data.projects && data.projects.map(item => item.title)
+                      }
+                      onChange={this.onChange}
                     />
                   </div>
                 </div>
               </form>
             </div>
 
-            <div className="search__filter-buttons search__responsive-text-align pb-2">
-              <button
+            <div className="pb-2">
+              <p
                 onClick={this.handleSearchToggleClick}
-                className="btn btn-link pt-0"
+                className="btn btn-link mb-0"
               >
-                {this.state.isSearchToggleOn
-                  ? 'Show me devs!'
-                  : 'Show me non-profits!'}
-              </button>
+                {this.state.isSearchToggleOn ? 'Get users' : 'Get projects'}
+              </p>
 
-              <button
+              <p
                 onClick={this.handleSearchFilterClick}
-                className="btn btn-link pt-0"
+                className="btn btn-link mb-0"
               >
                 {this.state.isSearchFilterOpen
                   ? 'Show Filters'
                   : 'Hide Filters'}
-              </button>
+              </p>
             </div>
 
             <div>
               <ul className="list-group">
-                <li className="list-group-item mb-4">
-                  <div className="row">
-                    <div className="col-xs-12 col-sm-6">
-                      <ul className="search__result__title">
-                        <li>
-                          <img src={genericlogo} alt="Logo" />
-                        </li>
-                        <li>Habitat for Humanity</li>
-                      </ul>
-                    </div>
-                    <div className="col-xs-12 col-sm-6">
-                      <ul className="search__result__need search__responsive-text-align">
-                        <li>Need:</li>
-                        <li>
-                          <img src={u14} alt="dev" />
-                        </li>
-                        <li>
-                          <img src={u16} alt="frontend" />
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <p>
-                          Seeking to put God's love into action, Habitat for
-                          Humanity brings people together to build homes,
-                          communities, and hope.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <ul className="list__inline list__border">
-                          <li>JavaScript</li>
-                          <li>React.js</li>
-                          <li>Front End</li>
-                          <li>Node.js</li>
-                          <li>Express.js</li>
-                          <li>Back End</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="list-group-item mb-4">
-                  <div className="row">
-                    <div className="col-xs-12 col-sm-6">
-                      <ul className="search__result__title">
-                        <li>
-                          <img src={genericlogo} alt="Logo" />
-                        </li>
-                        <li>Doctors Without Borders</li>
-                      </ul>
-                    </div>
-                    <div className="col-xs-12 col-sm-6">
-                      <ul className="search__result__need search__responsive-text-align">
-                        <li>Need:</li>
-                        <li>
-                          <img src={u14} alt="dev" />
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <p>
-                          We help people worldwide where the need is greatest,
-                          delivering emergency medical aid to people affected by
-                          conflict, epidemics, disasters, or exclusion from
-                          healthcare.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <ul className="list__inline list__border">
-                          <li>Node.js</li>
-                          <li>Express.js</li>
-                          <li>Back End</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li className="list-group-item mb-4">
-                  <div className="row">
-                    <div className="col-xs-12 col-sm-6">
-                      <ul className="search__result__title">
-                        <li>
-                          <img src={genericlogo} alt="Logo" />
-                        </li>
-                        <li>Greenpeace</li>
-                      </ul>
-                    </div>
-                    <div className="col-xs-12 col-sm-6">
-                      <ul className="search__result__need search__responsive-text-align">
-                        <li>Need:</li>
-                        <li>
-                          <img src={u16} alt="frontend" />
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <p>
-                          Greenpeace is an independent campaigning organisation,
-                          which uses non-violent, creative confrontation to
-                          expose global environmental problems, and to force the
-                          solutions which are essential to a green and peaceful
-                          future.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-12">
-                        <ul className="list__inline list__border">
-                          <li>Front End</li>
-                          <li>JavaScript</li>
-                          <li>React.js</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                {!data.loading ? (
+                  data['projects'] &&
+                  data['projects']
+                    .filter(item => item.title.match(this.state.selectedItem))
+                    .map((item, index) => (
+                      <li className="list-group-item mb-4" key={index}>
+                        <div className="row">
+                          <div className="col-xs-12 col-sm-8 search__result d-flex align-items-center">
+                            <span className="search__thumbnail" key={index}>
+                              {item.title.slice(0, 1)}
+                            </span>
+                            <span className="search__result__title">
+                              {item.title}
+                            </span>
+                          </div>
+                          <div className="col-xs-12 col-sm-4">
+                            <p className="search__result__need">Need:</p>
+                            <img className="need__img" src={u14} alt="dev" />
+                          </div>
+                          <div className="col-12">
+                            <p className="search__desc">
+                              {item.description
+                                ? item.description
+                                : 'This project still does not have any description yet.'}
+                            </p>
+                            <ul className="list__inline list__border">
+                              <li>Node.js</li>
+                              <li>Express.js</li>
+                              <li>Back End</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    ))
+                ) : (
+                  <div>Loading...</div>
+                )}
               </ul>
             </div>
           </div>
@@ -256,4 +200,26 @@ class Search extends Component {
   }
 }
 
-export default Search
+const mapStateToProps = state => {
+  return {
+    userInfo: state.getUserInfo.userInfo
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    changeSearchSection: e => {
+      this.props.data.refetch()
+    }
+  }
+}
+
+export default connect(mapStateToProps)(
+  graphql(searchQuery, {
+    options: ownProps => ({
+      variables: {
+        //search: ownProps.search
+      }
+    })
+  })(Search)
+)
