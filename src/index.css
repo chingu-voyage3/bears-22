@@ -175,6 +175,7 @@ a {
   width: 25%; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @media (min-width: 576px) {
   .search__responsive-text-align {
     text-align: left; }
@@ -237,6 +238,8 @@ a {
   text-underline-position: below;
   text-align: center; }
 =======
+=======
+>>>>>>> master
 .search__thumbnail {
   display: inline-flex;
   width: 1.875em;
@@ -289,4 +292,7 @@ a {
 
 input[type=search]::-webkit-search-cancel-button {
   -webkit-appearance: searchfield-cancel-button; }
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master

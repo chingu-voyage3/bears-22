@@ -269,6 +269,7 @@ a {
     width: em(50);
     height: em(50);
   min-width: em(50);
+<<<<<<< HEAD
   }
 }
 
@@ -295,6 +296,34 @@ a {
   }
 }
 
+=======
+  }
+}
+
+.search__desc {
+  margin-bottom: em(10)
+}
+
+.btn-link {
+  cursor: pointer;
+}
+
+.flip-animation {
+  animation: flip 500ms ease-in-out;
+}
+
+@keyframes flip {
+  0% {
+    opacity: 0;
+    transform: rotateX(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+>>>>>>> master
 @keyframes opacity {
   0% {
     display: none;
@@ -302,6 +331,12 @@ a {
   }
   1% {
     display: flex;
+<<<<<<< HEAD
+=======
+  }
+  100% {
+    opacity: 1;
+>>>>>>> master
   }
   100% {
     opacity: 1;
@@ -380,6 +415,10 @@ input[type=search]::-webkit-search-cancel-button {
   text-decoration-color: $profile-yellow;
   text-underline-position: below;
   text-align: center;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
 }
 
 // =============

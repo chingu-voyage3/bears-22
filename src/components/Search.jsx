@@ -9,13 +9,19 @@ import SearchFilter from './SearchFilter'
 
 //  query searchQuery($search: String!) {
 const searchQuery = gql`
+<<<<<<< HEAD
   query {
     user(user_id: 1) {
+=======
+query {
+    user (user_id: 1) {
+>>>>>>> master
       id
       username
       first_name
       email
       bio
+<<<<<<< HEAD
       skills {
         id
         name
@@ -39,6 +45,31 @@ const searchQuery = gql`
       }
     }
   }
+=======
+    skills {
+      id
+      name
+    }
+  },
+  projects{
+    id
+    title
+    users {
+      id
+      username
+      first_name
+      email
+    }
+    github_url
+    project_url
+    description
+    skills {
+      id
+      name
+    }
+  } 
+}
+>>>>>>> master
 `
 
 class Search extends Component {
@@ -57,11 +88,16 @@ class Search extends Component {
   }
 
   handleSearchToggleClick() {
+<<<<<<< HEAD
     const search = () => (this.state.search == 'projects' ? 'user' : 'projects')
+=======
+    const search = () => this.state.search == 'projects' ? 'user' : 'projects';
+>>>>>>> master
     this.setState(prevState => ({
       isSearchToggleOn: !prevState.isSearchToggleOn,
       search: search()
     }))
+<<<<<<< HEAD
     document.getElementById('search__title').classList.add('flip-animation')
     setTimeout(
       () =>
@@ -70,12 +106,17 @@ class Search extends Component {
           .classList.remove('flip-animation'),
       500
     )
+=======
+    document.getElementById('search__title').classList.add('flip-animation');
+    setTimeout(() => document.getElementById('search__title').classList.remove('flip-animation'), 500);
+>>>>>>> master
   }
 
   handleSearchFilterClick() {
     this.setState(prevState => ({
       isSearchFilterOpen: !prevState.isSearchFilterOpen
     }))
+<<<<<<< HEAD
   }
 
   onChange(selectedItem) {
@@ -97,6 +138,31 @@ class Search extends Component {
       <div className="container-fluid">
         <div className="row">
           <SearchFilter isSearchFilterOpen={this.state.isSearchFilterOpen} />
+=======
+  }
+
+  onChange(selectedItem) {
+    this.setState((prevState, props) => ({
+      selectedItem
+    }));
+  }
+
+  resetSearch() {
+    this.setState((prevState, props) => ({
+      selectedItem: ''
+    }));
+    this.props.data.refetch();
+  }
+
+  render() {
+    const { data } = this.props;
+      return (
+      <div className="container-fluid">
+        <div className="row">
+            <SearchFilter 
+            isSearchFilterOpen={this.state.isSearchFilterOpen}
+             />
+>>>>>>> master
           <div
             className={
               this.state.isSearchFilterOpen
@@ -124,9 +190,13 @@ class Search extends Component {
                           ? 'Search projects'
                           : 'Search users'
                       }
+<<<<<<< HEAD
                       items={
                         data.projects && data.projects.map(item => item.title)
                       }
+=======
+                      items={data.projects && data.projects.map((item) => ( item.title))}
+>>>>>>> master
                       onChange={this.onChange}
                     />
                   </div>
@@ -139,7 +209,13 @@ class Search extends Component {
                 onClick={this.handleSearchToggleClick}
                 className="btn btn-link mb-0"
               >
+<<<<<<< HEAD
                 {this.state.isSearchToggleOn ? 'Get users' : 'Get projects'}
+=======
+                {this.state.isSearchToggleOn
+                  ? 'Get users'
+                  : 'Get projects'}
+>>>>>>> master
               </p>
 
               <p
@@ -154,6 +230,7 @@ class Search extends Component {
 
             <div>
               <ul className="list-group">
+<<<<<<< HEAD
                 {!data.loading ? (
                   data['projects'] &&
                   data['projects']
@@ -191,12 +268,44 @@ class Search extends Component {
                 ) : (
                   <div>Loading...</div>
                 )}
+=======
+                {!data.loading ? (data['projects'] && 
+                  data['projects']
+                  .filter(item => item.title.match(this.state.selectedItem))
+                  .map((item, index) => (
+                  <li className="list-group-item mb-4" key={index}>
+                  <div className="row">
+                    <div className="col-xs-12 col-sm-8 search__result d-flex align-items-center">
+                          <span className="search__thumbnail" key={index}>{item.title.slice(0,1)}</span>
+                          <span className="search__result__title">{item.title}</span>
+                    </div>
+                    <div className="col-xs-12 col-sm-4">
+                        <p className="search__result__need">Need:</p>
+                         <img className="need__img" src={u14} alt="dev" />
+                    </div>
+                      <div className="col-12">
+                        <p className="search__desc">
+                          {item.description ? item.description : 'This project still does not have any description yet.'}
+                        </p>
+                         <ul className="list__inline list__border">
+                          <li>Node.js</li>
+                          <li>Express.js</li>
+                          <li>Back End</li>
+                        </ul>
+                      </div>
+                    </div>
+                </li>))) : (
+                <div>Loading...</div>
+                )}
+
+>>>>>>> master
               </ul>
             </div>
           </div>
         </div>
       </div>
     )
+<<<<<<< HEAD
   }
 }
 
@@ -214,6 +323,25 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
+=======
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    userInfo: state.getUserInfo.userInfo
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    changeSearchSection: e => {
+      this.props.data.refetch();
+    }
+  }
+}
+
+>>>>>>> master
 export default connect(mapStateToProps)(
   graphql(searchQuery, {
     options: ownProps => ({
@@ -223,3 +351,7 @@ export default connect(mapStateToProps)(
     })
   })(Search)
 )
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
