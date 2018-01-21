@@ -12,6 +12,7 @@ class SearchBar extends Component {
       <div className="searchbar">
         <Downshift
           onChange={this.props.onChange}
+          onInputValueChange={this.props.onInputValueChange}
           render={({
             getInputProps,
             getItemProps,
@@ -25,11 +26,12 @@ class SearchBar extends Component {
                 type="search"
                 className="form-control"
                 {...getInputProps({ placeholder: this.props.placeholder })}
+                value={this.props.inputValue}
                 required
               />
               {isOpen ? (
-                <div style={{ border: '1px solid #ccc' }}>
-                  {this.props.items
+                <div className="search__popup">
+                  {[...new Set(this.props.items)] // get unique values using "set"
                     .filter(
                       i =>
                         !inputValue ||

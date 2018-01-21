@@ -201,6 +201,9 @@ a {
 .search__desc {
   margin-bottom: 0.625em; }
 
+.search__popup {
+  border: 1px solid #ccc; }
+
 .btn-link {
   cursor: pointer; }
 
@@ -223,6 +226,3 @@ a {
     display: flex; }
   100% {
     opacity: 1; } }
-
-input[type=search]::-webkit-search-cancel-button {
-  -webkit-appearance: searchfield-cancel-button; }

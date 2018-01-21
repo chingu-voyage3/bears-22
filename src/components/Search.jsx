@@ -6,17 +6,27 @@ import gql from 'graphql-tag'
 
 import SearchBar from './SearchBar'
 import SearchFilter from './SearchFilter'
+import SearchUser from './SearchUser'
 
 //  query searchQuery($search: String!) {
 const searchQuery = gql`
 query {
-    user (user_id: 1) {
-      id
-      username
-      first_name
-      email
-      bio
+  users(limit: 100) {
+    id
+    username
+    first_name
+    last_name
+    email
+    bio
     skills {
+      id
+      name
+    }
+    country {
+      id
+      name
+    }
+    city {
       id
       name
     }
@@ -48,19 +58,23 @@ class Search extends Component {
       isSearchToggleOn: true,
       isSearchFilterOpen: true,
       selectedItem: '',
-      search: 'projects'
+      search: 'projects',
+      inputValue: ''
     }
     this.handleSearchToggleClick = this.handleSearchToggleClick.bind(this)
     this.handleSearchFilterClick = this.handleSearchFilterClick.bind(this)
     this.onChange = this.onChange.bind(this)
+    this.onInputValueChange = this.onInputValueChange.bind(this)
     this.resetSearch = this.resetSearch.bind(this)
   }
 
   handleSearchToggleClick() {
-    const search = () => this.state.search == 'projects' ? 'user' : 'projects';
+    const search = () => this.state.search == 'projects' ? 'users' : 'projects';
     this.setState(prevState => ({
       isSearchToggleOn: !prevState.isSearchToggleOn,
-      search: search()
+      search: search(),
+      selectedItem: '',
+      inputValue: ''
     }))
     document.getElementById('search__title').classList.add('flip-animation');
     setTimeout(() => document.getElementById('search__title').classList.remove('flip-animation'), 500);
@@ -76,6 +90,13 @@ class Search extends Component {
     this.setState((prevState, props) => ({
       selectedItem
     }));
+  }
+
+  onInputValueChange(e, i) {
+    console.log(e);
+      this.setState({
+      inputValue: String(e)
+    });
   }
 
   resetSearch() {
@@ -120,8 +141,12 @@ class Search extends Component {
                           ? 'Search projects'
                           : 'Search users'
                       }
-                      items={data.projects && data.projects.map((item) => ( item.title))}
+                      items={data[this.state.search] && data[this.state.search].map((item) => ( item.title || item.first_name ))}
                       onChange={this.onChange}
+                      onInputValueChange={this.onInputValueChange}
+                      search={this.state.search}
+                      inputValue={this.state.inputValue}
+                      data={data}
                     />
                   </div>
                 </div>
@@ -148,39 +173,12 @@ class Search extends Component {
               </p>
             </div>
 
-            <div>
-              <ul className="list-group">
-                {!data.loading ? (data['projects'] && 
-                  data['projects']
-                  .filter(item => item.title.match(this.state.selectedItem))
-                  .map((item, index) => (
-                  <li className="list-group-item mb-4" key={index}>
-                  <div className="row">
-                    <div className="col-xs-12 col-sm-8 search__result d-flex align-items-center">
-                          <span className="search__thumbnail" key={index}>{item.title.slice(0,1)}</span>
-                          <span className="search__result__title">{item.title}</span>
-                    </div>
-                    <div className="col-xs-12 col-sm-4">
-                        <p className="search__result__need">Need:</p>
-                         <img className="need__img" src={u14} alt="dev" />
-                    </div>
-                      <div className="col-12">
-                        <p className="search__desc">
-                          {item.description ? item.description : 'This project still does not have any description yet.'}
-                        </p>
-                         <ul className="list__inline list__border">
-                          <li>Node.js</li>
-                          <li>Express.js</li>
-                          <li>Back End</li>
-                        </ul>
-                      </div>
-                    </div>
-                </li>))) : (
-                <div>Loading...</div>
-                )}
+            <SearchUser
+              search={this.state.search}
+              data={data}
+              selectedItem={this.state.selectedItem}
+               />
 
-              </ul>
-            </div>
           </div>
         </div>
       </div>
