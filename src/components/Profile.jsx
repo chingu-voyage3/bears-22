@@ -27,7 +27,17 @@ class Profile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      EditProfile: true
+      EditProfile: true,
+      profile_img: '',
+      first_name: '',
+      last_name: '',
+      username: '',
+      email: '',
+      city: '',
+      country: '',
+      portfolio_url: '',
+      about_me: '',
+      skills: '',
     }
   }
   handleViewProfile = () => {
@@ -36,8 +46,7 @@ class Profile extends React.Component {
     }))
   }
   render() {
-//    const FirstName = this.props.user.first_name ? this.props.user.first_name : this.state.first_name;
-    const {data} = this.props;
+    const {data} = this.props
       if (data.error) {
         return (
           <div className="profile">
