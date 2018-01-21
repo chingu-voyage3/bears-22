@@ -74,7 +74,8 @@ class Profile extends React.Component {
                 </form>
                 <h3>Profile</h3>
                 <form>
-                  <input type="text" placeholder=" Location"/>
+                  <input type="text" placeholder=" City"/>
+                  <input type="text" placeholder=" Country"/>
                   <input type="text" placeholder=" Website" />
                   <textarea rows="4" cols="16" placeholder=" About Me">
                   </textarea>
