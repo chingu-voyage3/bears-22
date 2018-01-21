@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import u14 from './temp_assets/u14.png'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -69,7 +68,7 @@ class Search extends Component {
   }
 
   handleSearchToggleClick() {
-    const search = () => this.state.search == 'projects' ? 'users' : 'projects';
+    const search = () => this.state.search === 'projects' ? 'users' : 'projects';
     this.setState(prevState => ({
       isSearchToggleOn: !prevState.isSearchToggleOn,
       search: search(),
@@ -117,8 +116,8 @@ class Search extends Component {
           <div
             className={
               this.state.isSearchFilterOpen
-                ? 'main col-12'
-                : 'main col-xs-12 col-sm-9'
+                ? 'no-padding col-12'
+                : 'no-padding col-xs-12 col-sm-9'
             }
           >
             <div>
@@ -134,7 +133,7 @@ class Search extends Component {
                         : 'Find users.'}
                     </h3>
                   </label>
-                  <div className="col-6 text-right pt-2 pb-0">
+                  <div className="col-xs-12 col-sm-6 text-right pt-2 pb-0">
                     <SearchBar
                       placeholder={
                         this.state.isSearchToggleOn
@@ -153,24 +152,26 @@ class Search extends Component {
               </form>
             </div>
 
-            <div className="pb-2">
-              <p
+            <div>
+              <span
                 onClick={this.handleSearchToggleClick}
-                className="btn btn-link mb-0"
+                className="search__toggle btn btn-link"
               >
+              <i className="fa fa-refresh" aria-hidden="true"></i>
                 {this.state.isSearchToggleOn
                   ? 'Get users'
                   : 'Get projects'}
-              </p>
+              </span>
 
-              <p
+              <span
                 onClick={this.handleSearchFilterClick}
-                className="btn btn-link mb-0"
+                className="search__toggle btn btn-link"
               >
+              <i className="fa fa-filter" aria-hidden="true"></i>
                 {this.state.isSearchFilterOpen
                   ? 'Show Filters'
                   : 'Hide Filters'}
-              </p>
+              </span>
             </div>
 
             <SearchUser

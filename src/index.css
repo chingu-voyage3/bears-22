@@ -124,55 +124,101 @@ a {
     position: absolute;
     left: 1.25em; }
 
+.no-padding {
+  padding: 0;
+  margin: 0; }
+
+.search__user__grid {
+  display: flex;
+  flex-flow: column wrap; }
+  @media only screen and (min-width: 768px) {
+    .search__user__grid {
+      align-items: center; } }
+  @media only screen and (min-width: 1200px) {
+    .search__user__grid {
+      flex-flow: row wrap;
+      justify-content: space-around; } }
+
 .search__header-text-align input {
   text-align: center; }
 
-.list__inline {
-  padding: 0px; }
-
-.list__inline li {
-  display: inline-block;
-  margin-right: 10px; }
-
-.list__border li {
-  padding-left: 10px;
-  padding-right: 10px;
-  border: 1px solid black;
-  border-radius: 5px; }
-
-.list__header {
-  background-color: gray; }
-
-.search__result__need {
-  padding: 0px; }
-
-.need__img {
-  width: 100%;
-  max-width: 4em; }
+.search__user {
+  background: #4f6570;
+  color: white;
+  padding: 0.9375em 0.625em;
+  margin-bottom: 0.625em;
+  box-shadow: 1px 1px 3px rgba(51, 51, 51, 0.6);
+  border-radius: 0.3125em; }
   @media only screen and (min-width: 768px) {
-    .need__img {
-      float: left; } }
-  @media only screen and (min-width: 992px) {
-    .need__img {
-      float: auto;
-      max-width: 5.5em; } }
+    .search__user {
+      width: 90%; } }
+  @media only screen and (min-width: 1200px) {
+    .search__user {
+      width: calc(50vw - 2em); } }
+
+.list__inline {
+  font-family: 'Arial';
+  font-size: 0.7em;
+  color: #333333;
+  padding: 0.4em 0.9em;
+  margin: 0; }
+  .list__inline li {
+    display: inline-block;
+    margin: 0.2em;
+    padding: 0 0.625em;
+    background-color: #f1c40f;
+    text-align: center; }
+
+.search__user__header {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem; }
+
+.search__toggle {
+  display: block;
+  background: #f1c40f;
+  color: black;
+  margin-bottom: 0.625em;
+  transition: 300ms; }
+  .search__toggle i {
+    margin-right: 0.625em; }
+  .search__toggle a {
+    color: #333333; }
+  .search__toggle:hover {
+    color: #333333;
+    background: #f1c40f; }
+  .search__toggle:active {
+    color: #333333;
+    background: #f1c40f;
+    transform: translateY(2px); }
+  .search__toggle:active, .search__toggle:focus, .search__toggle:hover {
+    text-decoration: none; }
+  @media only screen and (min-width: 768px) {
+    .search__toggle {
+      display: inline-block;
+      width: calc(50% - 10px); }
+      .search__toggle:nth-child(odd) {
+        margin-right: 15px; } }
+  @media only screen and (min-width: 1200px) {
+    .search__toggle {
+      display: inline-block;
+      width: auto;
+      margin-right: 0.625em;
+      position: relative; } }
 
 .search__result__title {
-  display: inline-flex;
-  padding: 0px;
+  display: block;
+  padding: 0 0.65em;
   font-size: 1rem;
   font-weight: 600;
-  text-transform: uppercase; }
-  @media only screen and (min-width: 768px) {
+  text-transform: uppercase;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.1em; }
+  @media only screen and (min-width: 1200px) {
     .search__result__title {
       font-size: 1.5rem; } }
-
-.search__result__title li {
-  display: inline;
-  list-style-type: none; }
-
-.search__result__title img {
-  width: 25%; }
 
 .search__thumbnail {
   display: inline-flex;
@@ -185,8 +231,6 @@ a {
   text-transform: uppercase;
   align-items: center;
   justify-content: center;
-  margin: 0.3125em;
-  margin-left: 0;
   transition: 300ms;
   border-radius: 5px; }
   .search__thumbnail:hover {
@@ -199,7 +243,14 @@ a {
       min-width: 3.125em; } }
 
 .search__desc {
-  margin-bottom: 0.625em; }
+  text-align: left;
+  padding-top: 0.625em;
+  font-size: 0.8em;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+  @media only screen and (min-width: 1200px) {
+    .search__desc {
+      text-align: center; } }
 
 .search__popup {
   border: 1px solid #ccc; }
@@ -210,6 +261,9 @@ a {
 .flip-animation {
   animation: flip 500ms ease-in-out; }
 
+.fade-in {
+  animation: fade-in 500ms ease; }
+
 @keyframes flip {
   0% {
     opacity: 0;
@@ -218,11 +272,8 @@ a {
     opacity: 1;
     transform: rotateX(0deg); } }
 
-@keyframes opacity {
+@keyframes fade-in {
   0% {
-    display: none;
     opacity: 0; }
-  1% {
-    display: flex; }
   100% {
     opacity: 1; } }
