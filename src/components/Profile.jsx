@@ -85,23 +85,29 @@ class Profile extends React.Component {
                 <footer>
                   <p onClick={this.handleViewProfile}>View Profile</p>
                   <button><i class="material-icons">save</i>Save Changes</button>
-                </footer> 
+                </footer>
               </div> :
-              <div>
+              <div className="profile__body container-fluid">
                 {/*Image and Basic Info*/}
-                <section>
-                  <img src="" alt=""/>
-                  <h3></h3>
-                  <p></p>
-                  <p></p>
-                  <button>Contact</button>
+                <section className="profile__bg-grey row">
+                  <div className="col-4">
+                    <img src="http://res.cloudinary.com/devvzv96d/image/upload/v1516176891/new_years_small_nvsldx.jpg" alt="Profile Image" className="profile__image col-4"/>
+                  </div>
+                  <div className="profile__header-text col-8">
+                    <h3 className="align-middle">Richard Ellery</h3>
+                    <p className="align-middle">Busan, South Korea</p>
+                    <a href="http://localhost:3000/profile"  className="align-middle">http://elleredddddddddddddddddddddeeee.github.io</a>
+                  </div>
+                  <button className="profile__button-contact">Contact</button>
                 </section>
                 {/*About and Skills*/}
-                <section>
-                  <h3>About</h3>
-                  <p></p>
-                  <h3>Skills</h3>
-                  <p></p>
+                <section className="profile__bg-black row">
+                  <div className="col-12">
+                    <h3 className="profile__category-text">About</h3>
+                    <p>My name is Richard. I have experience using HTML, CSS, JavaScript, and React in a team setting. I've also helped design UI/UX. I hope I can help your team finish your project!</p>
+                    <h3 className="profile__category-text">Skills</h3>
+                    <p>HTML, CSS, JavaScript, React, UI, UX</p>
+                  </div>
                 </section>
               </div>
             )

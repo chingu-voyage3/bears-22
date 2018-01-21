@@ -26,6 +26,9 @@ class Header extends Component {
           <Link to={'/search'}>
             <li>Search</li>
           </Link>
+          <Link to={'/profile'}>
+            <li>Profile</li>
+          </Link>
           {this.props.isLogin ? (
             <a href="/auth/logout">
               <li>Logout</li>
