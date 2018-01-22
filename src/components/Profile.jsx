@@ -5,8 +5,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const profileQuery = gql`
-  {
-    user(user_id: 1) {
+   { user(user_id: 1) {
       email
       username
       first_name
@@ -18,11 +17,28 @@ const profileQuery = gql`
         id
         title
         description
+        
+      }
+      city {
+        id
+        name
+      }
+      country {
+        id
+        name
+      }
+      bio
+      skills {
+        id
       }
     }
   }
 `
-
+const updateUser = gql`
+  mutation($first_name: String, $last_name: String) {
+ updateUser(first_name: $first_name, last_name: $last_name) 
+}
+`
 class Profile extends React.Component {
   constructor(props) {
     super(props)
