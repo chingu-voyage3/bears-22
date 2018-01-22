@@ -57,6 +57,9 @@ class Profile extends React.Component {
       EditProfile: false,
     }))
   }
+  handleSaveChanges = () => {
+    console.log(this.state)
+  }
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
