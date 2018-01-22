@@ -14,7 +14,7 @@ class SearchUser extends Component {
                 <div className="d-flex flex-row align-items-center justify-content-center">
                     <span className="search__thumbnail" >{item.first_name.slice(0,1) }</span>
                   <div className="search__title__grid">
-                    <span className="search__result__title">{item.first_name + item.last_name}</span>
+                    <span className="search__result__title">{item.first_name + ' ' + item.last_name}</span>
                      <div>
                     <ul className="list__inline list__border">
                       <li>Node.js</li>
