@@ -108,8 +108,8 @@ class Search extends Component {
   render() {
     const { data } = this.props;
       return (
-      <div className="container-fluid">
-        <div className="row">
+      <div className="container-fluid no-padding">
+        <div>
             <SearchFilter 
             isSearchFilterOpen={this.state.isSearchFilterOpen}
              />
@@ -122,7 +122,7 @@ class Search extends Component {
           >
             <div>
               <form>
-                <div className="form-group row justify-content-between">
+                <div className="form-group d-flex flex-column flex-md-row">
                   <label
                     htmlFor="inputSearch"
                     className="col-xs-12 col-sm-6 col-form-label"
@@ -133,7 +133,7 @@ class Search extends Component {
                         : 'Find users.'}
                     </h3>
                   </label>
-                  <div className="col-xs-12 col-sm-6 text-right pt-2 pb-0">
+                  <div className="col-xs-12 col-sm-6 text-right">
                     <SearchBar
                       placeholder={
                         this.state.isSearchToggleOn

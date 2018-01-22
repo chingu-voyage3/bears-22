@@ -1,8 +1,12 @@
 body {
-  font-family: Open Sans, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   width: 100%;
   height: 100%;
-  color: #333333; }
+  color: #333333;
+  overflow-x: hidden; }
+
+#body {
+  transition: 300ms; }
 
 ::selection {
   background: #f1c40f;
@@ -28,16 +32,102 @@ a {
   text-transform: uppercase;
   font-weight: bold; }
 
-.header__menu {
-  display: inline-flex;
-  list-style-type: none;
-  margin-right: 0.625em;
+.header__hamburger {
+  position: absolute;
+  top: 0.6em;
+  right: 0.6em;
+  float: right;
+  width: 2.1875em;
+  height: 2.1875em;
+  border-radius: 0.3125em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1030;
+  cursor: pointer; }
+  .header__hamburger span:nth-child(even) {
+    margin: 4px 0; }
+  .header__hamburger span {
+    display: block;
+    width: 100%;
+    height: 0.25em;
+    background-color: #333333; }
+  @media only screen and (min-width: 1200px) {
+    .header__hamburger {
+      display: none; } }
+
+.header__hamburger--center {
+  width: 70%; }
+
+.header__menu__grid {
+  font-family: 'Open Sans';
+  text-align: center;
   position: absolute;
   top: 0;
   right: 0;
+  height: 100%;
+  width: 250px;
+  z-index: 1;
+  background: white;
+  visibility: hidden;
+  transition: 500ms;
+  transform: translate3d(100%, 0, 0);
+  box-shadow: 1px 1px 5px rgba(51, 51, 51, 0.6); }
+  @media only screen and (min-width: 1200px) {
+    .header__menu__grid {
+      position: absolute;
+      top: 0;
+      right: 0;
+      box-shadow: none;
+      transform: translate3d(0, 0, 0);
+      width: auto;
+      height: auto;
+      visibility: visible;
+      background-color: transparent; } }
+
+.header__menu__grid--active {
+  visibility: visible;
+  transform: translate3d(0, 0, 0); }
+
+.header__menu {
+  flex-flow: column;
+  list-style-type: none;
+  margin: 0 0.625em;
   padding: 0.625em; }
+  .header__menu a:first-of-type {
+    font-weight: 600;
+    text-align: center; }
   .header__menu li {
-    padding: 0.3125em; }
+    display: flex;
+    padding: 1.25em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    justify-content: center; }
+  .header__menu i {
+    flex: 0 0 10%;
+    margin-top: 0.32em; }
+  .header__menu span {
+    flex: 0 0 90%; }
+  @media only screen and (min-width: 1200px) {
+    .header__menu {
+      display: inline-flex;
+      height: auto;
+      flex-flow: row wrap;
+      margin: 0 0.625em;
+      padding: 0.9375em; }
+      .header__menu a:first-of-type {
+        display: none; }
+      .header__menu li {
+        border-bottom: 0;
+        padding: 0 0.625em; }
+      .header__menu i {
+        display: none; }
+      .header__menu span {
+        flex: 0 0 100%; } }
+
+.header__translate {
+  transform: translateX(-250px);
+  transition: 500ms;
+  overflow: hidden; }
 
 .user__headline, .user__headline--white {
   display: inline-flex;
@@ -154,7 +244,7 @@ a {
       width: 90%; } }
   @media only screen and (min-width: 1200px) {
     .search__user {
-      width: calc(50vw - 2em); } }
+      width: calc(50% - 2em); } }
 
 .list__inline {
   font-family: 'Arial';
@@ -168,6 +258,9 @@ a {
     padding: 0 0.625em;
     background-color: #f1c40f;
     text-align: center; }
+  @media only screen and (min-width: 1200px) {
+    .list__inline {
+      padding: 0.4em 1.2em; } }
 
 .search__user__header {
   justify-content: center;
@@ -203,6 +296,7 @@ a {
     .search__toggle {
       display: inline-block;
       width: auto;
+      margin-left: 0.9375em;
       margin-right: 0.625em;
       position: relative; } }
 
@@ -232,7 +326,8 @@ a {
   align-items: center;
   justify-content: center;
   transition: 300ms;
-  border-radius: 5px; }
+  border-radius: 5px;
+  flex: 0 0 10%; }
   .search__thumbnail:hover {
     color: white;
     cursor: pointer; }
@@ -242,13 +337,22 @@ a {
       height: 3.125em;
       min-width: 3.125em; } }
 
+.search__title__grid {
+  flex: 0 0 80%; }
+  @media only screen and (min-width: 768px) {
+    .search__title__grid {
+      flex: 0 0 70%; } }
+  @media only screen and (min-width: 1200px) {
+    .search__title__grid {
+      flex: 0 0 70%; } }
+
 .search__desc {
   text-align: left;
   padding-top: 0.625em;
   font-size: 0.8em;
   overflow: hidden;
   text-overflow: ellipsis; }
-  @media only screen and (min-width: 1200px) {
+  @media only screen and (min-width: 768px) {
     .search__desc {
       text-align: center; } }
 

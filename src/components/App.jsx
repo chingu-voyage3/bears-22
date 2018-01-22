@@ -60,11 +60,13 @@ const App = () => (
         <div>
           <Route path="/" component={Header} />
           <Switch>
+          <div id="body">
             <Route exact path="/" component={Landing} />
             <Route exact path="/user-list" component={User} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/search" component={Search} />
+            </div>
           </Switch>
           <Route path="/" component={Footer} />
         </div>
