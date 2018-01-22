@@ -40,21 +40,17 @@ const updateUser = gql`
 }
 `
 class Profile extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      EditProfile: true,
-      profile_img: '',
-      first_name: '',
-      last_name: '',
-      username: '',
-      email: '',
-      city: '',
-      country: '',
-      bio: '',
-      about_me: '',
-      skills: '',
-    }
+  state = {
+        EditProfile: true,
+        profile_img: '',
+        first_name: '',
+        last_name: '',
+        username: '',
+        email: '',
+        city: '',
+        country: '',
+        bio: '',
+        skills: '',
   }
   handleViewProfile = () => {
     this.setState(({EditProfile}) => ({
@@ -102,7 +98,7 @@ class Profile extends React.Component {
                 </form>
                 <footer className="profile__edit-footer fixed-bottom">
                   <p className="profile__button-change-view" onClick={this.handleViewProfile}>View Profile</p>
-                  <button className="profile__button-save"><i class="material-icons">save</i>Save Changes</button>
+                  <button onClick={this.handleSaveChanges} className="profile__button-save"><i class="material-icons">save</i>Save Changes</button>
                 </footer>
               </div> :
               <div className="profile__body container-fluid">
