@@ -178,3 +178,127 @@ a {
     text-align: left; }
   .search__responsive-text-align input {
     text-align: left; } }
+
+.profile__body {
+  font-family: 'Lato', sans-serif;
+  color: white; }
+
+.profile__bg-grey {
+  background-color: #4E6571;
+  display: block; }
+
+.profile__image {
+  border-radius: 50%;
+  background-color: #FFEB3B;
+  margin: 0px;
+  padding: 3px;
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(50%); }
+
+.profile__header-text {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 66.5%;
+  transform: translate(-50%, -50%); }
+
+.profile__header-text h3 {
+  margin: 0;
+  padding: 0; }
+
+.profile__header-text p {
+  margin: 0;
+  padding: 0; }
+
+.profile__header-text a {
+  color: white;
+  margin: 0;
+  padding: 0;
+  word-wrap: break-word; }
+
+.profile__button-contact {
+  background-color: #FFEB3B;
+  border: 2px solid #333333;
+  border-radius: 5px;
+  color: #333333;
+  padding: 5px 20px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  font-weight: bold; }
+
+.profile__bg-black {
+  background-color: #333;
+  padding-top: 2rem; }
+
+.profile__category-text {
+  text-decoration: underline;
+  text-decoration-color: #FFEB3B;
+  text-underline-position: below;
+  text-align: center; }
+
+.profile__image-container {
+  position: relative;
+  max-width: 156px;
+  margin: 0 auto; }
+
+.profile__edit-image {
+  border-radius: 50%;
+  background-color: #FFEB3B;
+  margin: 0px;
+  padding: 3px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.profile__edit-image-button {
+  position: absolute;
+  top: 0px;
+  right: -15px;
+  border: none;
+  background-color: transparent;
+  color: #BCBCBC;
+  cursor: pointer; }
+
+.profile__form-field {
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: white;
+  background-color: #333333;
+  border: 1px solid #BCBCBC;
+  margin: 0;
+  vertical-align: top;
+  overflow: auto; }
+
+.widthHalf {
+  width: 50%;
+  display: inline-block; }
+
+.profile__edit-footer {
+  border-top: 1px solid #BCBCBC;
+  background-color: #4E6571; }
+
+.profile__button-change-view {
+  margin: 0;
+  padding: .75rem 1rem;
+  display: inline-block;
+  cursor: pointer; }
+
+.profile__button-save {
+  margin: .65rem 1rem;
+  padding: 0 1rem;
+  float: right;
+  border: 2px solid #333333;
+  border-radius: 5px;
+  background-color: #FFEB3B;
+  font-weight: bold;
+  cursor: pointer; }
