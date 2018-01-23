@@ -11,9 +11,11 @@ class Header extends Component {
     this.onToggle = this.onToggle.bind(this);
   }
   onToggle() {
-    this.setState((prevState, props) => ({
+    if(window.innerWidth < 1200) {
+      this.setState((prevState, props) => ({
       toggleMenu: !prevState.toggleMenu
-    }));
+      })); //only mobile will toggle menu
+
     if(!this.state.toggleMenu) {
       document.getElementById('body').classList.add('header__translate');
       document.body.style.overflowX = "hidden";
@@ -22,6 +24,8 @@ class Header extends Component {
       document.getElementById('body').classList.remove('header__translate');
       document.body.style.overflowX = "hidden";
       document.body.style.overflowY = "auto";
+    }
+
     }
   }
   render() {
@@ -43,7 +47,7 @@ class Header extends Component {
         <div className={this.state.toggleMenu ? 'header__menu__grid header__menu__grid--active' : 'header__menu__grid'} id="header__menu__grid">
         <ul className="header__menu">
            <Link to={'/'} onClick={this.onToggle}>
-            <li className="site__name">DO-UM</li>
+            <li className="site__name">Do-um</li>
           </Link>
           <Link to={'/'} onClick={this.onToggle}>
             <li><i className="fa fa-home" aria-hidden="true"></i><span>Home</span></li>
