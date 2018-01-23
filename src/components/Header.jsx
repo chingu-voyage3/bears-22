@@ -14,11 +14,14 @@ class Header extends Component {
     this.setState((prevState, props) => ({
       toggleMenu: !prevState.toggleMenu
     }));
-    console.log('clickeed');
     if(!this.state.toggleMenu) {
       document.getElementById('body').classList.add('header__translate');
+      document.body.style.overflowX = "hidden";
+      document.body.style.overflowY = "hidden";
     } else {
       document.getElementById('body').classList.remove('header__translate');
+      document.body.style.overflowX = "hidden";
+      document.body.style.overflowY = "auto";
     }
   }
   render() {
@@ -36,35 +39,35 @@ class Header extends Component {
         </div>
       </div>
       </div>
-
+      <div className="overlay" className={this.state.toggleMenu ? 'overlay overlay--active' : 'overlay'}   onClick={this.onToggle}></div>
         <div className={this.state.toggleMenu ? 'header__menu__grid header__menu__grid--active' : 'header__menu__grid'} id="header__menu__grid">
         <ul className="header__menu">
-           <Link to={'/'}>
-            <li>DO-UM</li>
+           <Link to={'/'} onClick={this.onToggle}>
+            <li className="site__name">DO-UM</li>
           </Link>
-          <Link to={'/'}>
-            <li><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></li>
+          <Link to={'/'} onClick={this.onToggle}>
+            <li><i className="fa fa-home" aria-hidden="true"></i><span>Home</span></li>
           </Link>
           {this.props.isLogin ? (
-            <Link to={'/profile'}>
-              <li><i class="fa fa-info" aria-hidden="true"></i><span>My Dashboard</span></li>
+            <Link to={'/profile'} onClick={this.onToggle}>
+              <li><i className="fa fa-info" aria-hidden="true"></i><span>My Dashboard</span></li>
             </Link>
           ) : (
             ''
           )}
-          <Link to={'/user-list'}>
-            <li><i class="fa fa-user" aria-hidden="true"></i><span>User List</span></li>
+          <Link to={'/user-list'} onClick={this.onToggle}>
+            <li><i className="fa fa-user" aria-hidden="true"></i><span>User List</span></li>
           </Link>
-          <Link to={'/search'}>
-            <li><i class="fa fa-search" aria-hidden="true"></i> <span>Search</span></li>
+          <Link to={'/search'} onClick={this.onToggle}>
+            <li><i className="fa fa-search" aria-hidden="true"></i> <span>Search</span></li>
           </Link>
           {this.props.isLogin ? (
-            <a href="/auth/logout">
-              <li><i class="fa fa-sign-out" aria-hidden="true"></i><span>Logout</span></li>
+            <a href="/auth/logout" onClick={this.onToggle}>
+              <li><i className="fa fa-sign-out" aria-hidden="true"></i><span>Logout</span></li>
             </a>
           ) : (
-            <Link to={'/login'}>
-              <li><i class="fa fa-sign-in" aria-hidden="true"></i><span>Login</span></li>
+            <Link to={'/login'} onClick={this.onToggle}>
+              <li><i className="fa fa-sign-in" aria-hidden="true"></i><span>Login</span></li>
             </Link>
           )}
         </ul>
