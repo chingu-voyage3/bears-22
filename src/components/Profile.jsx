@@ -14,22 +14,23 @@ const profileQuery = gql`
       profile_image
       portfolio_url
       projects {
-        id
-        title
+        id,
+        title,
         description
         
       }
       city {
-        id
+        id,
         name
       }
       country {
-        id
+        id,
         name
       }
       bio
       skills {
-        id
+        id,
+        name
       }
     }
   }
