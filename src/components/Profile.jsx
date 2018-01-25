@@ -5,8 +5,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const profileQuery = gql`
-  {
-    user(user_id: 1) {
+   { user(user_id: 1) {
       email
       username
       first_name
@@ -15,35 +14,55 @@ const profileQuery = gql`
       profile_image
       portfolio_url
       projects {
-        id
-        title
+        id,
+        title,
         description
+        
+      }
+      city {
+        id,
+        name
+      }
+      country {
+        id,
+        name
+      }
+      bio
+      skills {
+        id,
+        name
       }
     }
   }
 `
-
+const updateUser = gql`
+  mutation($first_name: String, $last_name: String) {
+ updateUser(first_name: $first_name, last_name: $last_name) 
+}
+`
 class Profile extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      EditProfile: true,
-      profile_img: '',
-      first_name: '',
-      last_name: '',
-      username: '',
-      email: '',
-      city: '',
-      country: '',
-      bio: '',
-      about_me: '',
-      skills: '',
-    }
+  state = {
+        EditProfile: true,
+        profile_img: '',
+        first_name: '',
+        last_name: '',
+        username: '',
+        email: '',
+        city: '',
+        country: '',
+        bio: '',
+        skills: '',
   }
   handleViewProfile = () => {
     this.setState(({EditProfile}) => ({
       EditProfile: false,
     }))
+  }
+  handleSaveChanges = () => {
+    console.log(this.state)
+  }
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   }
   render() {
     const {data} = this.props
@@ -69,24 +88,24 @@ class Profile extends React.Component {
                   <button className="profile__edit-image-button"><i class="material-icons">add</i></button>
                 </div>
                 <form>
-                  <input className="profile__form-field widthHalf border-right-0" type="text" name="first_name" placeholder="First Name" defaultValue={this.props.data.user.first_name ? this.props.data.user.first_name : this.state.first_name}/>
-                  <input className="profile__form-field widthHalf" type="text" name="last_name" placeholder="Last Name" defaultValue={this.props.data.user.last_name ? this.props.data.user.last_name : this.state.last_name}/>
-                  <input className="profile__form-field border-top-0" type="text" name="username" placeholder="Username" defaultValue={this.props.data.user.username ? this.props.data.user.username : this.state.username}/>
-                  <input className="profile__form-field border-top-0" type="text" name="email" placeholder="E-mail Address" defaultValue={this.props.data.user.email ? this.props.data.user.email : this.state.email}/>
+                  <input onChange={this.handleChange} className="profile__form-field widthHalf border-right-0" type="text" name="first_name" placeholder="First Name" defaultValue={this.props.data.user.first_name ? this.props.data.user.first_name : this.state.first_name}/>
+                  <input onChange={this.handleChange} className="profile__form-field widthHalf" type="text" name="last_name" placeholder="Last Name" defaultValue={this.props.data.user.last_name ? this.props.data.user.last_name : this.state.last_name}/>
+                  <input onChange={this.handleChange} className="profile__form-field border-top-0" type="text" name="username" placeholder="Username" defaultValue={this.props.data.user.username ? this.props.data.user.username : this.state.username}/>
+                  <input onChange={this.handleChange} className="profile__form-field border-top-0" type="text" name="email" placeholder="E-mail Address" defaultValue={this.props.data.user.email ? this.props.data.user.email : this.state.email}/>
                 </form>
                 <h3 className="profile__category-text pt-3 pb-3">Profile</h3>
                 <form>
-                  <input className="profile__form-field widthHalf border-right-0" type="text" name="city" placeholder="City" defaultValue={this.props.data.user.city ? this.props.data.user.city : this.state.city}/>
-                  <input className="profile__form-field widthHalf" type="text" name="country" placeholder="Country" defaultValue={this.props.data.user.country ? this.props.data.user.country : this.state.country}/>
-                  <input className="profile__form-field border-top-0" type="text" name="portfolio_url" placeholder="Website" defaultValue={this.props.data.user.portfolio_url ? this.props.data.user.portfolio_url : this.state.portfolio_url}/>
-                  <textarea className="profile__form-field border-top-0" name="bio" rows="4" cols="16" placeholder="About Me" defaultValue={this.props.data.user.bio ? this.props.data.user.bio : this.state.bio}>
+                  <input onChange={this.handleChange} className="profile__form-field widthHalf border-right-0" type="text" name="city" placeholder="City" defaultValue={this.props.data.user.city ? this.props.data.user.city : this.state.city}/>
+                  <input onChange={this.handleChange} className="profile__form-field widthHalf" type="text" name="country" placeholder="Country" defaultValue={this.props.data.user.country ? this.props.data.user.country : this.state.country}/>
+                  <input onChange={this.handleChange} className="profile__form-field border-top-0" type="text" name="portfolio_url" placeholder="Website" defaultValue={this.props.data.user.portfolio_url ? this.props.data.user.portfolio_url : this.state.portfolio_url}/>
+                  <textarea onChange={this.handleChange} className="profile__form-field border-top-0" name="bio" rows="4" cols="16" placeholder="About Me" defaultValue={this.props.data.user.bio ? this.props.data.user.bio : this.state.bio}>
                   </textarea>
-                  <textarea className="profile__form-field border-top-0 mb-3" name="skills" rows="2" cols="16" placeholder="Skills" defaultValue={this.props.data.user.skills ? this.props.data.user.skills : this.state.skills}>
+                  <textarea onChange={this.handleChange} className="profile__form-field border-top-0 mb-3" name="skills" rows="2" cols="16" placeholder="Skills" defaultValue={this.props.data.user.skills ? this.props.data.user.skills : this.state.skills}>
                   </textarea>
                 </form>
                 <footer className="profile__edit-footer fixed-bottom">
                   <p className="profile__button-change-view" onClick={this.handleViewProfile}>View Profile</p>
-                  <button className="profile__button-save"><i class="material-icons">save</i>Save Changes</button>
+                  <button onClick={this.handleSaveChanges} className="profile__button-save"><i class="material-icons">save</i>Save Changes</button>
                 </footer>
               </div> :
               <div className="profile__body container-fluid">
