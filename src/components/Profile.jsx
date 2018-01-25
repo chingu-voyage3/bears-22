@@ -17,7 +17,7 @@ const profileQuery = gql`
         id,
         title,
         description
-        
+
       }
       city {
         id,
@@ -37,7 +37,7 @@ const profileQuery = gql`
 `
 const updateUser = gql`
   mutation($first_name: String, $last_name: String) {
- updateUser(first_name: $first_name, last_name: $last_name) 
+ updateUser(first_name: $first_name, last_name: $last_name)
 }
 `
 class Profile extends React.Component {
@@ -81,7 +81,7 @@ class Profile extends React.Component {
           return (
             // Display edit profile page if EditProfile state is true, else show view profile page
             this.state.EditProfile ?
-              <div className="profile__body container-fluid profile__bg-grey">
+              <div className="profile__body container-fluid profile__edit-bg-grey">
                 <h3 className="profile__category-text pt-3 pb-3">Account Basics</h3>
                 <div className="profile__image-container">
                   <img className="profile__edit-image mb-3" src="http://res.cloudinary.com/devvzv96d/image/upload/v1516176891/new_years_small_nvsldx.jpg" alt="" />
@@ -110,7 +110,7 @@ class Profile extends React.Component {
               </div> :
               <div className="profile__body container-fluid">
                 {/*Image and Basic Info*/}
-                <section className="profile__bg-grey row">
+                <section className="profile__view-bg-grey row">
                   <div className="col-4">
                     <img src="http://res.cloudinary.com/devvzv96d/image/upload/v1516176891/new_years_small_nvsldx.jpg" alt="Profile Image" className="profile__image col-4"/>
                   </div>

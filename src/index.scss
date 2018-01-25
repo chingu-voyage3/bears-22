@@ -264,30 +264,29 @@ a {
   color: white;
 }
 
-.profile__bg-grey {
+.profile__edit-bg-grey {
   background-color: $profile-grey;
   display: block;
+}
+
+.profile__view-bg-grey {
+  background-color: $profile-grey;
+  display: flex;
+  align-items: center;
+  padding-top: $spacer-y * 2;
 }
 
 .profile__image {
   border-radius: 50%;
   background-color: $profile-yellow;
-  margin: 0px;
   padding: 3px;
   max-width: 100%;
   height: auto;
-  position: relative;
-  top: 50%;
-  transform: translateY(50%);
 }
 
 .profile__header-text {
   padding: 0;
   margin: 0;
-  position: relative;
-  top: 50%;
-  left: 66.5%;
-  transform: translate(-50%, -50%)
 }
 
 .profile__header-text h3 {
@@ -312,12 +311,11 @@ a {
   border: 2px solid $profile-black;
   border-radius: 5px;
   color: $profile-black;
-  padding: 5px 20px;
-  display: block;
-  position: absolute;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
   font-weight: bold;
+  padding: 5px 20px;
+  margin: 0 auto;
+  position: relative;
+  top: 18px;
 }
 
 .profile__bg-black {
