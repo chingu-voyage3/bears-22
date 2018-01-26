@@ -40,6 +40,7 @@ const updateUser = gql`
  updateUser(first_name: $first_name, last_name: $last_name) 
 }
 `
+
 class Profile extends React.Component {
   state = {
         EditProfile: true,
@@ -158,4 +159,13 @@ const mapStateToProps = state => {
 
 //export default connect(mapStateToProps)(Profile)
 
-export default graphql(profileQuery)(connect(mapStateToProps)(Profile))
+export default connect(mapStateToProps)(
+  graphql(profileQuery, {
+    options: ownProps => ({
+      variables: {
+        user_id: ownProps.userInfo.id,
+        email: ownProps.userInfo.email
+      }
+    })
+  })(Profile)
+)
