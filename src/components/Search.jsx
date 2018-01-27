@@ -1,98 +1,94 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { userListReq } from '../actions';
-import { Link } from 'react-router-dom';
-import genericlogo from './temp_assets/generic-logo.jpg';
-import u14 from './temp_assets/u14.png';
-import u16 from './temp_assets/u16.png';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { userListReq } from '../actions'
+import { Link } from 'react-router-dom'
+import genericlogo from './temp_assets/generic-logo.jpg'
+import u14 from './temp_assets/u14.png'
+import u16 from './temp_assets/u16.png'
 
-import SearchBar from './SearchBar';
+import SearchBar from './SearchBar'
 
 class Search extends Component {
-  constructor (props) {
-    super(props);
+  constructor(props) {
+    super(props)
     this.state = {
       isSearchToggleOn: true,
       isSearchFilterOpen: true
-    };
-    this.handleSearchToggleClick = this.handleSearchToggleClick.bind(this);
-    this.handleSearchFilterClick = this.handleSearchFilterClick.bind(this);
+    }
+    this.handleSearchToggleClick = this.handleSearchToggleClick.bind(this)
+    this.handleSearchFilterClick = this.handleSearchFilterClick.bind(this)
   }
 
-  handleSearchToggleClick () {
+  handleSearchToggleClick() {
     this.setState(prevState => ({
       isSearchToggleOn: !prevState.isSearchToggleOn
-    }));
+    }))
   }
 
-  handleSearchFilterClick () {
+  handleSearchFilterClick() {
     this.setState(prevState => ({
       isSearchFilterOpen: !prevState.isSearchFilterOpen
-    }));
+    }))
   }
 
-  render () {
+  render() {
     return (
-      <div className='container-fluid'>
-        <div className='row'>
+      <div className="container-fluid">
+        <div className="row">
           <div
-            className='sidebar'
+            className="sidebar"
             className={
               this.state.isSearchFilterOpen ? 'd-none' : 'col-xs-12 col-sm-3'
             }
           >
-            <h5 className='pt-4 text-center pb-4'>Search categories</h5>
-            <ul className='list-group'>
-              <li className='list-group-item list-group-item-secondary'>
+            <h5 className="pt-4 text-center pb-4">Search categories</h5>
+            <ul className="list-group">
+              <li className="list-group-item list-group-item-secondary">
                 Search for solo devs of teams
               </li>
-              <li className='list-group-item'>Solo</li>
-              <li className='list-group-item'>Team</li>
+              <li className="list-group-item">Solo</li>
+              <li className="list-group-item">Team</li>
             </ul>
-            <ul className='list-group'>
-              <li className='list-group-item list-group-item-secondary'>
+            <ul className="list-group">
+              <li className="list-group-item list-group-item-secondary">
                 Search by skills
               </li>
-              <li className='list-group-item'>JavaScript</li>
-              <li className='list-group-item active'>React</li>
-              <li className='list-group-item'>Front End</li>
-              <li className='list-group-item'>Back End</li>
-              <li className='list-group-item'>Node.js</li>
-              <li className='list-group-item'>Express.js</li>
-              <li className='list-group-item'>Vue.js</li>
-              <li className='list-group-item active'>UI/UX</li>
+              <li className="list-group-item">JavaScript</li>
+              <li className="list-group-item active">React</li>
+              <li className="list-group-item">Front End</li>
+              <li className="list-group-item">Back End</li>
+              <li className="list-group-item">Node.js</li>
+              <li className="list-group-item">Express.js</li>
+              <li className="list-group-item">Vue.js</li>
+              <li className="list-group-item active">UI/UX</li>
             </ul>
           </div>
 
           <div
-            className='main'
+            className="main"
             className={
               this.state.isSearchFilterOpen ? 'col-12' : 'col-xs-12 col-sm-9'
             }
           >
             <div>
               <form>
-                <div className='form-group row justify-content-between'>
+                <div className="form-group row justify-content-between">
                   <label
-                    htmlFor='inputSearch'
-                    className='col-xs-12 col-sm-6 col-form-label'
+                    htmlFor="inputSearch"
+                    className="col-xs-12 col-sm-6 col-form-label"
                   >
-                    <h3 className='search__header-text-align search__responsive-text-align'>
-                      {this.state.isSearchToggleOn ? (
-                        'Find a non-profit.'
-                      ) : (
-                        'Find a user.'
-                      )}
+                    <h3 className="search__header-text-align search__responsive-text-align">
+                      {this.state.isSearchToggleOn
+                        ? 'Find a non-profit.'
+                        : 'Find a user.'}
                     </h3>
                   </label>
-                  <div className='col-6 text-right pt-2 pb-0'>
+                  <div className="col-6 text-right pt-2 pb-0">
                     <SearchBar
                       placeholder={
-                        this.state.isToggleOn ? (
-                          'Search for a non-profit'
-                        ) : (
-                          'Search for a user'
-                        )
+                        this.state.isToggleOn
+                          ? 'Search for a non-profit'
+                          : 'Search for a user'
                       }
                       items={[
                         'Habitat for Humanity',
@@ -105,55 +101,51 @@ class Search extends Component {
               </form>
             </div>
 
-            <div className='search__filter-buttons search__responsive-text-align pb-2'>
+            <div className="search__filter-buttons search__responsive-text-align pb-2">
               <button
                 onClick={this.handleSearchToggleClick}
-                className='btn btn-link pt-0'
+                className="btn btn-link pt-0"
               >
-                {this.state.isSearchToggleOn ? (
-                  'Show me devs!'
-                ) : (
-                  'Show me non-profits!'
-                )}
+                {this.state.isSearchToggleOn
+                  ? 'Show me devs!'
+                  : 'Show me non-profits!'}
               </button>
 
               <button
                 onClick={this.handleSearchFilterClick}
-                className='btn btn-link pt-0'
+                className="btn btn-link pt-0"
               >
-                {this.state.isSearchFilterOpen ? (
-                  'Show Filters'
-                ) : (
-                  'Hide Filters'
-                )}
+                {this.state.isSearchFilterOpen
+                  ? 'Show Filters'
+                  : 'Hide Filters'}
               </button>
             </div>
 
             <div>
-              <ul className='list-group'>
-                <li className='list-group-item mb-4'>
-                  <div className='row'>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__title'>
+              <ul className="list-group">
+                <li className="list-group-item mb-4">
+                  <div className="row">
+                    <div className="col-xs-12 col-sm-6">
+                      <ul className="search__result__title">
                         <li>
-                          <img src={genericlogo} alt='Logo' />
+                          <img src={genericlogo} alt="Logo" />
                         </li>
                         <li>Habitat for Humanity</li>
                       </ul>
                     </div>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__need search__responsive-text-align'>
+                    <div className="col-xs-12 col-sm-6">
+                      <ul className="search__result__need search__responsive-text-align">
                         <li>Need:</li>
                         <li>
-                          <img src={u14} alt='dev' />
+                          <img src={u14} alt="dev" />
                         </li>
                         <li>
-                          <img src={u16} alt='frontend' />
+                          <img src={u16} alt="frontend" />
                         </li>
                       </ul>
                     </div>
-                    <div className='row'>
-                      <div className='col-12'>
+                    <div className="row">
+                      <div className="col-12">
                         <p>
                           Seeking to put God's love into action, Habitat for
                           Humanity brings people together to build homes,
@@ -161,9 +153,9 @@ class Search extends Component {
                         </p>
                       </div>
                     </div>
-                    <div className='row'>
-                      <div className='col-12'>
-                        <ul className='list__inline list__border'>
+                    <div className="row">
+                      <div className="col-12">
+                        <ul className="list__inline list__border">
                           <li>JavaScript</li>
                           <li>React.js</li>
                           <li>Front End</li>
@@ -176,26 +168,26 @@ class Search extends Component {
                   </div>
                 </li>
 
-                <li className='list-group-item mb-4'>
-                  <div className='row'>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__title'>
+                <li className="list-group-item mb-4">
+                  <div className="row">
+                    <div className="col-xs-12 col-sm-6">
+                      <ul className="search__result__title">
                         <li>
-                          <img src={genericlogo} alt='Logo' />
+                          <img src={genericlogo} alt="Logo" />
                         </li>
                         <li>Doctors Without Borders</li>
                       </ul>
                     </div>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__need search__responsive-text-align'>
+                    <div className="col-xs-12 col-sm-6">
+                      <ul className="search__result__need search__responsive-text-align">
                         <li>Need:</li>
                         <li>
-                          <img src={u14} alt='dev' />
+                          <img src={u14} alt="dev" />
                         </li>
                       </ul>
                     </div>
-                    <div className='row'>
-                      <div className='col-12'>
+                    <div className="row">
+                      <div className="col-12">
                         <p>
                           We help people worldwide where the need is greatest,
                           delivering emergency medical aid to people affected by
@@ -204,9 +196,9 @@ class Search extends Component {
                         </p>
                       </div>
                     </div>
-                    <div className='row'>
-                      <div className='col-12'>
-                        <ul className='list__inline list__border'>
+                    <div className="row">
+                      <div className="col-12">
+                        <ul className="list__inline list__border">
                           <li>Node.js</li>
                           <li>Express.js</li>
                           <li>Back End</li>
@@ -215,26 +207,26 @@ class Search extends Component {
                     </div>
                   </div>
                 </li>
-                <li className='list-group-item mb-4'>
-                  <div className='row'>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__title'>
+                <li className="list-group-item mb-4">
+                  <div className="row">
+                    <div className="col-xs-12 col-sm-6">
+                      <ul className="search__result__title">
                         <li>
-                          <img src={genericlogo} alt='Logo' />
+                          <img src={genericlogo} alt="Logo" />
                         </li>
                         <li>Greenpeace</li>
                       </ul>
                     </div>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__need search__responsive-text-align'>
+                    <div className="col-xs-12 col-sm-6">
+                      <ul className="search__result__need search__responsive-text-align">
                         <li>Need:</li>
                         <li>
-                          <img src={u16} alt='frontend' />
+                          <img src={u16} alt="frontend" />
                         </li>
                       </ul>
                     </div>
-                    <div className='row'>
-                      <div className='col-12'>
+                    <div className="row">
+                      <div className="col-12">
                         <p>
                           Greenpeace is an independent campaigning organisation,
                           which uses non-violent, creative confrontation to
@@ -244,9 +236,9 @@ class Search extends Component {
                         </p>
                       </div>
                     </div>
-                    <div className='row'>
-                      <div className='col-12'>
-                        <ul className='list__inline list__border'>
+                    <div className="row">
+                      <div className="col-12">
+                        <ul className="list__inline list__border">
                           <li>Front End</li>
                           <li>JavaScript</li>
                           <li>React.js</li>
@@ -260,8 +252,8 @@ class Search extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Search;
+export default Search

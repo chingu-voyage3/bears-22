@@ -5,11 +5,12 @@ $browser-context: 16; // Default
 }
 
 $theme-color: #1abc9c; //one of the theme color of Chingu
-$chingu-yellow: #f1c40f;
-$chingu-grey: #333;
+$chingu-yellow: #ffeb3b;
+$chingu-grey: #4e6571;
+$chingu-black: #333;
 
 body {
-  font-family: Open Sans, sans-serif;
+  font-family: Lato, "Open Sans", sans-serif;
   width: 100%;
   height: 100%;
   color: $chingu-grey;
@@ -29,7 +30,9 @@ a {
   &:hover {
     color: $chingu-yellow;
   }
-  &:active, &:focus, &:hover {
+  &:active,
+  &:focus,
+  &:hover {
     text-decoration: none;
   }
 }
@@ -59,6 +62,124 @@ a {
 }
 
 //==================
+// Landing Page
+//==================
+
+.section {
+  padding: 2.5rem;
+  color: white;
+  font-size: 110%;
+
+  &__hero {
+    background-image: url('../src/assets/hero image.jpg');
+    background-size: 250%;
+    background-position: center;
+
+    &__branding {
+      color: white;
+      font-size: 350%;
+      font-weight: bold;
+      padding-left: 2.5rem;
+      border-bottom: solid $chingu-yellow 0.5rem;
+      border-right: solid $chingu-yellow 0.5rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &--light {
+    background-color: $theme-color;
+  }
+
+  &--dark {
+    background-color: $chingu-grey;
+  }
+
+  &--black {
+    background-color: $chingu-black;
+  }
+
+  &__feature {
+    text-align: center;
+  }
+
+  &__header {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 30%;
+    color: white;
+    font-weight: 400;
+    border-bottom: 0.3rem solid $chingu-yellow;
+    padding-bottom: 0.9rem;
+    margin-bottom: 2rem;
+
+    @media screen and (max-width: 414px) {
+      width: 60%;
+    }
+  }
+
+  &__text {
+    text-align: center;
+  }
+
+  &__users {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    &__image {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+
+  &__project {
+    text-align: center;
+    border: 0.1rem solid $chingu-yellow;
+    background: $chingu-grey;
+    border-radius: 10px;
+    margin: 1em;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.icon {
+  background: #333;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1.1rem;
+  font-size: 210%;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: solid $chingu-yellow 2px;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  display: block;
+  width: 25%;
+  margin: 0 auto;
+  &__login {
+    background-color: $chingu-yellow;
+  }
+
+  @media screen and (max-width: 414px) {
+    width: 70%;
+  }
+}
+
+.text--primary {
+  color: $chingu-yellow;
+}
+
+.landing__background--gray {
+  background-color: $chingu-grey;
+}
+
+//==================
 //User form style
 //==================
 .user__headline {
@@ -79,15 +200,14 @@ a {
 .user__header {
   text-transform: uppercase;
   font-weight: bold;
-  text-align: center;
+  margin: 0 auto;
   padding: em(10);
 }
 
 .user__cell {
   word-wrap: break-word;
   padding: em(10);
-  text-align: center;
-  p {
+  margin: 0 auto p {
     margin: em(5) 0;
   }
   .small {
@@ -132,7 +252,7 @@ a {
 .login__button-github {
   display: inline-flex;
   padding: em(10) em(20);
-  background-color: rgba(36,41,46,1);
+  background-color: rgba(36, 41, 46, 1);
   color: #ffffff;
   transition: 300ms;
   margin-top: em(9);
@@ -144,10 +264,12 @@ a {
     margin-top: em(5);
   }
   &:hover {
-    background-color: rgba(36,41,46,0.8);
+    background-color: rgba(36, 41, 46, 0.8);
     cursor: pointer;
   }
-  &:focus, &:active, &:hover {
+  &:focus,
+  &:active,
+  &:hover {
     text-decoration: none;
   }
 }
@@ -160,7 +282,7 @@ a {
 
 .login__ul {
   list-style-type: none;
-  padding-left: em(30)
+  padding-left: em(30);
   li:before {
     font-family: FontAwesome;
     content: '\f00c';
@@ -176,15 +298,15 @@ a {
 // =============
 
 .search__header-text-align {
-  text-align: center;
+  margin: 0 auto;
 }
 
 .search__header-text-align input {
-  text-align: center;
+  margin: 0 auto;
 }
 
 .search__filter-buttons {
-  text-align: center;
+  margin: 0 auto;
 }
 
 .list__inline {
@@ -203,7 +325,7 @@ a {
 }
 
 .list__header {
-  background-color: gray
+  background-color: gray;
 }
 
 .search__result__logo {
@@ -213,7 +335,7 @@ a {
 
 .search__result__need {
   padding: 0px;
-  text-align: center;
+  margin: 0 auto;
 }
 
 .search__result__need li {
