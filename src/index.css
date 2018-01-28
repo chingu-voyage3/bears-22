@@ -1,9 +1,13 @@
+html, body {
+  min-height: 100%; }
+
 body {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
   height: 100%;
   color: #333333;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  box-sizing: border-box; }
 
 #body {
   transition: 300ms; }
@@ -26,8 +30,12 @@ a {
     text-decoration: none; }
 
 .header, .footer {
+  position: relative;
   padding: 0.9375em;
   z-index: 2; }
+  @media only screen and (min-width: 1200px) {
+    .header, .footer {
+      z-index: auto; } }
 
 .site__name {
   font-family: 'Pacifico', cursive;
@@ -72,7 +80,7 @@ a {
   top: 0;
   right: 0;
   height: 100%;
-  width: 250px;
+  width: 280px;
   z-index: 1;
   background: white;
   visibility: hidden;
@@ -132,7 +140,7 @@ a {
         flex: 0 0 100%; } }
 
 .header__translate {
-  transform: translateX(-250px);
+  transform: translateX(-280px);
   transition: 500ms;
   overflow: hidden; }
 
