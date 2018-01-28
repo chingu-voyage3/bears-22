@@ -553,6 +553,20 @@ a {
   }
 }
 
+.filter__item--grid {
+  margin: em(15);
+  font-weight: 600;
+}
+
+.filter__item--filtered {
+  display: inline-block;
+  background-color: $chingu-yellow;
+  padding: em(5) em(10);
+  margin-right: em(10);
+  font-size: em(13);
+  font-weight: normal;
+}
+
 .filter__title {
   @extend .user__headline;
   display: block;

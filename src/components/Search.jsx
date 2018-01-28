@@ -168,6 +168,13 @@ class Search extends Component {
             isSearchFilterOpen={this.state.isSearchFilterOpen}
             data={data}
              />
+             <div className={this.props.filter.skills && this.props.filter.skills.length > 0 ? 'filter__item--grid' : 'd-none'}>
+             Filtered: {this.props.filter.skills && this.props.filter.skills.length > 0 ? 
+              (this.props.filter.skills.map(item => (
+                <div className="filter__item--filtered" key={item}>{item}</div>
+                ))) : ''
+            }
+             </div>
             <div>
               <SearchUser
                 search={this.state.search}

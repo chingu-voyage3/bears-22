@@ -437,6 +437,18 @@ a {
     .filter__item {
       width: auto; } }
 
+.filter__item--grid {
+  margin: 0.9375em;
+  font-weight: 600; }
+
+.filter__item--filtered {
+  display: inline-block;
+  background-color: #f1c40f;
+  padding: 0.3125em 0.625em;
+  margin-right: 0.625em;
+  font-size: 0.8125em;
+  font-weight: normal; }
+
 .filter__title {
   display: block;
   font-weight: 600;
