@@ -60,14 +60,14 @@ const App = () => (
         <div>
           <Route path="/" component={Header} />
           <div id="body">
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/user-list" component={User} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/search" component={Search} />
-          </Switch>
-            </div>
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/user-list" component={User} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/search" component={Search} />
+            </Switch>
+          </div>
           <Route path="/" component={Footer} />
         </div>
       </ConnectedRouter>

@@ -9,45 +9,45 @@ import SearchUser from './SearchUser'
 
 //  query searchQuery($search: String!) {
 const searchQuery = gql`
-query {
-  users(limit: 100) {
-    id
-    username
-    first_name
-    last_name
-    email
-    bio
-    skills {
-      id
-      name
-    }
-    country {
-      id
-      name
-    }
-    city {
-      id
-      name
-    }
-  },
-  projects{
-    id
-    title
-    users {
+  query {
+    users(limit: 100) {
       id
       username
       first_name
+      last_name
       email
+      bio
+      skills {
+        id
+        name
+      }
+      country {
+        id
+        name
+      }
+      city {
+        id
+        name
+      }
     }
-    github_url
-    project_url
-    description
-    skills {
+    projects {
       id
-      name
+      title
+      users {
+        id
+        username
+        first_name
+        email
+      }
+      github_url
+      project_url
+      description
+      skills {
+        id
+        name
+      }
     }
-  } 
-}
+  }
 `
 
 class Search extends Component {
@@ -68,15 +68,22 @@ class Search extends Component {
   }
 
   handleSearchToggleClick() {
-    const search = () => this.state.search === 'projects' ? 'users' : 'projects';
+    const search = () =>
+      this.state.search === 'projects' ? 'users' : 'projects'
     this.setState(prevState => ({
       isSearchToggleOn: !prevState.isSearchToggleOn,
       search: search(),
       selectedItem: '',
       inputValue: ''
     }))
-    document.getElementById('search__title').classList.add('flip-animation');
-    setTimeout(() => document.getElementById('search__title').classList.remove('flip-animation'), 500);
+    document.getElementById('search__title').classList.add('flip-animation')
+    setTimeout(
+      () =>
+        document
+          .getElementById('search__title')
+          .classList.remove('flip-animation'),
+      500
+    )
   }
 
   handleSearchFilterClick() {
@@ -88,31 +95,29 @@ class Search extends Component {
   onChange(selectedItem) {
     this.setState((prevState, props) => ({
       selectedItem
-    }));
+    }))
   }
 
   onInputValueChange(e, i) {
-    console.log(e);
-      this.setState({
+    console.log(e)
+    this.setState({
       inputValue: String(e)
-    });
+    })
   }
 
   resetSearch() {
     this.setState((prevState, props) => ({
       selectedItem: ''
-    }));
-    this.props.data.refetch();
+    }))
+    this.props.data.refetch()
   }
 
   render() {
-    const { data } = this.props;
-      return (
+    const { data } = this.props
+    return (
       <div className="container-fluid no-padding">
         <div>
-            <SearchFilter 
-            isSearchFilterOpen={this.state.isSearchFilterOpen}
-             />
+          <SearchFilter isSearchFilterOpen={this.state.isSearchFilterOpen} />
           <div
             className={
               this.state.isSearchFilterOpen
@@ -140,7 +145,12 @@ class Search extends Component {
                           ? 'Search projects'
                           : 'Search users'
                       }
-                      items={data[this.state.search] && data[this.state.search].map((item) => ( item.title || item.first_name ))}
+                      items={
+                        data[this.state.search] &&
+                        data[this.state.search].map(
+                          item => item.title || item.first_name
+                        )
+                      }
                       onChange={this.onChange}
                       onInputValueChange={this.onInputValueChange}
                       search={this.state.search}
@@ -157,17 +167,15 @@ class Search extends Component {
                 onClick={this.handleSearchToggleClick}
                 className="search__toggle btn btn-link"
               >
-              <i className="fa fa-refresh" aria-hidden="true"></i>
-                {this.state.isSearchToggleOn
-                  ? 'Get users'
-                  : 'Get projects'}
+                <i className="fa fa-refresh" aria-hidden="true" />
+                {this.state.isSearchToggleOn ? 'Get users' : 'Get projects'}
               </span>
 
               <span
                 onClick={this.handleSearchFilterClick}
                 className="search__toggle btn btn-link"
               >
-              <i className="fa fa-filter" aria-hidden="true"></i>
+                <i className="fa fa-filter" aria-hidden="true" />
                 {this.state.isSearchFilterOpen
                   ? 'Show Filters'
                   : 'Hide Filters'}
@@ -178,8 +186,7 @@ class Search extends Component {
               search={this.state.search}
               data={data}
               selectedItem={this.state.selectedItem}
-               />
-
+            />
           </div>
         </div>
       </div>
@@ -196,7 +203,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     changeSearchSection: e => {
-      this.props.data.refetch();
+      this.props.data.refetch()
     }
   }
 }
@@ -210,4 +217,3 @@ export default connect(mapStateToProps)(
     })
   })(Search)
 )
-
