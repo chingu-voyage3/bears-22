@@ -21,7 +21,7 @@ class SearchBar extends Component {
             selectedItem,
             highlightedIndex
           }) => (
-          <div>
+            <div>
               <input
                 type="search"
                 className="form-control"
@@ -59,6 +59,5 @@ class SearchBar extends Component {
     )
   }
 }
-
 
 export default SearchBar

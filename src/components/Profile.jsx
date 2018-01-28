@@ -18,7 +18,6 @@ const profileQuery = gql`
         id,
         title,
         description
-
       }
       city {
         id,
