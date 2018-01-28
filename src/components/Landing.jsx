@@ -16,6 +16,7 @@ class Landing extends Component {
             <a
               href="https://chingu-cohorts.github.io/chingu-directory/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Chingu cohorts
             </a>{' '}

@@ -1,267 +1,213 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { userListReq } from '../actions';
-import { Link } from 'react-router-dom';
-import genericlogo from './temp_assets/generic-logo.jpg';
-import u14 from './temp_assets/u14.png';
-import u16 from './temp_assets/u16.png';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
-import SearchBar from './SearchBar';
+import SearchBar from './SearchBar'
+import SearchFilter from './SearchFilter'
+import SearchUser from './SearchUser'
+
+//  query searchQuery($search: String!) {
+const searchQuery = gql`
+query {
+  users(limit: 100) {
+    id
+    username
+    first_name
+    last_name
+    email
+    bio
+    skills {
+      id
+      name
+    }
+    country {
+      id
+      name
+    }
+    city {
+      id
+      name
+    }
+  },
+  projects{
+    id
+    title
+    users {
+      id
+      username
+      first_name
+      email
+    }
+    github_url
+    project_url
+    description
+    skills {
+      id
+      name
+    }
+  } 
+}
+`
 
 class Search extends Component {
-  constructor (props) {
-    super(props);
+  constructor(props) {
+    super(props)
     this.state = {
       isSearchToggleOn: true,
-      isSearchFilterOpen: true
-    };
-    this.handleSearchToggleClick = this.handleSearchToggleClick.bind(this);
-    this.handleSearchFilterClick = this.handleSearchFilterClick.bind(this);
+      isSearchFilterOpen: true,
+      selectedItem: '',
+      search: 'projects',
+      inputValue: ''
+    }
+    this.handleSearchToggleClick = this.handleSearchToggleClick.bind(this)
+    this.handleSearchFilterClick = this.handleSearchFilterClick.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.onInputValueChange = this.onInputValueChange.bind(this)
+    this.resetSearch = this.resetSearch.bind(this)
   }
 
-  handleSearchToggleClick () {
+  handleSearchToggleClick() {
+    const search = () => this.state.search === 'projects' ? 'users' : 'projects';
     this.setState(prevState => ({
-      isSearchToggleOn: !prevState.isSearchToggleOn
-    }));
+      isSearchToggleOn: !prevState.isSearchToggleOn,
+      search: search(),
+      selectedItem: '',
+      inputValue: ''
+    }))
+    document.getElementById('search__title').classList.add('flip-animation');
+    setTimeout(() => document.getElementById('search__title').classList.remove('flip-animation'), 500);
   }
 
-  handleSearchFilterClick () {
+  handleSearchFilterClick() {
     this.setState(prevState => ({
       isSearchFilterOpen: !prevState.isSearchFilterOpen
+    }))
+  }
+
+  onChange(selectedItem) {
+    this.setState((prevState, props) => ({
+      selectedItem
     }));
   }
 
-  render () {
-    return (
-      <div className='container-fluid'>
-        <div className='row'>
-          <div
-            className='sidebar'
-            className={
-              this.state.isSearchFilterOpen ? 'd-none' : 'col-xs-12 col-sm-3'
-            }
-          >
-            <h5 className='pt-4 text-center pb-4'>Search categories</h5>
-            <ul className='list-group'>
-              <li className='list-group-item list-group-item-secondary'>
-                Search for solo devs of teams
-              </li>
-              <li className='list-group-item'>Solo</li>
-              <li className='list-group-item'>Team</li>
-            </ul>
-            <ul className='list-group'>
-              <li className='list-group-item list-group-item-secondary'>
-                Search by skills
-              </li>
-              <li className='list-group-item'>JavaScript</li>
-              <li className='list-group-item active'>React</li>
-              <li className='list-group-item'>Front End</li>
-              <li className='list-group-item'>Back End</li>
-              <li className='list-group-item'>Node.js</li>
-              <li className='list-group-item'>Express.js</li>
-              <li className='list-group-item'>Vue.js</li>
-              <li className='list-group-item active'>UI/UX</li>
-            </ul>
-          </div>
+  onInputValueChange(e, i) {
+    console.log(e);
+      this.setState({
+      inputValue: String(e)
+    });
+  }
 
+  resetSearch() {
+    this.setState((prevState, props) => ({
+      selectedItem: ''
+    }));
+    this.props.data.refetch();
+  }
+
+  render() {
+    const { data } = this.props;
+      return (
+      <div className="container-fluid no-padding">
+        <div>
+            <SearchFilter 
+            isSearchFilterOpen={this.state.isSearchFilterOpen}
+             />
           <div
-            className='main'
             className={
-              this.state.isSearchFilterOpen ? 'col-12' : 'col-xs-12 col-sm-9'
+              this.state.isSearchFilterOpen
+                ? 'no-padding col-12'
+                : 'no-padding col-xs-12 col-sm-9'
             }
           >
             <div>
               <form>
-                <div className='form-group row justify-content-between'>
+                <div className="form-group d-flex flex-column flex-md-row">
                   <label
-                    htmlFor='inputSearch'
-                    className='col-xs-12 col-sm-6 col-form-label'
+                    htmlFor="inputSearch"
+                    className="col-xs-12 col-sm-6 col-form-label"
                   >
-                    <h3 className='search__header-text-align search__responsive-text-align'>
-                      {this.state.isSearchToggleOn ? (
-                        'Find a non-profit.'
-                      ) : (
-                        'Find a user.'
-                      )}
+                    <h3 id="search__title">
+                      {this.state.isSearchToggleOn
+                        ? 'Find projects.'
+                        : 'Find users.'}
                     </h3>
                   </label>
-                  <div className='col-6 text-right pt-2 pb-0'>
+                  <div className="col-xs-12 col-sm-6 text-right">
                     <SearchBar
                       placeholder={
-                        this.state.isToggleOn ? (
-                          'Search for a non-profit'
-                        ) : (
-                          'Search for a user'
-                        )
+                        this.state.isSearchToggleOn
+                          ? 'Search projects'
+                          : 'Search users'
                       }
-                      items={[
-                        'Habitat for Humanity',
-                        'Doctors Without Borders',
-                        'Greenpeace'
-                      ]}
+                      items={data[this.state.search] && data[this.state.search].map((item) => ( item.title || item.first_name ))}
+                      onChange={this.onChange}
+                      onInputValueChange={this.onInputValueChange}
+                      search={this.state.search}
+                      inputValue={this.state.inputValue}
+                      data={data}
                     />
                   </div>
                 </div>
               </form>
             </div>
 
-            <div className='search__filter-buttons search__responsive-text-align pb-2'>
-              <button
-                onClick={this.handleSearchToggleClick}
-                className='btn btn-link pt-0'
-              >
-                {this.state.isSearchToggleOn ? (
-                  'Show me devs!'
-                ) : (
-                  'Show me non-profits!'
-                )}
-              </button>
-
-              <button
-                onClick={this.handleSearchFilterClick}
-                className='btn btn-link pt-0'
-              >
-                {this.state.isSearchFilterOpen ? (
-                  'Show Filters'
-                ) : (
-                  'Hide Filters'
-                )}
-              </button>
-            </div>
-
             <div>
-              <ul className='list-group'>
-                <li className='list-group-item mb-4'>
-                  <div className='row'>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__title'>
-                        <li>
-                          <img src={genericlogo} alt='Logo' />
-                        </li>
-                        <li>Habitat for Humanity</li>
-                      </ul>
-                    </div>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__need search__responsive-text-align'>
-                        <li>Need:</li>
-                        <li>
-                          <img src={u14} alt='dev' />
-                        </li>
-                        <li>
-                          <img src={u16} alt='frontend' />
-                        </li>
-                      </ul>
-                    </div>
-                    <div className='row'>
-                      <div className='col-12'>
-                        <p>
-                          Seeking to put God's love into action, Habitat for
-                          Humanity brings people together to build homes,
-                          communities, and hope.
-                        </p>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-12'>
-                        <ul className='list__inline list__border'>
-                          <li>JavaScript</li>
-                          <li>React.js</li>
-                          <li>Front End</li>
-                          <li>Node.js</li>
-                          <li>Express.js</li>
-                          <li>Back End</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+              <span
+                onClick={this.handleSearchToggleClick}
+                className="search__toggle btn btn-link"
+              >
+              <i className="fa fa-refresh" aria-hidden="true"></i>
+                {this.state.isSearchToggleOn
+                  ? 'Get users'
+                  : 'Get projects'}
+              </span>
 
-                <li className='list-group-item mb-4'>
-                  <div className='row'>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__title'>
-                        <li>
-                          <img src={genericlogo} alt='Logo' />
-                        </li>
-                        <li>Doctors Without Borders</li>
-                      </ul>
-                    </div>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__need search__responsive-text-align'>
-                        <li>Need:</li>
-                        <li>
-                          <img src={u14} alt='dev' />
-                        </li>
-                      </ul>
-                    </div>
-                    <div className='row'>
-                      <div className='col-12'>
-                        <p>
-                          We help people worldwide where the need is greatest,
-                          delivering emergency medical aid to people affected by
-                          conflict, epidemics, disasters, or exclusion from
-                          healthcare.
-                        </p>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-12'>
-                        <ul className='list__inline list__border'>
-                          <li>Node.js</li>
-                          <li>Express.js</li>
-                          <li>Back End</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li className='list-group-item mb-4'>
-                  <div className='row'>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__title'>
-                        <li>
-                          <img src={genericlogo} alt='Logo' />
-                        </li>
-                        <li>Greenpeace</li>
-                      </ul>
-                    </div>
-                    <div className='col-xs-12 col-sm-6'>
-                      <ul className='search__result__need search__responsive-text-align'>
-                        <li>Need:</li>
-                        <li>
-                          <img src={u16} alt='frontend' />
-                        </li>
-                      </ul>
-                    </div>
-                    <div className='row'>
-                      <div className='col-12'>
-                        <p>
-                          Greenpeace is an independent campaigning organisation,
-                          which uses non-violent, creative confrontation to
-                          expose global environmental problems, and to force the
-                          solutions which are essential to a green and peaceful
-                          future.
-                        </p>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-12'>
-                        <ul className='list__inline list__border'>
-                          <li>Front End</li>
-                          <li>JavaScript</li>
-                          <li>React.js</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+              <span
+                onClick={this.handleSearchFilterClick}
+                className="search__toggle btn btn-link"
+              >
+              <i className="fa fa-filter" aria-hidden="true"></i>
+                {this.state.isSearchFilterOpen
+                  ? 'Show Filters'
+                  : 'Hide Filters'}
+              </span>
             </div>
+
+            <SearchUser
+              search={this.state.search}
+              data={data}
+              selectedItem={this.state.selectedItem}
+               />
+
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Search;
+const mapStateToProps = state => {
+  return {
+    userInfo: state.getUserInfo.userInfo
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    changeSearchSection: e => {
+      this.props.data.refetch();
+    }
+  }
+}
+
+export default connect(mapStateToProps)(
+  graphql(searchQuery, {
+    options: ownProps => ({
+      variables: {
+        //search: ownProps.search
+      }
+    })
+  })(Search)
+)
+

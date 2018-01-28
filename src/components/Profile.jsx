@@ -5,7 +5,8 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const profileQuery = gql`
-   { user(user_id: 1) {
+  query profileQuery($email: String!) {
+    user(email: $email) {
       email
       username
       first_name
@@ -158,4 +159,13 @@ const mapStateToProps = state => {
 
 //export default connect(mapStateToProps)(Profile)
 
-export default graphql(profileQuery)(connect(mapStateToProps)(Profile))
+export default connect(mapStateToProps)(
+  graphql(profileQuery, {
+    options: ownProps => ({
+      variables: {
+        user_id: ownProps.userInfo.id,
+        email: ownProps.userInfo.email
+      }
+    })
+  })(Profile)
+)

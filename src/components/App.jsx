@@ -59,6 +59,7 @@ const App = () => (
       <ConnectedRouter history={history}>
         <div>
           <Route path="/" component={Header} />
+          <div id="body">
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/user-list" component={User} />
@@ -66,6 +67,7 @@ const App = () => (
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/search" component={Search} />
           </Switch>
+            </div>
           <Route path="/" component={Footer} />
         </div>
       </ConnectedRouter>
