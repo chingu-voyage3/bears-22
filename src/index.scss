@@ -39,6 +39,16 @@ body {
   transition: 300ms;
 }
 
+.no-overflow {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.overflow {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
 ::selection {
   background: $chingu-yellow; /* WebKit/Blink Browsers */
 }
@@ -339,11 +349,11 @@ a {
   display: flex;
   flex-flow: column wrap;
   @media #{$tablet} {
-    align-items: center;
+    justify-content: left;
   }
   @media #{$desktop} {
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: left;
   }
 }
 
@@ -362,7 +372,11 @@ a {
     width: 90%;
   }
   @media #{$desktop} {
-    width: calc(50% - 2em);
+    width: calc(50% - 1.5em);
+    margin-right: 1em;
+    &:nth-child(odd) {
+      margin-left: 1em;
+    }
   }
 }
 
@@ -418,7 +432,7 @@ a {
     display: inline-block;
     width: calc(50% - 10px);
     &:nth-child(odd) {
-      margin-right: 15px;
+      margin-left: 15px;
     }
   }
   @media #{$desktop} {
@@ -471,7 +485,7 @@ a {
 }
 
 .search__title__grid {
-  flex: 0 0 80%;
+  flex: 80%;
   @media #{$tablet} {
   flex: 0 0 70%;
   }
@@ -493,6 +507,58 @@ a {
 
 .search__popup {
   border: 1px solid #ccc;
+}
+
+.filter__item {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    padding: em(10) em(25);
+    border-radius: 5px;
+    label {
+      cursor:pointer;
+      margin-left: em(10);
+      margin-bottom: 0;
+    }
+    input[type="checkbox"] {
+      display: none;
+      transition: 300ms;
+    }
+    input[type="checkbox"]:checked + label {
+        font-weight: bold;
+    }
+    input[type="checkbox"]:checked + label:before {
+        content: '\f00c';
+        font-family: 'FontAwesome';
+        color: $chingu-yellow;
+        position: absolute;
+        top: em(11);
+        left: em(10);
+        font-size: 1em;
+        opacity: 1;
+    }
+
+    input[type="checkbox"] + label:before {
+        content: '\f00c';
+        font-family: 'FontAwesome';
+        color: $chingu-grey-opacity;
+        opacity: 0.5;
+        position: absolute;
+        top: em(11);
+        left: em(10);
+        font-size: 1em;
+    }
+  @media #{$tablet} {
+    width: auto;
+  }
+}
+
+.filter__title {
+  @extend .user__headline;
+  display: block;
+  font-weight: 600;
+  font-size: em(16);
+  margin-left: em(10);
 }
 
 .btn-link {

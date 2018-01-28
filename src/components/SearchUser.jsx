@@ -17,9 +17,7 @@ class SearchUser extends Component {
                     <span className="search__result__title">{item.first_name + ' ' + item.last_name}</span>
                      <div>
                     <ul className="list__inline list__border">
-                      <li>Node.js</li>
-                      <li>Express.js</li>
-                      <li>Back End</li>
+                      {item.skills.length > 0 ? (item.skills.map((item) => (<li key={item.first_name + '-' + item.id}>{item.name}</li>))) : <li>Not Specified</li>}
                     </ul>
                     </div>
                 </div>
@@ -46,9 +44,7 @@ class SearchUser extends Component {
                     <span className="search__result__title">{item.title}</span>
                      <div>
                     <ul className="list__inline list__border">
-                      <li>Node.js</li>
-                      <li>Express.js</li>
-                      <li>Back End</li>
+                      {item.skills.length > 0 ? (item.skills.map((item) => (<li key={item.title + '-' + item.id}>{item.name}</li>))) : <li>Not Specified</li>}
                     </ul>
                     </div>
                 </div>

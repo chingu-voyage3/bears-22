@@ -1,44 +1,66 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { watchFilter } from '../actions'
 
 class SearchFilter extends Component {
   constructor(props) {
     super(props)
   }
 
+  isFiltered = e => {
+    if (this.selectedSkills.has(e.target.id)) {
+      this.selectedSkills.delete(e.target.id);
+    } else {
+      this.selectedSkills.add(e.target.id);
+    }
+    console.log(this.selectedSkills);
+    this.props.updateData({skills: [...this.selectedSkills], country: this.props.country});
+  }
+
+  componentWillMount = () => {
+    this.selectedSkills = new Set();
+  }
+
   render() {
+    const { data } = this.props;
     return (
           <div
             className={
               this.props.isSearchFilterOpen
-                ? 'sidebar d-none'
-                : 'sidebar col-xs-12 col-sm-3'
+                ? 'd-none'
+                : 'pb-2'
             }
           >
-            <h5 className="pt-4 text-center pb-4">Search categories</h5>
-            <ul className="list-group">
-              <li className="list-group-item list-group-item-secondary">
-                Search for solo devs of teams
-              </li>
-              <li className="list-group-item">Solo</li>
-              <li className="list-group-item">Team</li>
-            </ul>
-            <ul className="list-group">
-              <li className="list-group-item list-group-item-secondary">
-                Search by skills
-              </li>
-              <li className="list-group-item">JavaScript</li>
-              <li className="list-group-item active">React</li>
-              <li className="list-group-item">Front End</li>
-              <li className="list-group-item">Back End</li>
-              <li className="list-group-item">Node.js</li>
-              <li className="list-group-item">Express.js</li>
-              <li className="list-group-item">Vue.js</li>
-              <li className="list-group-item active">UI/UX</li>
-            </ul>
+              <div className="filter__list">
+                <span className="filter__title">Search by skills</span>
+              {data.skills ? (data.skills.map((item) => (
+                <div key={item.id} className="filter__item">
+                
+                <input onClick={this.isFiltered} id={item.name} type="checkbox" name={item.name} value={item.name} />
+                  <label htmlFor={item.name}>{item.name}</label>
+                </div>
+                ))) : <div>Not Specified</div>}
           </div>
-
+          </div>
     )
   }
 }
 
-export default SearchFilter
+const mapStateToProps = state => {
+  return {
+    userInfo: state.getUserInfo.userInfo,
+    filter: state.getFilter.filter,
+    skills: state.getFilter.filter.skills
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    updateData: e => {
+      console.log(e);
+      dispatch(watchFilter(e));
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchFilter);
