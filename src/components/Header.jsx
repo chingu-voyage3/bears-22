@@ -66,7 +66,7 @@ class Header extends Component {
         >
           <ul className="header__menu">
             <Link to={'/'} onClick={this.onToggle}>
-              <li className="site__name">Do-um</li>
+              <li className="site__name">Doum</li>
             </Link>
             <Link to={'/'} onClick={this.onToggle}>
               <li>
