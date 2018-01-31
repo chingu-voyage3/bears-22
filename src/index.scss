@@ -22,14 +22,11 @@ $desktop: "only screen and (min-width : 1200px)";
 // All Pages Default
 // =====================
 
-html,body{
-  min-height:100%;
-}
-
 body {
-  font-family: 'Open Sans', sans-serif;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
   color: $chingu-grey;
   overflow-x: hidden; //for hiding menu
   box-sizing: border-box;
@@ -75,9 +72,9 @@ a {
   position: relative;
   padding: em(15);
   z-index: 2;
-    @media #{$desktop} {
-      z-index: auto;
-    }
+  @media #{$desktop} {
+    z-index: auto;
+  }
 }
 .site__name {
   font-family: 'Pacifico', cursive;
@@ -87,36 +84,36 @@ a {
 }
 
 .header__hamburger {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0.6em;
-    right: 0.6em;
-    float: right;
-    width: em(35);
-    height: em(35);
-    border-radius: em(5);
-    z-index: 1030;
-    cursor: pointer;
-    transition: 500ms;
-    &:hover {
-      .header__hamburger--center span:nth-child(odd) {
-        width: 70%;
-      }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0.6em;
+  right: 0.6em;
+  float: right;
+  width: em(35);
+  height: em(35);
+  border-radius: em(5);
+  z-index: 1030;
+  cursor: pointer;
+  transition: 500ms;
+  &:hover {
+    .header__hamburger--center span:nth-child(odd) {
+      width: 70%;
     }
-    span:nth-child(even) {
-      margin: 4px 0;
-    }
+  }
+  span:nth-child(even) {
+    margin: 4px 0;
+  }
   span {
     display: block;
     width: 100%;
     height: em(4); 
     background-color: $chingu-grey;
   }
-    @media #{$desktop} {
-      display: none;
-    }
+  @media #{$desktop} {
+    display: none;
+  }
 }
 
 .header__hamburger--center {
@@ -151,9 +148,9 @@ a {
 }
 
 .header__menu__grid--active {
-    visibility: visible;
-    transform: translate3d(0,0,0);
-  }
+  visibility: visible;
+  transform: translate3d(0,0,0);
+}
 
 .header__menu {
   flex-flow: column;
@@ -386,12 +383,12 @@ a {
   color: $doum-grey;
   padding: 0.4em 0.9em;
   margin: 0;
- li {
+  li {
     display: inline-block;
     margin: 0.2em;
-  padding:0  em(10);
-  background-color: $chingu-yellow;
-  text-align: center;
+    padding:0  em(10);
+    background-color: $chingu-yellow;
+    text-align: center;
   }
   @media #{$desktop} {
     padding: 0.4em 1.2em;
@@ -456,7 +453,7 @@ a {
   letter-spacing: 0.1em;
   @media #{$desktop} {
    font-size: 1.5rem;
-  }
+ }
 }
 
 .search__thumbnail {
@@ -487,10 +484,10 @@ a {
 .search__title__grid {
   flex: 80%;
   @media #{$tablet} {
-  flex: 0 0 70%;
+    flex: 0 0 70%;
   }
   @media #{$desktop} {
-  flex: 0 0 70%;
+    flex: 0 0 70%;
   }
 }
 
@@ -510,44 +507,44 @@ a {
 }
 
 .filter__item {
-    position: relative;
-    display: inline-block;
-    width: 50%;
-    padding: em(10) em(25);
-    border-radius: 5px;
-    label {
-      cursor:pointer;
-      margin-left: em(10);
-      margin-bottom: 0;
-    }
-    input[type="checkbox"] {
-      display: none;
-      transition: 300ms;
-    }
-    input[type="checkbox"]:checked + label {
-        font-weight: bold;
-    }
-    input[type="checkbox"]:checked + label:before {
-        content: '\f00c';
-        font-family: 'FontAwesome';
-        color: $chingu-yellow;
-        position: absolute;
-        top: em(11);
-        left: em(10);
-        font-size: 1em;
-        opacity: 1;
-    }
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  padding: em(10) em(25);
+  border-radius: 5px;
+  label {
+    cursor:pointer;
+    margin-left: em(10);
+    margin-bottom: 0;
+  }
+  input[type="checkbox"] {
+    display: none;
+    transition: 300ms;
+  }
+  input[type="checkbox"]:checked + label {
+    font-weight: bold;
+  }
+  input[type="checkbox"]:checked + label:before {
+    content: '\f00c';
+    font-family: 'FontAwesome';
+    color: $chingu-yellow;
+    position: absolute;
+    top: em(11);
+    left: em(10);
+    font-size: 1em;
+    opacity: 1;
+  }
 
-    input[type="checkbox"] + label:before {
-        content: '\f00c';
-        font-family: 'FontAwesome';
-        color: $chingu-grey-opacity;
-        opacity: 0.5;
-        position: absolute;
-        top: em(11);
-        left: em(10);
-        font-size: 1em;
-    }
+  input[type="checkbox"] + label:before {
+    content: '\f00c';
+    font-family: 'FontAwesome';
+    color: $chingu-grey-opacity;
+    opacity: 0.5;
+    position: absolute;
+    top: em(11);
+    left: em(10);
+    font-size: 1em;
+  }
   @media #{$tablet} {
     width: auto;
   }
@@ -606,6 +603,75 @@ a {
     opacity: 1;
   }
 }
+
+// ====================
+// Loading Animation
+// ====================
+
+.loading-animation {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+   width: 100%;
+    min-height: calc(100vh - 320px);
+
+  span {
+    font-family: 'Arial';
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+}
+.spots {
+
+  div {
+    display: inline-block;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin: 5px 0;
+    background: $chingu-yellow;
+    animation-fill-mode: both;
+    animation: bounce 1.8s ease-in infinite reverse;
+    @media #{$tablet} {    
+      width: 20px;
+      height: 20px;
+      margin: 5px 0;
+      }
+  }
+    div:nth-child(even) {
+      margin: 5px 20px;
+      @media #{$tablet} {
+        margin: 5px 30px;
+      }
+   }
+   .spot-2 {
+    animation-delay: .3s;
+  }
+   .spot-3 {
+    animation-delay: .6s;
+  }
+  .spot-4 {
+    animation-delay: .9s;
+  }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1) Y(0);
+    }
+    50% {
+      transform: translateY(5px);
+    }
+    70% {
+      background: rgba(0,0,0,.05);
+    }
+    100% {
+      transform: scale(1) translateY(0);
+    }
+  }
+
 
 // =============
 // Footer

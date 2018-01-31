@@ -3,7 +3,17 @@ import React, { Component } from 'react'
 class SearchUser extends Component {
   render() {
     const { data } = this.props
-    if (this.props.search === 'users') {
+    if(data.loading) {
+      return (
+        <div className="loading-animation">
+      <div className="spots">
+        <div className="spot-1"></div>
+        <div className="spot-2"></div>
+        <div className="spot-3"></div>
+        <div className="spot-4"></div>
+      </div>
+      </div>)
+    } else if (!data.loading && this.props.search === 'users') {
       return (
         <div className="search__user__grid">
           {!data.loading ? (
@@ -46,11 +56,11 @@ class SearchUser extends Component {
                 </div>
               ))
           ) : (
-            <div>Loading...</div>
+            ''
           )}
         </div>
       )
-    } else if (this.props.search === 'projects') {
+    } else if (!data.loading && this.props.search === 'projects') {
       return (
         <div className="search__user__grid">
           {!data.loading ? (
@@ -92,9 +102,7 @@ class SearchUser extends Component {
                   </div>
                 </div>
               ))
-          ) : (
-            <div>Loading...</div>
-          )}
+          ) : ''}
         </div>
       )
     }
