@@ -67,8 +67,8 @@ const App = () => (
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/search" component={Search} />
             </Switch>
-          </div>
           <Route path="/" component={Footer} />
+          </div>
         </div>
       </ConnectedRouter>
     </Provider>

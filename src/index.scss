@@ -88,7 +88,7 @@ a {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 0.6em;
+  top: 1em;
   right: 0.6em;
   float: right;
   width: em(35);
@@ -278,16 +278,28 @@ a {
 // =============
 
 .login__introblock {
+  height: auto;
   background-color: $theme-color;
   color: #ffffff;
+
+  @media #{$tablet} {
+    height: calc(100vh - 120px);
+  }
 }
 
 .login__button {
   display: block;
-  width: 50%;
+  width: 90%;
   margin: 0 auto;
   span {
     margin: 0 auto;
+  }
+  @media #{$laptop} {
+    width: 70%;
+  }
+
+  @media #{$desktop} {
+    width: 50%;
   }
 }
 
@@ -311,6 +323,27 @@ a {
   }
   &:focus, &:active, &:hover {
     text-decoration: none;
+  }
+}
+
+.login__text {
+  position: relative;
+  display: block;
+  font-size: 0.8rem;
+  text-align: center;
+  padding-top: 1.5em;
+  padding-buttom: 0.5em;
+  font-weight: 600;
+  i {
+    margin-right: em(10);
+  }
+}
+
+.login__button-register {
+  @extend .login__button-github;
+  background-color: #F44336;
+  &:hover {
+    background-color: #EF5350;
   }
 }
 
