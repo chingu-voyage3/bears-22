@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { watchFilter } from '../actions'
-import { CSSTransitionGroup, Transition, TransitionGroup } from "react-transition-group";
+import { Transition } from "react-transition-group";
 
 class SearchFilter extends Component {
-  constructor(props) {
-    super(props)
-  }
+  // constructor(props) {
+  //   super(props)
+  // }
 
   isFiltered = e => {
     if (this.selectedSkills.has(e.target.id)) {

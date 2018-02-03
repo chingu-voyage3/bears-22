@@ -21,7 +21,7 @@ class SearchUser extends Component {
           {!data.loading ? (
             data[this.props.search] &&
             data[this.props.search]
-              .filter(item => item.first_name && item.first_name.match(this.props.selectedItem) || item.title && item.title.match(this.props.selectedItem))
+              .filter(item => (item.first_name && item.first_name.match(this.props.selectedItem)) || (item.title && item.title.match(this.props.selectedItem)))
               .map((item, index) => (
                 <div
                   className="search__user d-flex flex-column"
@@ -29,7 +29,7 @@ class SearchUser extends Component {
                 >
                   <div className="d-flex flex-row align-items-center justify-content-center">
                     <span className="search__thumbnail">
-                      {item.title && item.title.slice(0, 1) || item.first_name && item.first_name.slice(0, 1)}
+                      {(item.title && item.title.slice(0, 1)) || (item.first_name && item.first_name.slice(0, 1))}
                     </span>
                     <div className="search__title__grid">
                       <span className="search__result__title">

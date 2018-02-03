@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import { CSSTransitionGroup, Transition, TransitionGroup } from "react-transition-group";
+import { Transition } from "react-transition-group";
 
 import SearchBar from './SearchBar'
 import SearchFilter from './SearchFilter'
@@ -54,17 +54,6 @@ query searchQuery($skills: [String]) {
   }
 }
 `
-
-const Fader = ({ children }) => (
-  <CSSTransitionGroup
-    transitionName='fade-in'
-    transitionEnterTimeout={1000}
-    transitionLeaveTimeout={500}
-    >
-    { children }
-  </CSSTransitionGroup>
-)
-
 
 class Search extends Component {
   constructor(props) {
