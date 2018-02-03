@@ -98,7 +98,8 @@ class Search extends Component {
 
   resetSearch = () => {
     this.setState((prevState, props) => ({
-      selectedItem: ''
+      selectedItem: '',
+      inputValue: ''
     }));
     this.props.data.refetch();
   }
@@ -137,6 +138,7 @@ class Search extends Component {
                       search={this.state.search}
                       inputValue={this.state.inputValue}
                       data={data}
+                      resetSearch={this.resetSearch}
                     />
                   </div>
                 </div>
