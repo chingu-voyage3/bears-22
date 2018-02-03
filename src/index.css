@@ -459,8 +459,14 @@ a {
 .flip-animation {
   animation: flip 500ms ease-in-out; }
 
+.flip {
+  animation: flip 400ms ease-in-out; }
+
 .fade-in {
-  animation: fade-in 500ms ease; }
+  animation: fade-in 500ms ease-in; }
+
+.fade-in-out {
+  animation: fade-in-out 500ms ease-in; }
 
 @keyframes flip {
   0% {
@@ -471,6 +477,12 @@ a {
     transform: rotateX(0deg); } }
 
 @keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fade-in-out {
   0% {
     opacity: 0; }
   100% {

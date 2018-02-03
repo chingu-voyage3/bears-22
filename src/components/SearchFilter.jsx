@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { watchFilter } from '../actions'
+import { CSSTransitionGroup, Transition, TransitionGroup } from "react-transition-group";
 
 class SearchFilter extends Component {
   constructor(props) {
@@ -27,8 +28,8 @@ class SearchFilter extends Component {
   render() {
     const { data } = this.props
     return (
-      <div className={this.props.isSearchFilterOpen ? 'd-none' : 'pb-2'}>
-        <div className="filter__list">
+      <Transition timeout={300}>
+      <div className={this.props.isSearchFilterOpen ? 'd-none' : 'pb-2 fade-in-out filter__list'}>
           <span className="filter__title">Search by skills</span>
           {data.skills ? (
             data.skills.map(item => (
@@ -46,8 +47,8 @@ class SearchFilter extends Component {
           ) : (
             <div>Not Specified</div>
           )}
-        </div>
       </div>
+      </Transition>
     )
   }
 }

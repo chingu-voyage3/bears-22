@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import { CSSTransitionGroup, Transition, TransitionGroup } from "react-transition-group";
 
 import SearchBar from './SearchBar'
 import SearchFilter from './SearchFilter'
@@ -54,6 +55,17 @@ query searchQuery($skills: [String]) {
 }
 `
 
+const Fader = ({ children }) => (
+  <CSSTransitionGroup
+    transitionName='fade-in'
+    transitionEnterTimeout={1000}
+    transitionLeaveTimeout={500}
+    >
+    { children }
+  </CSSTransitionGroup>
+)
+
+
 class Search extends Component {
   constructor(props) {
     super(props)
@@ -74,8 +86,6 @@ class Search extends Component {
       selectedItem: '',
       inputValue: ''
     }))
-    document.getElementById('search__title').classList.add('flip-animation');
-    setTimeout(() => document.getElementById('search__title').classList.remove('flip-animation'), 500);
   }
 
   handleSearchFilterClick = () => {
@@ -117,11 +127,13 @@ class Search extends Component {
                     htmlFor="inputSearch"
                     className="col-xs-12 col-sm-6"
                   >
-                    <h3 id="search__title">
+                    <Transition timeout={150}>
+                    <h3 id="search__title" className={this.state.isSearchToggleOn?  "fade-in" : "flip-animation"}>
                       {this.state.isSearchToggleOn
                         ? 'Find projects.'
                         : 'Find users.'}
                     </h3>
+                    </Transition>
                   </label>
                   <div className="col-xs-12 col-md-6 text-right">
                     <SearchBar
@@ -153,6 +165,7 @@ class Search extends Component {
                   : 'Get projects'}
               </span>
 
+              
               <span
                 onClick={this.handleSearchFilterClick}
                 className="search__toggle btn btn-link"
@@ -168,6 +181,7 @@ class Search extends Component {
             isSearchFilterOpen={this.state.isSearchFilterOpen}
             data={data}
              />
+
              <div className={this.props.filter.skills && this.props.filter.skills.length > 0 ? 'filter__item--grid' : 'd-none'}>
              Filtered: {this.props.filter.skills && this.props.filter.skills.length > 0 ? 
               (this.props.filter.skills.map(item => (
@@ -175,13 +189,13 @@ class Search extends Component {
                 ))) : ''
             }
              </div>
-            <div>
+              <div>
               <SearchUser
                 search={this.state.search}
                 data={data}
                 selectedItem={this.state.selectedItem}
                  />
-               </div>
+                 </div>
 
           </div>
           </div>
@@ -196,13 +210,13 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    updateData: e => {
-      this.props.data.refetch();
-    }
-  }
-}
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//   return {
+//     updateData: e => {
+//       this.props.data.refetch();
+//     }
+//   }
+// }
 
 export default connect(mapStateToProps)(
   graphql(searchQuery, {
