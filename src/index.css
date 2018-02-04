@@ -44,7 +44,6 @@ a {
       z-index: auto; } }
 
 .site__name {
-  font-family: 'Pacifico', cursive;
   font-size: 1.5em;
   text-transform: uppercase;
   font-weight: 500; }
@@ -80,7 +79,6 @@ a {
   width: 70%; }
 
 .header__menu__grid {
-  font-family: 'Open Sans';
   text-align: center;
   position: absolute;
   top: 0;
@@ -121,7 +119,9 @@ a {
     display: flex;
     padding: 1.25em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    justify-content: center; }
+    justify-content: center;
+    font-size: 110%;
+    margin-top: 5px; }
   .header__menu i {
     flex: 0 0 10%;
     margin-top: 0.14em;
@@ -168,7 +168,7 @@ a {
 .section {
   padding: 2.5rem;
   color: white;
-  font-size: 110%; }
+  font-size: 120%; }
   .section__hero {
     background-image: url("../src/assets/hero image.jpg");
     background-size: 250%;
@@ -236,13 +236,12 @@ a {
 
 .btn {
   display: block;
-  width: 25%;
-  margin: 0 auto; }
+  padding: 5px 20px;
+  margin: 0 auto;
+  margin-top: 35px; }
   .btn__login {
+    font-size: 110%;
     background-color: #f1c40f; }
-  @media screen and (max-width: 414px) {
-    .btn {
-      width: 70%; } }
 
 .text--primary {
   color: #f1c40f; }

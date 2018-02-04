@@ -36,7 +36,7 @@ class Header extends Component {
           }
         >
           <Link to={'/'}>
-            <span className="site__name">Do-um</span>
+            <span className="site__name">Doum</span>
           </Link>
           <div
             className="header__hamburger header__animation--active"
@@ -76,8 +76,8 @@ class Header extends Component {
             {this.props.isLogin ? (
               <Link to={'/profile'} onClick={this.onToggle}>
                 <li>
-                  <i className="fa fa-info" aria-hidden="true" />
-                  <span>My Dashboard</span>
+                  <i className="fa fa-user-circle-o" aria-hidden="true" />
+                  <span>Profile</span>
                 </li>
               </Link>
             ) : (
@@ -87,12 +87,6 @@ class Header extends Component {
               <li>
                 <i className="fa fa-search" aria-hidden="true" />{' '}
                 <span>Search</span>
-              </li>
-            </Link>
-            <Link to={'/profile'}>
-              <li>
-                <i className="fa fa-user-circle-o" aria-hidden="true" />
-                <span>Profile</span>
               </li>
             </Link>
             {this.props.isLogin ? (
