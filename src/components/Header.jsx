@@ -83,12 +83,6 @@ class Header extends Component {
             ) : (
               ''
             )}
-            <Link to={'/user-list'} onClick={this.onToggle}>
-              <li>
-                <i className="fa fa-user" aria-hidden="true" />
-                <span>User List</span>
-              </li>
-            </Link>
             <Link to={'/search'} onClick={this.onToggle}>
               <li>
                 <i className="fa fa-search" aria-hidden="true" />{' '}
@@ -96,7 +90,10 @@ class Header extends Component {
               </li>
             </Link>
             <Link to={'/profile'}>
-              <li>Profile</li>
+              <li>
+                <i className="fa fa-user-circle-o" aria-hidden="true" />
+                <span>Profile</span>
+              </li>
             </Link>
             {this.props.isLogin ? (
               <a href="/auth/logout" onClick={this.onToggle}>
