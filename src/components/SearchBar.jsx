@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import Downshift from 'downshift'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import Downshift from 'downshift';
+import { connect } from 'react-redux';
 
 class SearchBar extends Component {
-  constructor(props) {
-    super(props)
+  constructor (props) {
+    super(props);
   }
 
-  render() {
+  render () {
     return (
       <div className="searchbar">
         <Downshift
@@ -24,9 +24,11 @@ class SearchBar extends Component {
             <div>
               <span
                 className={
-                  !isOpen && this.props.inputValue === ''
-                    ? 'd-none'
-                    : 'search__close'
+                  !isOpen && this.props.inputValue === '' ? (
+                    'd-none'
+                  ) : (
+                    'search__close'
+                  )
                 }
                 onClick={this.props.resetSearch}
               >
@@ -41,7 +43,7 @@ class SearchBar extends Component {
               />
               {isOpen ? (
                 <div className="search__popup">
-                  {[...new Set(this.props.items)] // get unique values using "set"
+                  {[ ...new Set(this.props.items) ] // get unique values using "set"
                     .filter(
                       i =>
                         !inputValue ||
@@ -66,8 +68,8 @@ class SearchBar extends Component {
           )}
         />
       </div>
-    )
+    );
   }
 }
 
-export default SearchBar
+export default SearchBar;
