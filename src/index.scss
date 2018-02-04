@@ -6,15 +6,15 @@ $browser-context: 16; // Default
 
 $theme-color: #1abc9c; //one of the theme color of Chingu
 $chingu-yellow: #f1c40f;
-$chingu-grey: rgba(51,51,51,1);
-$chingu-grey-opacity: rgba(51,51,51,0.6);
+$chingu-grey: rgba(51, 51, 51, 1);
+$chingu-grey-opacity: rgba(51, 51, 51, 0.6);
 
 $doum-darkblue: #4f6570;
 $doum-grey: #333333;
 
-$profile-yellow: #FFEB3B;
-$profile-lightgrey: #BCBCBC;
-$profile-grey: #4E6571;
+$profile-yellow: #ffeb3b;
+$profile-lightgrey: #bcbcbc;
+$profile-grey: #4e6571;
 $profile-black: #333333;
 $spacer: 1rem;
 $spacer-x: $spacer;
@@ -34,7 +34,7 @@ body {
   width: 100%;
   height: 100vh;
   min-height: 100vh;
-  font-family: 'Open Sans', sans-serif;
+  font-family: Lato, 'Open Sans', sans-serif;
   color: $chingu-grey;
   overflow-x: hidden; //for hiding menu
   box-sizing: border-box;
@@ -68,7 +68,9 @@ a {
   &:hover {
     color: $chingu-yellow;
   }
-  &:active, &:focus, &:hover {
+  &:active,
+  &:focus,
+  &:hover {
     text-decoration: none;
   }
 }
@@ -140,14 +142,14 @@ a {
   background: white;
   visibility: hidden;
   transition: 500ms;
-  transform: translate3d(100%,0,0);
+  transform: translate3d(100%, 0, 0);
   box-shadow: 1px 1px 5px $chingu-grey-opacity;
   @media #{$desktop} {
     position: absolute;
     top: 0;
     right: 0;
     box-shadow: none;
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
     width: auto;
     height: auto;
     visibility: visible;
@@ -157,7 +159,7 @@ a {
 
 .header__menu__grid--active {
   visibility: visible;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
 }
 
 .header__menu {
@@ -172,7 +174,7 @@ a {
   li {
     display: flex;
     padding: em(20);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     justify-content: center;
   }
   i {
@@ -190,7 +192,7 @@ a {
     margin: 0 em(10);
     padding: em(15);
     a:first-of-type {
-      display: none
+      display: none;
     }
     li {
       border-bottom: 0;
@@ -229,6 +231,124 @@ a {
 }
 
 //==================
+// Landing Page
+//==================
+
+.section {
+  padding: 2.5rem;
+  color: white;
+  font-size: 110%;
+
+  &__hero {
+    background-image: url('../src/assets/hero image.jpg');
+    background-size: 250%;
+    background-position: center;
+
+    &__branding {
+      color: white;
+      font-size: 350%;
+      font-weight: bold;
+      padding-left: 2.5rem;
+      border-bottom: solid $chingu-yellow 0.5rem;
+      border-right: solid $chingu-yellow 0.5rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &--light {
+    background-color: $theme-color;
+  }
+
+  &--dark {
+    background-color: $doum-darkblue;
+  }
+
+  &--black {
+    background-color: $doum-grey;
+  }
+
+  &__feature {
+    text-align: center;
+  }
+
+  &__header {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 30%;
+    color: white;
+    font-weight: 400;
+    border-bottom: 0.3rem solid $chingu-yellow;
+    padding-bottom: 0.9rem;
+    margin-bottom: 2rem;
+
+    @media screen and (max-width: 414px) {
+      width: 60%;
+    }
+  }
+
+  &__text {
+    text-align: center;
+  }
+
+  &__users {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    &__image {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+
+  &__project {
+    text-align: center;
+    border: 0.1rem solid $chingu-yellow;
+    background: $doum-darkblue;
+    border-radius: 10px;
+    margin: 1em;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.icon {
+  background: #333;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1.1rem;
+  font-size: 210%;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: solid $chingu-yellow 2px;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  display: block;
+  width: 25%;
+  margin: 0 auto;
+  &__login {
+    background-color: $chingu-yellow;
+  }
+
+  @media screen and (max-width: 414px) {
+    width: 70%;
+  }
+}
+
+.text--primary {
+  color: $chingu-yellow;
+}
+
+.landing__background--gray {
+  background-color: $doum-darkblue;
+}
+
+//==================
 //User form style
 //==================
 .user__headline {
@@ -249,15 +369,14 @@ a {
 .user__header {
   text-transform: uppercase;
   font-weight: bold;
-  text-align: center;
+  margin: 0 auto;
   padding: em(10);
 }
 
 .user__cell {
   word-wrap: break-word;
   padding: em(10);
-  text-align: center;
-  p {
+  margin: 0 auto p {
     margin: em(5) 0;
   }
   .small {
@@ -314,7 +433,7 @@ a {
 .login__button-github {
   display: inline-flex;
   padding: em(10) em(20);
-  background-color: rgba(36,41,46,1);
+  background-color: rgba(36, 41, 46, 1);
   color: #ffffff;
   transition: 300ms;
   margin-top: em(9);
@@ -326,10 +445,12 @@ a {
     margin-top: em(5);
   }
   &:hover {
-    background-color: rgba(36,41,46,0.8);
+    background-color: rgba(36, 41, 46, 0.8);
     cursor: pointer;
   }
-  &:focus, &:active, &:hover {
+  &:focus,
+  &:active,
+  &:hover {
     text-decoration: none;
   }
 }
@@ -349,9 +470,9 @@ a {
 
 .login__button-register {
   @extend .login__button-github;
-  background-color: #F44336;
+  background-color: #f44336;
   &:hover {
-    background-color: #EF5350;
+    background-color: #ef5350;
   }
 }
 
@@ -363,7 +484,7 @@ a {
 
 .login__ul {
   list-style-type: none;
-  padding-left: em(30)
+  padding-left: em(30);
   li:before {
     font-family: FontAwesome;
     content: '\f00c';
@@ -410,7 +531,7 @@ a {
 }
 
 .search__header-text-align input {
-  text-align: center;
+  margin: 0 auto;
 }
 
 .search__user {
@@ -441,7 +562,7 @@ a {
   li {
     display: inline-block;
     margin: 0.2em;
-    padding:0  em(10);
+    padding: 0 em(10);
     background-color: $chingu-yellow;
     text-align: center;
   }
@@ -477,7 +598,9 @@ a {
     background: $chingu-yellow;
     transform: translateY(2px);
   }
-  &:active, &:focus, &:hover {
+  &:active,
+  &:focus,
+  &:hover {
     text-decoration: none;
   }
   @media #{$tablet} {
@@ -507,8 +630,8 @@ a {
   text-overflow: ellipsis;
   letter-spacing: 0.1em;
   @media #{$desktop} {
-   font-size: 1.5rem;
- }
+    font-size: 1.5rem;
+  }
 }
 
 .search__thumbnail {
@@ -568,7 +691,7 @@ a {
   padding: em(10) em(25);
   border-radius: 5px;
   label {
-    cursor:pointer;
+    cursor: pointer;
     margin-left: em(10);
     margin-bottom: 0;
   }
@@ -685,8 +808,8 @@ a {
   align-items: center;
   justify-content: center;
   vertical-align: middle;
-   width: 100%;
-    min-height: calc(100vh - 320px);
+  width: 100%;
+  min-height: calc(100vh - 320px);
 
   span {
     font-family: 'Arial';
@@ -695,7 +818,6 @@ a {
   }
 }
 .spots {
-
   div {
     display: inline-block;
     border-radius: 50%;
@@ -705,44 +827,43 @@ a {
     background: $chingu-yellow;
     animation-fill-mode: both;
     animation: bounce 1.8s ease-in infinite reverse;
-    @media #{$tablet} {    
+    @media #{$tablet} {
       width: 20px;
       height: 20px;
       margin: 5px 0;
-      }
+    }
   }
-    div:nth-child(even) {
-      margin: 5px 20px;
-      @media #{$tablet} {
-        margin: 5px 30px;
-      }
-   }
-   .spot-2 {
+  div:nth-child(even) {
+    margin: 5px 20px;
+    @media #{$tablet} {
+      margin: 5px 30px;
+    }
+  }
+  .spot-2 {
     animation-delay: .3s;
   }
-   .spot-3 {
+  .spot-3 {
     animation-delay: .6s;
   }
   .spot-4 {
     animation-delay: .9s;
   }
-  }
+}
 
-  @keyframes bounce {
-    0% {
-      transform: scale(1) Y(0);
-    }
-    50% {
-      transform: translateY(5px);
-    }
-    70% {
-      background: rgba(0,0,0,.05);
-    }
-    100% {
-      transform: scale(1) translateY(0);
-    }
+@keyframes bounce {
+  0% {
+    transform: scale(1) Y(0);
   }
-
+  50% {
+    transform: translateY(5px);
+  }
+  70% {
+    background: rgba(0, 0, 0, .05);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
 
 // =============
 // Profile
