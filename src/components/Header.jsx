@@ -50,7 +50,6 @@ class Header extends Component {
           </div>
         </div>
         <div
-          className="overlay"
           className={
             this.state.toggleMenu ? 'overlay overlay--active' : 'overlay'
           }

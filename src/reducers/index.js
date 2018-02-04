@@ -36,33 +36,58 @@ function getUserInfo(state = initialState, action) {
   }
 }
 
-// function getSearch(state = initialState, action) {
-//   switch (action.type) {
-//     case Actions.START_SEARCH:
-//       return Object.assign({}, state, {
-//         search: action.search
-//       })
-//     case Actions.SEARCH_START:
-//       return Object.assign({}, state, {
-//         errMsg: action.errMsg
-//       })
-//     default:
-//       return state
-//   }
-// }
+function getSearch(state = initialState, action) {
+  switch (action.type) {
+    case Actions.START_SEARCH:
+      return Object.assign({}, state, {
+        search: action.search
+      })
+    case Actions.SEARCH_FAILED:
+      return Object.assign({}, state, {
+        errMsg: action.errMsg
+      })
+    default:
+      return state
+  }
+}
+
+function getFilter(state = initialState, action) {
+  switch (action.type) {
+    case Actions.IS_FILTERED:
+      return Object.assign({}, state, {
+        filter: {
+          skills: action.skills.length > 0 ? action.skills : null,
+          country: action.country
+        }
+      })
+    case Actions.FILTER_FAILED:
+      return Object.assign({}, state, {
+        errMsg: action.errMsg
+      })
+    default:
+      return state
+  }
+}
 
 const initialState = {
   isFetching: false,
   users: [],
   isLogin: false,
   userInfo: [],
-  errorMsg: ''
+  errorMsg: '',
+  filter: {
+    search: 'projects',
+    country: null,
+    skills: null
+  }
 }
 
 const mainReducer = combineReducers({
   fetchData,
   getUserInfo,
   initialState,
+  getFilter,
+  getSearch,
   router: routerReducer
 })
 

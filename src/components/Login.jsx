@@ -14,16 +14,17 @@ class Login extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-sm-6 login__introblock">
-            <h1 className="user__headline--white">You can...</h1>
+          <div className="col-md-6 login__introblock p-3">
+            <h1 className="user__headline--white">After login, you can...</h1>
             <ul className="login__ul">
               <li>Find developers</li>
               <li>Communicate with Chingu teams</li>
-              <li>Contribute!</li>
+              <li>Learn more!</li>
+              <li>Contribute more!</li>
             </ul>
             <p>Login now!</p>
           </div>
-          <div className="col-sm-6">
+          <div className="col-md-6 p-3">
             <h1 className="user__headline">Login</h1>
             <div className="login__button">
               <a href="/auth/github">
@@ -31,6 +32,19 @@ class Login extends Component {
                   <span>
                     <i className="fa fa-github" aria-hidden="true" />
                     Login via Github
+                  </span>
+                </div>
+              </a>
+
+              <span className="login__text">
+                <i className="fa fa-angle-right" />
+                If you are not Chingu member, register now:
+              </span>
+              <a href="https://chingu-cohorts.github.io/chingu-directory/">
+                <div className="login__button-register">
+                  <span>
+                    <i className="fa fa-user-plus" aria-hidden="true" />
+                    Register via Chingu
                   </span>
                 </div>
               </a>

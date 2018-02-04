@@ -22,6 +22,16 @@ class SearchBar extends Component {
             highlightedIndex
           }) => (
             <div>
+              <span
+                className={
+                  !isOpen && this.props.inputValue === ''
+                    ? 'd-none'
+                    : 'search__close'
+                }
+                onClick={this.props.resetSearch}
+              >
+                <i className="fa fa-times" />
+              </span>
               <input
                 type="search"
                 className="form-control"

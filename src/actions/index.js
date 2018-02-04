@@ -9,25 +9,42 @@ export const Actions = {
   USER_LIST_REQUEST: 'USER_LIST_REQUEST',
   FETCH_LOGIN_SUCCESS: 'FETCH_LOGIN_SUCCESS',
   GUEST: 'GUEST',
-  FETCH_FAILED: 'FETCH_FAILED'
-  // SEARCH_START: 'SEARCH_START',
-  // SEARCH_FAILED: 'SEARCH_FAILED'
+  FETCH_FAILED: 'FETCH_FAILED',
+  SEARCH_START: 'SEARCH_START',
+  SEARCH_FAILED: 'SEARCH_FAILED',
+  IS_FILTERED: 'IS_FILTERED',
+  FILTER_FAILED: 'FILTER_FAILED'
 }
 
 // //search related
-// export function watchSearch(search) {
-//   return {
-//     type: Actions.SEARCH_START,
-//     search
-//   }
-// }
+export function watchSearch(search) {
+  return {
+    type: Actions.SEARCH_START,
+    search
+  }
+}
 
-// export function watchSearchFailed(err) {
-//   return {
-//     type: Actions.SEARCH_FAILED,
-//     errorMsg: err
-//   }
-// }
+export function watchSearchFailed(err) {
+  return {
+    type: Actions.SEARCH_FAILED,
+    errorMsg: err
+  }
+}
+
+export function watchFilter(filter) {
+  return {
+    type: Actions.IS_FILTERED,
+    skills: filter.skills,
+    country: filter.country
+  }
+}
+
+export function watchFilterFailed(filter) {
+  return {
+    type: Actions.FILTER_FAILED,
+    filter
+  }
+}
 
 //fetch related
 export function fetchStatus() {
