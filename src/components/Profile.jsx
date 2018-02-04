@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { graphql } from 'react-apollo'
+import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const profileQuery = gql`
@@ -34,12 +34,16 @@ const profileQuery = gql`
       }
     }
   }
-`
-const updateUser = gql`
-  mutation($first_name: String, $last_name: String) {
-    updateUser(first_name: $first_name, last_name: $last_name)
-  }
-`
+  `
+  const updateUser = gql`
+    mutation updateUser($email: String!) {
+      user(email: $email) {
+        updateUser(user_data: {username: "jordanleo7"}) {
+          id
+        }
+      }
+    }
+  `
 class Profile extends React.Component {
   state = {
     EditProfile: true,
@@ -60,6 +64,14 @@ class Profile extends React.Component {
   }
   handleSaveChanges = () => {
     console.log(this.state)
+    this.props.mutate({
+      variables: { bio: "I'm learning how to use GraphQL." }
+    })
+      .then(({ data }) => {
+        console.log('got data', data);
+      }).catch((error) => {
+        console.log('there was an error sending the query', error);
+      });
   }
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value })
@@ -295,12 +307,16 @@ const mapStateToProps = state => {
 //export default connect(mapStateToProps)(Profile)
 
 export default connect(mapStateToProps)(
-  graphql(profileQuery, {
-    options: ownProps => ({
-      variables: {
-        user_id: ownProps.userInfo.id,
-        email: ownProps.userInfo.email
-      }
-    })
-  })(Profile)
+  compose(
+    graphql(profileQuery, {
+      options: ownProps => ({
+        variables: {
+          user_id: ownProps.userInfo.id,
+          email: ownProps.userInfo.email
+        }
+      })
+    }),
+    graphql(updateUser)
+  )(Profile)
 )
+
