@@ -27,7 +27,6 @@ class Login extends Component {
           <div className="col-md-6 p-3">
             <h1 className="user__headline">Login</h1>
             <div className="login__button">
-
               <a href="/auth/github">
                 <div className="login__button-github">
                   <span>
@@ -38,18 +37,17 @@ class Login extends Component {
               </a>
 
               <span className="login__text">
-                <i className="fa fa-angle-right"></i>
+                <i className="fa fa-angle-right" />
                 If you are not Chingu member, register now:
               </span>
-                <a href="https://chingu-cohorts.github.io/chingu-directory/">
+              <a href="https://chingu-cohorts.github.io/chingu-directory/">
                 <div className="login__button-register">
                   <span>
                     <i className="fa fa-user-plus" aria-hidden="true" />
                     Register via Chingu
                   </span>
                 </div>
-                </a>
-
+              </a>
             </div>
           </div>
         </div>

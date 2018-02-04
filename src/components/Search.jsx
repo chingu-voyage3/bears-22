@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-import { Transition } from 'react-transition-group';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
+import { Transition } from 'react-transition-group'
 
-import SearchBar from './SearchBar';
-import SearchFilter from './SearchFilter';
-import SearchUser from './SearchUser';
+import SearchBar from './SearchBar'
+import SearchFilter from './SearchFilter'
+import SearchUser from './SearchUser'
 
 //  query searchQuery($search: String!) {
 const searchQuery = gql`
@@ -77,60 +77,60 @@ const searchQuery = gql`
       name
     }
   }
-`;
+`
 
 class Search extends Component {
-  constructor (props) {
-    super(props);
+  constructor(props) {
+    super(props)
     this.state = {
       isSearchToggleOn: true,
       isSearchFilterOpen: true,
       selectedItem: '',
       search: 'projects',
       inputValue: ''
-    };
+    }
   }
 
   handleSearchToggleClick = () => {
     const search = () =>
-      this.state.search === 'projects' ? 'users' : 'projects';
+      this.state.search === 'projects' ? 'users' : 'projects'
     this.setState(prevState => ({
       isSearchToggleOn: !prevState.isSearchToggleOn,
       search: search(),
       selectedItem: '',
       inputValue: ''
-    }));
-  };
+    }))
+  }
 
   handleSearchFilterClick = () => {
     this.setState(prevState => ({
       isSearchFilterOpen: !prevState.isSearchFilterOpen
-    }));
-  };
+    }))
+  }
 
   onChange = selectedItem => {
     this.setState((prevState, props) => ({
       selectedItem
-    }));
-  };
+    }))
+  }
 
   onInputValueChange = (e, i) => {
-    console.log(e);
+    console.log(e)
     this.setState({
       inputValue: String(e)
-    });
-  };
+    })
+  }
 
   resetSearch = () => {
     this.setState((prevState, props) => ({
       selectedItem: '',
       inputValue: ''
-    }));
-    this.props.data.refetch();
-  };
+    }))
+    this.props.data.refetch()
+  }
 
-  render () {
-    const { data } = this.props;
+  render() {
+    const { data } = this.props
     return (
       <div className="container-fluid no-padding">
         <div>
@@ -143,29 +143,23 @@ class Search extends Component {
                       <h3
                         id="search__title"
                         className={
-                          this.state.isSearchToggleOn ? (
-                            'fade-in'
-                          ) : (
-                            'flip-animation'
-                          )
+                          this.state.isSearchToggleOn
+                            ? 'fade-in'
+                            : 'flip-animation'
                         }
                       >
-                        {this.state.isSearchToggleOn ? (
-                          'Find projects.'
-                        ) : (
-                          'Find users.'
-                        )}
+                        {this.state.isSearchToggleOn
+                          ? 'Find projects.'
+                          : 'Find users.'}
                       </h3>
                     </Transition>
                   </label>
                   <div className="col-xs-12 col-md-6 text-right">
                     <SearchBar
                       placeholder={
-                        this.state.isSearchToggleOn ? (
-                          'Search projects'
-                        ) : (
-                          'Search users'
-                        )
+                        this.state.isSearchToggleOn
+                          ? 'Search projects'
+                          : 'Search users'
                       }
                       items={
                         data[this.state.search] &&
@@ -209,24 +203,19 @@ class Search extends Component {
 
           <div
             className={
-              this.props.filter.skills &&
-              this.props.filter.skills.length > 0 ? (
-                'filter__item--grid'
-              ) : (
-                'd-none'
-              )
+              this.props.filter.skills && this.props.filter.skills.length > 0
+                ? 'filter__item--grid'
+                : 'd-none'
             }
           >
             Filtered:{' '}
-            {this.props.filter.skills && this.props.filter.skills.length > 0 ? (
-              this.props.filter.skills.map(item => (
-                <div className="filter__item--filtered" key={item}>
-                  {item}
-                </div>
-              ))
-            ) : (
-              ''
-            )}
+            {this.props.filter.skills && this.props.filter.skills.length > 0
+              ? this.props.filter.skills.map(item => (
+                  <div className="filter__item--filtered" key={item}>
+                    {item}
+                  </div>
+                ))
+              : ''}
           </div>
           <div>
             <SearchUser
@@ -237,7 +226,7 @@ class Search extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -245,8 +234,8 @@ const mapStateToProps = state => {
   return {
     userInfo: state.getUserInfo.userInfo,
     filter: state.getFilter.filter
-  };
-};
+  }
+}
 
 // const mapDispatchToProps = (dispatch, ownProps) => {
 //   return {
@@ -265,4 +254,4 @@ export default connect(mapStateToProps)(
       }
     })
   })(Search)
-);
+)

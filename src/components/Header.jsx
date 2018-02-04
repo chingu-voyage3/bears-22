@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class Header extends Component {
-  constructor () {
-    super();
+  constructor() {
+    super()
     this.state = {
       toggleMenu: false
-    };
-    this.onToggle = this.onToggle.bind(this);
+    }
+    this.onToggle = this.onToggle.bind(this)
   }
-  onToggle () {
+  onToggle() {
     if (window.innerWidth < 1200) {
       this.setState((prevState, props) => ({
         toggleMenu: !prevState.toggleMenu
-      })); //only mobile will toggle menu
+      })) //only mobile will toggle menu
 
       if (!this.state.toggleMenu) {
-        document.getElementById('body').classList.add('header__translate');
-        document.body.style.overflowX = 'hidden';
-        document.body.style.overflowY = 'hidden';
+        document.getElementById('body').classList.add('header__translate')
+        document.body.style.overflowX = 'hidden'
+        document.body.style.overflowY = 'hidden'
       } else {
-        document.getElementById('body').classList.remove('header__translate');
-        document.body.style.overflowX = 'hidden';
-        document.body.style.overflowY = 'auto';
+        document.getElementById('body').classList.remove('header__translate')
+        document.body.style.overflowX = 'hidden'
+        document.body.style.overflowY = 'auto'
       }
     }
   }
-  render () {
+  render() {
     return (
       <div>
         <div
@@ -57,11 +57,9 @@ class Header extends Component {
         />
         <div
           className={
-            this.state.toggleMenu ? (
-              'header__menu__grid header__menu__grid--active'
-            ) : (
-              'header__menu__grid'
-            )
+            this.state.toggleMenu
+              ? 'header__menu__grid header__menu__grid--active'
+              : 'header__menu__grid'
           }
           id="header__menu__grid"
         >
@@ -118,7 +116,7 @@ class Header extends Component {
           </ul>
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -126,7 +124,7 @@ const mapStateToProps = state => {
   return {
     isLogin: state.getUserInfo.isLogin,
     userInfo: state.getUserInfo.userInfo
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(Header)
