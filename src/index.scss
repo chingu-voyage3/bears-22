@@ -31,15 +31,27 @@ $desktop: "only screen and (min-width : 1200px)";
 // =====================
 
 body {
-  font-family: 'Open Sans', sans-serif;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
   color: $chingu-grey;
   overflow-x: hidden; //for hiding menu
+  box-sizing: border-box;
 }
 
 #body {
   transition: 300ms;
+}
+
+.no-overflow {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.overflow {
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 ::selection {
@@ -65,8 +77,12 @@ a {
 // Header
 // =============
 .header {
+  position: relative;
   padding: em(15);
   z-index: 2;
+  @media #{$desktop} {
+    z-index: auto;
+  }
 }
 .site__name {
   font-family: 'Pacifico', cursive;
@@ -76,36 +92,36 @@ a {
 }
 
 .header__hamburger {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0.6em;
-    right: 0.6em;
-    float: right;
-    width: em(35);
-    height: em(35);
-    border-radius: em(5);
-    z-index: 1030;
-    cursor: pointer;
-    transition: 500ms;
-    &:hover {
-      .header__hamburger--center span:nth-child(odd) {
-        width: 70%;
-      }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1em;
+  right: 0.6em;
+  float: right;
+  width: em(35);
+  height: em(35);
+  border-radius: em(5);
+  z-index: 1030;
+  cursor: pointer;
+  transition: 500ms;
+  &:hover {
+    .header__hamburger--center span:nth-child(odd) {
+      width: 70%;
     }
-    span:nth-child(even) {
-      margin: 4px 0;
-    }
+  }
+  span:nth-child(even) {
+    margin: 4px 0;
+  }
   span {
     display: block;
     width: 100%;
     height: em(4);
     background-color: $chingu-grey;
   }
-    @media #{$desktop} {
-      display: none;
-    }
+  @media #{$desktop} {
+    display: none;
+  }
 }
 
 .header__hamburger--center {
@@ -119,7 +135,7 @@ a {
   top: 0;
   right: 0;
   height: 100%;
-  width: 250px;
+  width: 280px;
   z-index: 1;
   background: white;
   visibility: hidden;
@@ -140,9 +156,9 @@ a {
 }
 
 .header__menu__grid--active {
-    visibility: visible;
-    transform: translate3d(0,0,0);
-  }
+  visibility: visible;
+  transform: translate3d(0,0,0);
+}
 
 .header__menu {
   flex-flow: column;
@@ -190,7 +206,7 @@ a {
 }
 
 .header__translate {
-  transform: translateX(-250px);
+  transform: translateX(-280px);
   transition: 500ms;
   overflow: hidden;
 }
@@ -270,16 +286,28 @@ a {
 // =============
 
 .login__introblock {
+  height: auto;
   background-color: $theme-color;
   color: #ffffff;
+
+  @media #{$tablet} {
+    height: calc(100vh - 120px);
+  }
 }
 
 .login__button {
   display: block;
-  width: 50%;
+  width: 90%;
   margin: 0 auto;
   span {
     margin: 0 auto;
+  }
+  @media #{$laptop} {
+    width: 70%;
+  }
+
+  @media #{$desktop} {
+    width: 50%;
   }
 }
 
@@ -303,6 +331,27 @@ a {
   }
   &:focus, &:active, &:hover {
     text-decoration: none;
+  }
+}
+
+.login__text {
+  position: relative;
+  display: block;
+  font-size: 0.8rem;
+  text-align: center;
+  padding-top: 1.5em;
+  padding-buttom: 0.5em;
+  font-weight: 600;
+  i {
+    margin-right: em(10);
+  }
+}
+
+.login__button-register {
+  @extend .login__button-github;
+  background-color: #F44336;
+  &:hover {
+    background-color: #EF5350;
   }
 }
 
@@ -334,15 +383,29 @@ a {
   margin: 0;
 }
 
+.search__close {
+  position: absolute;
+  right: 0.9em;
+  top: -0.3em;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 0.5em;
+  @media #{$tablet} {
+    top: -0.1em;
+    right: 1.1em;
+    font-size: 1em;
+  }
+}
+
 .search__user__grid {
   display: flex;
   flex-flow: column wrap;
   @media #{$tablet} {
-    align-items: center;
+    justify-content: left;
   }
   @media #{$desktop} {
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: left;
   }
 }
 
@@ -361,7 +424,11 @@ a {
     width: 90%;
   }
   @media #{$desktop} {
-    width: calc(50% - 2em);
+    width: calc(50% - 1.5em);
+    margin-right: 1em;
+    &:nth-child(odd) {
+      margin-left: 1em;
+    }
   }
 }
 
@@ -371,12 +438,12 @@ a {
   color: $doum-grey;
   padding: 0.4em 0.9em;
   margin: 0;
- li {
+  li {
     display: inline-block;
     margin: 0.2em;
-  padding:0  em(10);
-  background-color: $chingu-yellow;
-  text-align: center;
+    padding:0  em(10);
+    background-color: $chingu-yellow;
+    text-align: center;
   }
   @media #{$desktop} {
     padding: 0.4em 1.2em;
@@ -417,7 +484,7 @@ a {
     display: inline-block;
     width: calc(50% - 10px);
     &:nth-child(odd) {
-      margin-right: 15px;
+      margin-left: 15px;
     }
   }
   @media #{$desktop} {
@@ -441,7 +508,7 @@ a {
   letter-spacing: 0.1em;
   @media #{$desktop} {
    font-size: 1.5rem;
-  }
+ }
 }
 
 .search__thumbnail {
@@ -470,12 +537,12 @@ a {
 }
 
 .search__title__grid {
-  flex: 0 0 80%;
+  flex: 80%;
   @media #{$tablet} {
-  flex: 0 0 70%;
+    flex: 0 0 70%;
   }
   @media #{$desktop} {
-  flex: 0 0 70%;
+    flex: 0 0 70%;
   }
 }
 
@@ -494,6 +561,72 @@ a {
   border: 1px solid #ccc;
 }
 
+.filter__item {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  padding: em(10) em(25);
+  border-radius: 5px;
+  label {
+    cursor:pointer;
+    margin-left: em(10);
+    margin-bottom: 0;
+  }
+  input[type="checkbox"] {
+    display: none;
+    transition: 300ms;
+  }
+  input[type="checkbox"]:checked + label {
+    font-weight: bold;
+  }
+  input[type="checkbox"]:checked + label:before {
+    content: '\f00c';
+    font-family: 'FontAwesome';
+    color: $chingu-yellow;
+    position: absolute;
+    top: em(11);
+    left: em(10);
+    font-size: 1em;
+    opacity: 1;
+  }
+
+  input[type="checkbox"] + label:before {
+    content: '\f00c';
+    font-family: 'FontAwesome';
+    color: $chingu-grey-opacity;
+    opacity: 0.5;
+    position: absolute;
+    top: em(11);
+    left: em(10);
+    font-size: 1em;
+  }
+  @media #{$tablet} {
+    width: auto;
+  }
+}
+
+.filter__item--grid {
+  margin: em(15);
+  font-weight: 600;
+}
+
+.filter__item--filtered {
+  display: inline-block;
+  background-color: $chingu-yellow;
+  padding: em(5) em(10);
+  margin-right: em(10);
+  font-size: em(13);
+  font-weight: normal;
+}
+
+.filter__title {
+  @extend .user__headline;
+  display: block;
+  font-weight: 600;
+  font-size: em(16);
+  margin-left: em(10);
+}
+
 .btn-link {
   cursor: pointer;
 }
@@ -502,8 +635,16 @@ a {
   animation: flip 500ms ease-in-out;
 }
 
+.flip {
+  animation: flip 400ms ease-in-out;
+}
+
 .fade-in {
-  animation: fade-in 500ms ease;
+  animation: fade-in 500ms ease-in;
+}
+
+.fade-in-out {
+  animation: fade-in-out 500ms ease-in;
 }
 
 @keyframes flip {
@@ -516,7 +657,6 @@ a {
     transform: rotateX(0deg);
   }
 }
-
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -525,6 +665,84 @@ a {
     opacity: 1;
   }
 }
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// ====================
+// Loading Animation
+// ====================
+
+.loading-animation {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+   width: 100%;
+    min-height: calc(100vh - 320px);
+
+  span {
+    font-family: 'Arial';
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+}
+.spots {
+
+  div {
+    display: inline-block;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin: 5px 0;
+    background: $chingu-yellow;
+    animation-fill-mode: both;
+    animation: bounce 1.8s ease-in infinite reverse;
+    @media #{$tablet} {    
+      width: 20px;
+      height: 20px;
+      margin: 5px 0;
+      }
+  }
+    div:nth-child(even) {
+      margin: 5px 20px;
+      @media #{$tablet} {
+        margin: 5px 30px;
+      }
+   }
+   .spot-2 {
+    animation-delay: .3s;
+  }
+   .spot-3 {
+    animation-delay: .6s;
+  }
+  .spot-4 {
+    animation-delay: .9s;
+  }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1) Y(0);
+    }
+    50% {
+      transform: translateY(5px);
+    }
+    70% {
+      background: rgba(0,0,0,.05);
+    }
+    100% {
+      transform: scale(1) translateY(0);
+    }
+  }
+
 
 // =============
 // Profile
