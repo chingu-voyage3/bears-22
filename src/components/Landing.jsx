@@ -26,11 +26,11 @@ class Landing extends Component {
 
 
         <section className="section section__hero">
-          <div className="section__hero__branding col-xs-12 col-sm-7 col-md-5 col-lg-4 mx-auto">
+          <div className="section__hero__branding mx-auto">
             {' '}
             <span>HELP.</span> <span>FINISH.</span> <span>GROW.</span>
           </div>
-          <div className="col-xs-12 col-sm-8 mx-auto">
+          <div className="col-xs-12 col-sm-10 col-md-6 col-xl-4 mx-auto">
             <p>
               <span className="text--primary">Doum </span> is a platform that
               connects developers with{' '}

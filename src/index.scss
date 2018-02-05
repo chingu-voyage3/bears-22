@@ -241,17 +241,28 @@ a {
 
   &__hero {
     background-image: url('../src/assets/hero image.jpg');
-    background-size: 250%;
+    background-size: 300%;
     background-position: center;
+
+    @media screen and (min-width: 737px) {
+      background-size: 200%;
+    }
 
     &__branding {
       color: white;
-      font-size: 350%;
+      font-size: 300%;
       font-weight: bold;
-      padding-left: 2.5rem;
+      padding-left: 1rem;
       border-bottom: solid $chingu-yellow 0.5rem;
       border-right: solid $chingu-yellow 0.5rem;
       margin-bottom: 2rem;
+      width: 240px;
+      
+      @media screen and (min-width: 375px) {
+        font-size: 350%;
+        padding-left: 2.5rem;
+        width: 295px;
+      };
     }
   }
 
@@ -275,16 +286,17 @@ a {
     text-align: center;
     display: block;
     margin: 0 auto;
-    width: 30%;
+    width: 240px;
     color: white;
     font-weight: 400;
     border-bottom: 0.3rem solid $chingu-yellow;
     padding-bottom: 0.9rem;
     margin-bottom: 2rem;
 
-    @media screen and (max-width: 414px) {
-      width: 60%;
+    @media screen and (min-width: 375px) {
+      width: 295px;
     }
+
   }
 
   &__text {
