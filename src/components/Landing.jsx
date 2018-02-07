@@ -24,30 +24,34 @@ class Landing extends Component {
       <div>
         {/* Hero */}
 
+
         <section className="section section__hero">
-          <div className="section__hero__branding">
+          <div className="section__hero__branding mx-auto">
             {' '}
             <span>HELP.</span> <span>FINISH.</span> <span>GROW.</span>
           </div>
+          <div className="col-xs-12 col-sm-10 col-md-6 col-xl-4 mx-auto">
+            <p>
+              <span className="text--primary">Doum </span> is a platform that
+              connects developers with{' '}
+              <a
+                href="https://chingu-cohorts.github.io/chingu-directory/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text--primary"
+              >
+                Chingu cohorts
+              </a>{' '}
+              that need help. It is a solution for cohorts who need another
+              teammate and for developers who want more experience.
+            </p>
+          </div>
 
-          <p>
-            <span className="text--primary">Doum </span> is a platform that
-            connects developers with{' '}
-            <a
-              href="https://chingu-cohorts.github.io/chingu-directory/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary"
-            >
-              Chingu cohorts
-            </a>{' '}
-            that need help. It is a solution for cohorts who need another
-            teammate and for developers who want more experience.
-          </p>
           <button className="btn btn__login">
-            <i className="fa fa-github" />Sign up with GitHub
+            <i className="fa fa-github" />{' '}Sign up with GitHub
           </button>
         </section>
+
 
         {/* How It Works */}
 
@@ -132,7 +136,7 @@ class Landing extends Component {
           </p>
           <p className="section__text">The first step starts here.</p>
           <button className="btn btn__login">
-            <i className="fa fa-github" />Sign up with GitHub
+            <i className="fa fa-github" />{' '}Sign up with GitHub
           </button>
         </section>
       </div>
