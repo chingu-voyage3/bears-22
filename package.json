@@ -38,16 +38,14 @@
     "prettier": "^1.10.2"
   },
   "scripts": {
-    "start": "npm-run-all -p server watch-css start-js",
+    "start": "npm-run-all -p watch-css start-js",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "server": "nodemon server/app.js",
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "data": "node server/fakeDataGenerator.js",
     "format": "prettier --write --single-quote --no-semi --parser=flow --print-width=80 \"src/**/*.{js,jsx}\"   \"server/**/*.js\" ",
     "precommit": "lint-staged"
   },
@@ -65,13 +63,5 @@
   "bugs": {
     "url": "https://github.com/chingu-voyage3/bears-22/issues"
   },
-  "homepage": "https://github.com/chingu-voyage3/bears-22#readme",
-  "proxy": {
-    "/auth": {
-      "target": "http://localhost:8080/"
-    },
-    "/users": {
-      "target": "http://localhost:8080/"
-    }
-  }
+  "homepage": "https://github.com/chingu-voyage3/bears-22#readme"
 }

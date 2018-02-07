@@ -17,7 +17,11 @@ export function* fetchUserAPI() {
   try {
     console.log('fetching user lists...')
     yield put(isFetching(true))
-    const response = yield call(fetch, '/users')
+    const response = yield call(
+      fetch,
+      process.env.REACT_APP_SERVER_USERS_ENDPOINT ||
+        'http://localhost:8080/users'
+    )
     if (response.status === 200) {
       const res = yield response.json()
       yield all([put(getUserInfo(res)), put(isFetching(false))])
@@ -35,7 +39,12 @@ export function* watchLogin() {
 export function* checkLoginStatus() {
   try {
     console.log('fetching user login status...')
-    const response = yield call(fetch, '/auth/user', { credentials: 'include' })
+    const response = yield call(
+      fetch,
+      process.env.REACT_APP_SERVER_USER_STATUS_ENDPOINT ||
+        'http://localhost:8080/auth/user',
+      { credentials: 'include' }
+    )
     if (response.status === 200) {
       //logined user
       const res = yield response.json()

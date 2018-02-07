@@ -99,7 +99,7 @@ class Header extends Component {
               <li>Profile</li>
             </Link>
             {this.props.isLogin ? (
-              <a href="/auth/logout" onClick={this.onToggle}>
+              <a href={process.env.REACT_APP_SERVER_LOGOUT_ENDPOINT || "http://localhost:8080/auth/logout"} onClick={this.onToggle}>
                 <li>
                   <i className="fa fa-sign-out" aria-hidden="true" />
                   <span>Logout</span>

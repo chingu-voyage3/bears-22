@@ -27,7 +27,7 @@ class Login extends Component {
           <div className="col-md-6 p-3">
             <h1 className="user__headline">Login</h1>
             <div className="login__button">
-              <a href="/auth/github">
+              <a href={process.env.REACT_APP_SERVER_LOGIN_ENDPOINT || "http://localhost:8080/auth/github"}>
                 <div className="login__button-github">
                   <span>
                     <i className="fa fa-github" aria-hidden="true" />
