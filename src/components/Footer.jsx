@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 
 class Footer extends Component {
-getYear = () => {
-    return new Date().getFullYear();
-}
+getYear = () => new Date().getFullYear();
   render() {
     return (
       <div className="footer mb-auto">
