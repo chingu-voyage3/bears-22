@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 
 class Footer extends Component {
+getYear = () => {
+    return new Date().getFullYear();
+}
   render() {
     return (
       <div className="footer mb-auto">
-        <span>2017 Do-um. All rights reserved.</span>
+        <span>{this.getYear()} Do-um. All rights reserved.</span>
       </div>
     )
   }
