@@ -2,8 +2,25 @@ import React, { Component } from 'react'
 import { Transition } from 'react-transition-group'
 
 class SearchUser extends Component {
+  getItemList = (item) => {
+      if(this.props.search === 'projects') {
+        return {
+            name: item.title,
+            desc: item.description,
+            skills: item.skills,
+            text: 'This project still does not have any introductions.'
+        };
+      } else {
+        return {
+            name: item.first_name + ' ' + item.last_name,
+            desc: item.bio,
+            skills: item.skills,
+            text: 'This user does not have any self introductions.'
+        };
+      }
+  }
   render() {
-    const { data } = this.props
+    const { data } = this.props;
     if (data.loading) {
       return (
         <div className="loading-animation">
@@ -15,7 +32,7 @@ class SearchUser extends Component {
           </div>
         </div>
       )
-    } else if (!data.loading) {
+    } else if (!data.loading && data.networkStatus === 7) {
       return (
         <Transition timeout={500}>
           <div
@@ -30,9 +47,8 @@ class SearchUser extends Component {
                 data[this.props.search]
                   .filter(
                     item =>
-                      (item.first_name &&
-                        item.first_name.match(this.props.selectedItem)) ||
-                      (item.title && item.title.match(this.props.selectedItem))
+                      (this.getItemList(item).name &&
+                        this.getItemList(item).name.match(this.props.selectedItem))
                   )
                   .map((item, index) => (
                     <div
@@ -41,45 +57,31 @@ class SearchUser extends Component {
                     >
                       <div className="d-flex flex-row align-items-center justify-content-center">
                         <span className="search__thumbnail">
-                          {(item.title && item.title.slice(0, 1)) ||
-                            (item.first_name && item.first_name.slice(0, 1))}
+                          {this.getItemList(item).name && this.getItemList(item).name.slice(0, 1)}
                         </span>
                         <div className="search__title__grid">
                           <span className="search__result__title">
-                            {item.title ||
-                              item.first_name + ' ' + item.last_name}
+                            {this.getItemList(item).name && this.getItemList(item).name}
                           </span>
                           <div>
                             <ul className="list__inline list__border">
-                              {item.skills.length > 0 ? (
+                              {item.skills && item.skills.length > 0 ? (
                                 item.skills.map(item => (
                                   <li
-                                    key={
-                                      item.title + '-' + item.id ||
-                                      item.first_name + '-' + item.id
-                                    }
+                                    key={item.name + ' ' + item.id}
                                   >
                                     {item.name}
                                   </li>
                                 ))
                               ) : (
-                                <li>Not Specified</li>
+                                <li key="Not Specified">Not Specified</li>
                               )}
                             </ul>
                           </div>
                         </div>
                       </div>
                       <div className="search__desc">
-                        {item.bio
-                          ? item.bio
-                          : this.props.search === 'users'
-                            ? 'This user does not have any self introductions.'
-                            : ''}
-                        {item.description
-                          ? item.description
-                          : this.props.search === 'projects'
-                            ? 'This project still does not have any introductions.'
-                            : ''}
+                        {this.getItemList(item).desc? this.getItemList(item).desc : this.getItemList(item).text}
                       </div>
                     </div>
                   ))
@@ -87,6 +89,17 @@ class SearchUser extends Component {
           </div>
         </Transition>
       )
+    } else {
+      return (
+        <div className="search__err">
+        <p className="text-center">Cannot receive any data right now. Please try again later.</p>
+        <span
+              onClick={this.props.resetSearch}
+              className="search__toggle--refresh btn btn-link"
+            ><i className="fa fa-refresh"></i> Refresh
+            </span>
+        </div>
+        )
     }
   }
 }

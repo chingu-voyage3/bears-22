@@ -36,29 +36,33 @@ query searchQuery($skills: [String]) {
       }
     },
     projects(limit: 100, skills: $skills) {
+    id
+    title
+    description
+    skills {
       id
-      title
-      description
-      users {
+      name
+    }
+    users {
+      id
+      username
+      first_name
+      last_name
+      email
+      bio
+      skills {
         id
-        username
-        first_name
-        last_name
-        email
-        bio
-        skills {
-          id
-          name
-        }
-        country {
-          id
-          name
-        }
-        city {
-          id
-          name
-        }
+        name
       }
+      country {
+        id
+        name
+      }
+      city {
+        id
+        name
+      }
+    }
   }
 }
 `;
@@ -123,16 +127,8 @@ class Search extends Component {
               <form>
                 <div className="form-group d-flex flex-column flex-md-row">
                   <label htmlFor="inputSearch" className="col-xs-12 col-sm-6">
-                    <Transition timeout={150}>
                       <h3
                         id="search__title"
-                        className={
-                          this.state.isSearchToggleOn ? (
-                            'fade-in'
-                          ) : (
-                            'flip-animation'
-                          )
-                        }
                       >
                         {this.state.isSearchToggleOn ? (
                           'Find projects.'
@@ -140,7 +136,6 @@ class Search extends Component {
                           'Find users.'
                         )}
                       </h3>
-                    </Transition>
                   </label>
                   <div className="col-xs-12 col-md-6 text-right">
                     <SearchBar
