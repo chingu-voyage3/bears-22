@@ -590,6 +590,10 @@ a {
   margin-bottom: 1rem;
 }
 
+.search__err {
+  position: relative;
+}
+
 .search__toggle {
   display: block;
   background: $chingu-yellow;
@@ -629,6 +633,13 @@ a {
     margin-left: em(15);
     margin-right: em(10);
     position: relative;
+  }
+
+  &--refresh {
+    @extend .search__toggle;
+    display: block;
+    width: 40%;
+    margin: 0 auto;
   }
 }
 
