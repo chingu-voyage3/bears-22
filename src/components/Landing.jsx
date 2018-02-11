@@ -25,7 +25,7 @@ class Landing extends Component {
         {/* Hero */}
 
 
-        <section className="section section__hero">
+        <section className="section section__hero d-flex flex-column">
           <div className="section__hero__branding mx-auto">
             {' '}
             <span>HELP.</span> <span>FINISH.</span> <span>GROW.</span>
