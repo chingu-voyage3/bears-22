@@ -181,7 +181,6 @@ a {
         background-size: 200%; } }
     @media only screen and (min-width: 1200px) {
       .section__hero p {
-        text-align: justify;
         letter-spacing: 1px; } }
     .section__hero .btn {
       margin-top: 1rem;
