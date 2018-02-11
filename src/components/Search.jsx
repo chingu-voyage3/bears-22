@@ -10,7 +10,11 @@ import SearchUser from './SearchUser';
 
 //  query searchQuery($search: String!) {
 const searchQuery = gql`
-  query searchQuery($skills: [String]) {
+query searchQuery($skills: [String]) {
+    skills {
+      id
+      name
+    },
     users(limit: 100, skills: $skills) {
       id
       username
@@ -30,10 +34,11 @@ const searchQuery = gql`
         id
         name
       }
-    }
+    },
     projects(limit: 100, skills: $skills) {
       id
       title
+      description
       users {
         id
         username
@@ -54,29 +59,8 @@ const searchQuery = gql`
           name
         }
       }
-      projects {
-        id
-        title
-        users {
-          id
-          username
-          first_name
-          email
-        }
-        github_url
-        project_url
-        description
-        skills {
-          id
-          name
-        }
-      }
-    }
-    skills {
-      id
-      name
-    }
   }
+}
 `;
 
 class Search extends Component {
@@ -233,6 +217,7 @@ class Search extends Component {
               search={this.state.search}
               data={data}
               selectedItem={this.state.selectedItem}
+              resetSearch={this.resetSearch}
             />
           </div>
         </div>
