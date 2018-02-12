@@ -10,7 +10,11 @@ import SearchUser from './SearchUser';
 
 //  query searchQuery($search: String!) {
 const searchQuery = gql`
-  query searchQuery($skills: [String]) {
+query searchQuery($skills: [String]) {
+    skills {
+      id
+      name
+    },
     users(limit: 100, skills: $skills) {
       id
       username
@@ -30,53 +34,37 @@ const searchQuery = gql`
         id
         name
       }
-    }
+    },
     projects(limit: 100, skills: $skills) {
-      id
-      title
-      users {
-        id
-        username
-        first_name
-        last_name
-        email
-        bio
-        skills {
-          id
-          name
-        }
-        country {
-          id
-          name
-        }
-        city {
-          id
-          name
-        }
-      }
-      projects {
-        id
-        title
-        users {
-          id
-          username
-          first_name
-          email
-        }
-        github_url
-        project_url
-        description
-        skills {
-          id
-          name
-        }
-      }
-    }
+    id
+    title
+    description
     skills {
       id
       name
     }
+    users {
+      id
+      username
+      first_name
+      last_name
+      email
+      bio
+      skills {
+        id
+        name
+      }
+      country {
+        id
+        name
+      }
+      city {
+        id
+        name
+      }
+    }
   }
+}
 `;
 
 class Search extends Component {
@@ -139,16 +127,8 @@ class Search extends Component {
               <form>
                 <div className="form-group d-flex flex-column flex-md-row">
                   <label htmlFor="inputSearch" className="col-xs-12 col-sm-6">
-                    <Transition timeout={150}>
                       <h3
                         id="search__title"
-                        className={
-                          this.state.isSearchToggleOn ? (
-                            'fade-in'
-                          ) : (
-                            'flip-animation'
-                          )
-                        }
                       >
                         {this.state.isSearchToggleOn ? (
                           'Find projects.'
@@ -156,7 +136,6 @@ class Search extends Component {
                           'Find users.'
                         )}
                       </h3>
-                    </Transition>
                   </label>
                   <div className="col-xs-12 col-md-6 text-right">
                     <SearchBar
@@ -233,6 +212,7 @@ class Search extends Component {
               search={this.state.search}
               data={data}
               selectedItem={this.state.selectedItem}
+              resetSearch={this.resetSearch}
             />
           </div>
         </div>

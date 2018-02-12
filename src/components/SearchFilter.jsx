@@ -33,7 +33,7 @@ class SearchFilter extends Component {
           className={
             this.props.isSearchFilterOpen
               ? 'd-none'
-              : 'pb-2 fade-in-out filter__list'
+              : 'pl-2 pr-2 pb-2  fade-in-out filter__list'
           }
         >
           <span className="filter__title">Search by skills</span>
