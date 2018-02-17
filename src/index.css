@@ -272,7 +272,11 @@ a {
   margin-top: 35px; }
   .btn__login {
     font-size: 110%;
-    background-color: #f1c40f; }
+    background-color: #f1c40f;
+    color: black; }
+
+.btn::selection {
+  background: black; }
 
 .text--primary {
   color: #f1c40f; }
@@ -280,7 +284,7 @@ a {
 .landing__background--gray {
   background-color: #4f6570; }
 
-.user__headline, .user__headline--white, .filter__title {
+.user__headline, .user__headline--white, .user__headline--yellow, .filter__title {
   display: inline-flex;
   font-size: 1.875em;
   color: black;
@@ -321,62 +325,73 @@ a {
 
 .login__introblock {
   height: auto;
-  background-color: #1abc9c;
-  color: #ffffff; }
-  @media only screen and (min-width: 768px) {
-    .login__introblock {
-      height: calc(100vh - 120px); } }
+  color: #ffffff;
+  /*@media only screen and (min-width : 768px) {
+    height: calc(100vh - 120px);
+  }*/ }
 
 .login__button {
+  padding-top: 2rem;
   display: block;
-  width: 90%;
+  width: 250px;
   margin: 0 auto; }
   .login__button span {
     margin: 0 auto; }
   @media only screen and (min-width: 992px) {
     .login__button {
-      width: 70%; } }
+      width: 250px; } }
   @media only screen and (min-width: 1200px) {
     .login__button {
-      width: 50%; } }
+      width: 250px; } }
 
-.login__button-github, .login__button-register {
+/*.login__button-github {
   display: inline-flex;
-  padding: 0.625em 1.25em;
-  background-color: #24292e;
+  padding: em(10) em(20);
+  background-color: rgba(36, 41, 46, 1);
   color: #ffffff;
   transition: 300ms;
-  margin-top: 0.5625em;
+  margin-top: em(9);
   width: 100%;
-  vertical-align: middle; }
-  .login__button-github i, .login__button-register i {
+  vertical-align: middle;
+  i {
     color: #ffffff;
-    margin-right: 0.625em;
-    margin-top: 0.3125em; }
-  .login__button-github:hover, .login__button-register:hover {
+    margin-right: em(10);
+    margin-top: em(5);
+  }
+  &:hover {
     background-color: rgba(36, 41, 46, 0.8);
-    cursor: pointer; }
-  .login__button-github:focus, .login__button-register:focus, .login__button-github:active, .login__button-register:active, .login__button-github:hover, .login__button-register:hover {
-    text-decoration: none; }
-
+    cursor: pointer;
+  }
+  &:focus,
+  &:active,
+  &:hover {
+    text-decoration: none;
+  }
+}*/
 .login__text {
   position: relative;
   display: block;
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-align: center;
   padding-top: 1.5em;
-  padding-buttom: 0.5em;
+  padding-bottom: 0em;
   font-weight: 600; }
   .login__text i {
     margin-right: 0.625em; }
 
-.login__button-register {
-  background-color: #f44336; }
-  .login__button-register:hover {
-    background-color: #ef5350; }
-
+/*.login__button-register {
+  @extend .login__button-github;
+  background-color: #f44336;
+  &:hover {
+    background-color: #ef5350;
+  }
+}*/
 .user__headline--white {
   box-shadow: inset 0 -3px 0 0 #ffffff;
+  color: #ffffff; }
+
+.user__headline--yellow {
+  box-shadow: inset 0 -3px 0 0 #f1c40f;
   color: #ffffff; }
 
 .login__ul {
@@ -389,6 +404,9 @@ a {
     color: #ffffff;
     position: absolute;
     left: 1.25em; }
+
+.login--face {
+  height: 25px; }
 
 .no-padding {
   padding: 0;

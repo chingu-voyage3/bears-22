@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { verifyLogin } from '../actions'
+import face from '../assets/ic_face_white_48dp_2x.png'
+import add from '../assets/ic_person_add_48pt_2x.png'
 
 class Login extends Component {
   constructor(props) {
@@ -14,43 +16,41 @@ class Login extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-6 login__introblock p-3">
-            <h1 className="user__headline--white">After login, you can...</h1>
-            <ul className="login__ul">
-              <li>Find developers</li>
-              <li>Communicate with Chingu teams</li>
-              <li>Learn more!</li>
-              <li>Contribute more!</li>
-            </ul>
-            <p>Login now!</p>
+          <div className="col-12 login__introblock section section--dark">
+            <div className="section__feature pt-4">
+              <img src={face} alt="abc" className="icon d-block mx-auto mb-1" />
+              <p className="user__headline--yellow mb-4">Member Login</p>
+            </div>
           </div>
-          <div className="col-md-6 p-3">
-            <h1 className="user__headline">Login</h1>
-            <div className="login__button">
+        </div>
+
+        <div className="row">
+          <div className="col-12 section section--black">
+            <div className="login__button mb-4">
               <a href="/auth/github">
-                <div className="login__button-github">
-                  <span>
-                    <i className="fa fa-github" aria-hidden="true" />
-                    Login via Github
+                <div>
+                  <span className="btn btn__login">
+                    <i className="fa fa-github text-dark" aria-hidden="true" />
+                    {' '}Login via Github
                   </span>
                 </div>
               </a>
 
-              <span className="login__text">
-                <i className="fa fa-angle-right" />
-                If you are not Chingu member, register now:
-              </span>
+              <p className="login__text">
+                Need an account?
+              </p>
               <a href="https://chingu-cohorts.github.io/chingu-directory/">
                 <div className="login__button-register">
-                  <span>
-                    <i className="fa fa-user-plus" aria-hidden="true" />
-                    Register via Chingu
+                  <span className="btn btn__login">
+                  <img src={add} alt="" className="login--face" />
+                    {' '} Register via Chingu
                   </span>
                 </div>
               </a>
             </div>
           </div>
         </div>
+
       </div>
     )
   }
