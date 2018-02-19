@@ -462,16 +462,20 @@ a {
 
   .login-icon-container {
     position: relative;
-    padding-top: 0px;
+    margin: 0 auto;
   }
 
   .login-icon {
     position: absolute;
-    top: -65px;
+    top: -52%;
     left: 0%;
     right: 0%;
-    max-width: 100%;
-    text-align: center;
+  }
+}
+
+@media #{$desktop} {
+  .login-icon {
+    top: -65%;
   }
 }
 
