@@ -14,18 +14,19 @@ class Login extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="section__hero">
+      <div className="login-container">
         <div className="row">
-          <div className="col-12 login__introblock section section--dark">
-            <div className="section__feature pt-4">
-              <img src={face} alt="abc" className="icon d-block mx-auto mb-1" />
+          <div className="col-sm-6 col-md-5 col-lg-4 mx-auto login__introblock section section--dark">
+            <div className="section__feature login-icon-container">
+              <img src={face} alt="abc" className="icon login-icon d-block mx-auto mb-1" />
               <p className="user__headline--yellow mb-4">Member Login</p>
             </div>
           </div>
         </div>
 
         <div className="row">
-          <div className="col-12 section section--black">
+          <div className="col-sm-6 col-md-5 col-lg-4 mx-auto section section--black">
             <div className="login__button mb-4">
               <a href="/auth/github">
                 <div>
@@ -50,7 +51,7 @@ class Login extends Component {
             </div>
           </div>
         </div>
-
+</div>
       </div>
     )
   }
