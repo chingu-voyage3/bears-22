@@ -17,7 +17,7 @@ class Login extends Component {
       <div className="section__hero">
       <div className="login-container">
         <div className="row">
-          <div className="col-sm-6 col-md-5 col-lg-4 mx-auto login__introblock section section--dark">
+          <div className="login__width mx-auto login__introblock section section--dark">
             <div className="section__feature login-icon-container">
               <img src={face} alt="abc" className="icon login-icon d-block mx-auto mb-1" />
               <p className="user__headline--yellow mb-4">Member Login</p>
@@ -26,7 +26,7 @@ class Login extends Component {
         </div>
 
         <div className="row">
-          <div className="col-sm-6 col-md-5 col-lg-4 mx-auto section section--black">
+          <div className="login__width mx-auto section section--black">
             <div className="login__button mb-4">
               <a href="/auth/github">
                 <div>

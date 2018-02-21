@@ -340,6 +340,14 @@ a {
   .login-icon {
     top: -65%; } }
 
+@media only screen and (max-width: 415px) {
+  .login__width {
+    width: 100%; } }
+
+@media only screen and (min-width: 416px) {
+  .login__width {
+    width: 320px; } }
+
 .login__introblock {
   height: auto;
   color: #ffffff;

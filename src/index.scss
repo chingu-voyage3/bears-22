@@ -479,6 +479,15 @@ a {
   }
 }
 
+.login__width {
+  @media only screen and (max-width: 415px) {
+    width: 100%;
+  }
+  @media only screen and (min-width: 416px) {
+    width: 320px;
+  }
+}
+
 .login__introblock {
   height: auto;
   color: #ffffff;
