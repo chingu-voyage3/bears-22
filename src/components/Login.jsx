@@ -17,7 +17,7 @@ class Login extends Component {
       <div className="section__hero">
       <div className="login-container">
         <div className="row">
-          <div className="login__width mx-auto login__introblock section section--dark">
+          <div className="login__width mx-auto section section--dark">
             <div className="section__feature login-icon-container">
               <img src={face} alt="abc" className="icon login-icon d-block mx-auto mb-1" />
               <p className="user__headline--yellow mb-4">Member Login</p>

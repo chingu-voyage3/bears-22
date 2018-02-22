@@ -348,13 +348,15 @@ a {
   .login__width {
     width: 340px; } }
 
+/*
 .login__introblock {
   height: auto;
   color: #ffffff;
-  /*@media only screen and (min-width : 768px) {
-    height: calc(100vh - 120px);
-  }*/ }
 
+  @media only screen and (min-width : 768px) {
+    height: calc(100vh - 120px);
+  }
+}*/
 .login__button {
   padding-top: 2rem;
   display: block;
