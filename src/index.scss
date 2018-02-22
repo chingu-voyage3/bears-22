@@ -5,7 +5,7 @@ $browser-context: 16; // Default
 }
 
 $theme-color: #1abc9c; //one of the theme color of Chingu
-$chingu-yellow: #f1c40f;
+$chingu-yellow: #FFEB3B;
 $chingu-grey: rgba(51, 51, 51, 1);
 $chingu-grey-opacity: rgba(51, 51, 51, 0.6);
 
@@ -484,7 +484,7 @@ a {
     width: 100%;
   }
   @media only screen and (min-width: 416px) {
-    width: 320px;
+    width: 340px;
   }
 }
 
