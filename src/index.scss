@@ -801,16 +801,22 @@ max-width: 100%;
   }
 }
 
-.search__popup {
-  background: $chingu-grey;
-  color: rgba(255,255,255,0.8);
-}
-
 .searchbar {
+  position: relative;
   input[type="search"] {
     background: $chingu-grey;
     color: rgba(255,255,255,0.8);
   }
+}
+
+.search__popup {
+  background: $chingu-grey;
+  color: rgba(255,255,255,0.8);
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 100%;
+  z-index: 3;
 }
 
 
