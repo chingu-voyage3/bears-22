@@ -5,7 +5,7 @@ $browser-context: 16; // Default
 }
 
 $theme-color: #1abc9c; //one of the theme color of Chingu
-$chingu-yellow: #f1c40f;
+$chingu-yellow: #ffeb3b;
 $chingu-grey: rgba(51, 51, 51, 1);
 $chingu-grey-opacity: rgba(51, 51, 51, 0.6);
 
@@ -21,7 +21,7 @@ $spacer-x: $spacer;
 $spacer-y: $spacer;
 
 //mobile query
-$phone: "only screen and (max-width : 576px)";
+$phone: "only screen and (min-width : 320px)";
 $tablet: "only screen and (min-width : 768px)";
 $laptop: "only screen and (min-width : 992px)";
 $desktop: "only screen and (min-width : 1200px)";
@@ -35,9 +35,10 @@ body {
   height: 100vh;
   min-height: 100vh;
   font-family: Lato, 'Open Sans', sans-serif;
-  color: $chingu-grey;
+  color: white;
   overflow-x: hidden; //for hiding menu
   box-sizing: border-box;
+  background: $doum-darkblue;
 }
 
 #body {
@@ -62,11 +63,11 @@ body {
 }
 
 a {
-  color: black;
+  color: $chingu-yellow;
   transition: 300ms;
   text-decoration: none;
   &:hover {
-    color: $chingu-yellow;
+    color: white;
   }
   &:active,
   &:focus,
@@ -82,6 +83,11 @@ a {
   position: relative;
   padding: em(15);
   z-index: 2;
+  background-color: $doum-grey;
+  color: white;
+  a {
+    color: $chingu-yellow;
+  }
   @media #{$desktop} {
     z-index: auto;
   }
@@ -118,7 +124,7 @@ a {
     display: block;
     width: 100%;
     height: em(4);
-    background-color: $chingu-grey;
+    background-color: white;
   }
   @media #{$desktop} {
     display: none;
@@ -137,7 +143,7 @@ a {
   height: 100%;
   width: 280px;
   z-index: 1;
-  background: white;
+  background: $chingu-grey;
   visibility: hidden;
   transition: 500ms;
   transform: translate3d(100%, 0, 0);
@@ -176,6 +182,7 @@ a {
     justify-content: center;
     font-size: 110%;
     margin-top: 5px;
+    color: white;
   }
   i {
     flex: 0 0 10%;
@@ -259,9 +266,6 @@ a {
     }
 
     .btn {
-      @extend .btn-link;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
       color: $chingu-grey;
       cursor: pointer;
     }
@@ -365,7 +369,7 @@ a {
   background: #333;
   text-align: center;
   vertical-align: middle;
-  padding: 1.1rem;
+  padding: 1.15rem;
   font-size: 210%;
   width: 5rem;
   height: 5rem;
@@ -378,7 +382,6 @@ a {
   display: block;
   padding: 5px 20px;
   margin: 0 auto;
-  margin-top: 35px;
   &__login {
     font-size: 110%;
     background-color: $chingu-yellow;
@@ -556,6 +559,7 @@ a {
   font-size: 1.2em;
   cursor: pointer;
   padding: 0.5em;
+  color: white;
   @media #{$tablet} {
     top: -0.1em;
     right: 1.1em;
@@ -564,15 +568,52 @@ a {
 }
 
 .search__user__grid {
-  display: flex;
-  flex-flow: column wrap;
-  @media #{$tablet} {
-    justify-content: left;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    width: 95%;
+  .search__user {
+    margin: 1em 0;
+  }
+  .search__user:last-child {
+    margin-bottom: 2em;
+  }
+  @media #{$laptop} {
+    width: 80%;
   }
   @media #{$desktop} {
-    flex-flow: row wrap;
-    justify-content: left;
+    width: 70%;
   }
+}
+
+.search__user--name {
+  flex: 0  100%;
+  max-width: 100%;
+  @media #{$tablet} {
+    flex: 0  35%;
+    max-width: 35%;
+  }
+  @media #{$desktop} {
+    flex: 0  25%;
+    max-width: 25%;
+  }
+}
+
+.search__user--desc {
+flex: 0  100%;
+max-width: 100%;
+@media #{$tablet} {
+    flex: 0  65%;
+    max-width: 65%;
+  }
+@media #{$desktop} {
+    flex: 0  75%;
+    max-width: 75%;
+  }
+}
+
+.search__title--yellow {
+  color: $chingu-yellow;
 }
 
 .search__header-text-align input {
@@ -580,39 +621,31 @@ a {
 }
 
 .search__user {
-  background: $doum-darkblue;
+  background: $doum-grey;
   color: white;
   padding: em(15) em(10);
-  margin-bottom: em(10);
   box-shadow: 1px 1px 3px $chingu-grey-opacity;
-  border-radius: em(5);
-  @media #{$tablet} {
-    width: 90%;
-  }
-  @media #{$desktop} {
-    width: calc(50% - 1.5em);
-    margin-right: 1em;
-    &:nth-child(odd) {
-      margin-left: 1em;
-    }
-  }
+  border-radius: em(15);
+  border: solid 2px $chingu-yellow;
 }
 
 .list__inline {
   font-family: 'Arial';
   font-size: 0.7em;
   color: $doum-grey;
-  padding: 0.4em 0.9em;
   margin: 0;
-  li {
+    color: white;
+  span {
     display: inline-block;
     margin: 0.2em;
-    padding: 0 em(10);
-    background-color: $chingu-yellow;
-    text-align: center;
+    // background-color: $chingu-yellow;
   }
-  @media #{$desktop} {
-    padding: 0.4em 1.2em;
+  span:before {
+    content: ' | ';
+    color: white;
+  }
+  span:nth-child(1):before {
+    content: '';
   }
 }
 
@@ -632,6 +665,10 @@ a {
   color: black;
   margin-bottom: em(10);
   transition: 300ms;
+  min-width: 70%;
+  &:last-child {
+    margin-bottom: 0;
+  }
   i {
     margin-right: em(10);
   }
@@ -655,16 +692,19 @@ a {
   @media #{$tablet} {
     display: inline-block;
     width: calc(50% - 10px);
-    &:nth-child(odd) {
-      margin-left: 15px;
-    }
+    min-width: auto;
+    margin-top: 0;
+  &:last-child {
+    margin-bottom: em(10);
+  }
   }
   @media #{$desktop} {
+    position: relative;
     display: inline-block;
     width: auto;
+    min-width: 20%;
     margin-left: em(15);
     margin-right: em(10);
-    position: relative;
   }
 
   &--refresh {
@@ -680,29 +720,30 @@ a {
   padding: 0 0.65em;
   font-size: 1rem;
   font-weight: 600;
-  text-transform: uppercase;
   word-wrap: break-word;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  letter-spacing: 0.1em;
   @media #{$desktop} {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
 .search__thumbnail {
   display: inline-flex;
-  width: em(30);
-  min-width: em(30);
-  height: em(30);
-  background: linear-gradient(to bottom, $chingu-grey-opacity, $chingu-grey);
+  max-width: 60px;
+  padding: 50px;
+  max-height: 60px;
+  min-height: 60px;
+  background: linear-gradient(to bottom, $doum-darkblue, $chingu-grey);
   font-size: em(32);
   color: $chingu-yellow;
   text-transform: uppercase;
   align-items: center;
   justify-content: center;
   transition: 300ms;
-  border-radius: 5px;
+  border-radius: 50%;
+  border: solid 2px $chingu-yellow;
   flex: 0 0 10%;
   &:hover {
     color: white;
@@ -711,33 +752,35 @@ a {
   @media #{$desktop} {
     width: em(50);
     height: em(50);
-    min-width: em(50);
   }
 }
 
 .search__title__grid {
-  flex: 80%;
-  @media #{$tablet} {
-    flex: 0 0 70%;
-  }
-  @media #{$desktop} {
-    flex: 0 0 70%;
-  }
+  margin: em(15) 0;
 }
 
 .search__desc {
   text-align: left;
-  padding-top: em(10);
-  font-size: 0.8em;
+  font-size: 0.9em;
   overflow: hidden;
   text-overflow: ellipsis;
-  @media #{$tablet} {
-    text-align: center;
+  word-wrap: break-word;
+  @media #{$desktop} {
+    min-height: em(80);
+    max-height: em(80);
   }
 }
 
 .search__popup {
-  border: 1px solid #ccc;
+  background: $chingu-grey;
+  color: rgba(255,255,255,0.8);
+}
+
+.searchbar {
+  input[type="search"] {
+    background: $chingu-grey;
+    color: rgba(255,255,255,0.8);
+  }
 }
 
 .filter__item {
@@ -804,10 +847,6 @@ a {
   font-weight: 600;
   font-size: em(16);
   margin-left: em(10);
-}
-
-.btn-link {
-  cursor: pointer;
 }
 
 .flip-animation {
