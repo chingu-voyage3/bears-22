@@ -813,7 +813,7 @@ max-width: 100%;
   background: $chingu-grey;
   color: rgba(255,255,255,0.8);
   position: absolute;
-  top: 40px;
+  top: em(40);
   right: 0;
   width: 100%;
   z-index: 3;

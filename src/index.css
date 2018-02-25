@@ -602,7 +602,7 @@ a {
   background: #333333;
   color: rgba(255, 255, 255, 0.8);
   position: absolute;
-  top: 40px;
+  top: 2.5em;
   right: 0;
   width: 100%;
   z-index: 3; }
