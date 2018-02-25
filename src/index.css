@@ -460,7 +460,8 @@ a {
   @media only screen and (min-width: 768px) {
     .search__user--desc {
       flex: 0  75%;
-      max-width: 75%; } }
+      max-width: 75%;
+      margin-left: 0.9375em; } }
 
 .search__title--yellow {
   color: #ffeb3b; }
@@ -548,7 +549,6 @@ a {
   font-weight: 600;
   word-wrap: break-word;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis; }
   @media only screen and (min-width: 1200px) {
     .search__result__title {
@@ -589,8 +589,7 @@ a {
   word-wrap: break-word; }
   @media only screen and (min-width: 1200px) {
     .search__desc {
-      min-height: 5em;
-      max-height: 5em; } }
+      min-height: 5em; } }
 
 .searchbar {
   position: relative; }

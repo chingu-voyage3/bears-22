@@ -64,6 +64,7 @@ class SearchUser extends Component {
                           <span className="search__result__title">
                             {this.getItemList(item).name && this.getItemList(item).name}
                           </span>
+                            {this.getItemList(item).country? this.getItemList(item).country.name : ''}
                         </div>
                       </div>
 
@@ -71,7 +72,6 @@ class SearchUser extends Component {
                       <p className="search__title--yellow text-center">About</p>
 
                       <div className="search__desc">
-                        {this.getItemList(item).country? <p>this.getItemList(item).country.name</p> : ''}
                         <p>{this.getItemList(item).desc? this.getItemList(item).desc : this.getItemList(item).text}</p>
                       </div>
 

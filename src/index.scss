@@ -639,6 +639,7 @@ max-width: 100%;
 @media #{$tablet} {
     flex: 0  75%;
     max-width: 75%;
+    margin-left: em(15);
   }
 }
 
@@ -752,7 +753,6 @@ max-width: 100%;
   font-weight: 600;
   word-wrap: break-word;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
   @media #{$desktop} {
     font-size: 1rem;
@@ -797,7 +797,6 @@ max-width: 100%;
   word-wrap: break-word;
   @media #{$desktop} {
     min-height: em(80);
-    max-height: em(80);
   }
 }
 
