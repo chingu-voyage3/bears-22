@@ -120,7 +120,17 @@ class Search extends Component {
   render () {
     const { data } = this.props;
     return (
-      <div className="container section--dark">
+
+      <div className="d-flex search">
+
+          <div className={this.state.isSearchFilterOpen? "d-none" : "filter__list"}>
+          <SearchFilter
+            isSearchFilterOpen={this.state.isSearchFilterOpen}
+            data={data}
+          />
+          </div>
+
+      <div className={this.state.isSearchFilterOpen? "container section--dark" : "container section--dark filter--translate"}>
         <div>
           <div>
             <div>
@@ -174,12 +184,9 @@ class Search extends Component {
             </span>
             </div>
 
-          </div>
 
-          <SearchFilter
-            isSearchFilterOpen={this.state.isSearchFilterOpen}
-            data={data}
-          />
+
+          </div>
 
           <div
             className={
@@ -211,6 +218,7 @@ class Search extends Component {
             />
           </div>
         </div>
+      </div>
       </div>
     );
   }

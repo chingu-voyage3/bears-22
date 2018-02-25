@@ -53,7 +53,7 @@ class SearchUser extends Component {
                   )
                   .map((item, index) => (
                     <div
-                      className="search__user d-flex flex-column flex-sm-row section--black justify-content-md-start"
+                      className="search__user d-flex flex-column flex-md-row section--black justify-content-md-start"
                       key={this.props.search + '-' + index}
                     >
                       <div className="d-flex flex-column flex align-items-center justify-content-center search__user--name">
