@@ -55,7 +55,7 @@ class SearchBar extends Component {
                         key={item}
                         style={{
                           backgroundColor:
-                            highlightedIndex === index ? 'gray' : 'white',
+                            highlightedIndex === index ? '#1abc9c' : '#333333',
                           fontWeight: selectedItem === item ? 'bold' : 'normal'
                         }}
                       >

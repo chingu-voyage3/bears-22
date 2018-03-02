@@ -33,10 +33,10 @@ class SearchFilter extends Component {
           className={
             this.props.isSearchFilterOpen
               ? 'd-none'
-              : 'pl-2 pr-2 pb-2  fade-in-out filter__list'
+              : ' p-2 pt-4'
           }
         >
-          <span className="filter__title">Search by skills</span>
+          <span className="filter__title">Filter by skills</span>
           {data.skills ? (
             data.skills.map(item => (
               <div key={item.id} className="filter__item">

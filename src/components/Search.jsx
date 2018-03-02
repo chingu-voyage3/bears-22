@@ -120,24 +120,26 @@ class Search extends Component {
   render () {
     const { data } = this.props;
     return (
-      <div className="container-fluid no-padding">
+
+      <div className="d-flex search">
+
+          <div className={this.state.isSearchFilterOpen? "d-none" : "filter__list"}>
+          <SearchFilter
+            isSearchFilterOpen={this.state.isSearchFilterOpen}
+            data={data}
+          />
+          </div>
+
+      <div className={this.state.isSearchFilterOpen? "container section--dark" : "container section--dark filter--translate"}>
         <div>
           <div>
             <div>
               <form>
-                <div className="form-group d-flex flex-column flex-md-row">
-                  <label htmlFor="inputSearch" className="col-xs-12 col-sm-6">
-                      <h3
-                        id="search__title"
-                      >
-                        {this.state.isSearchToggleOn ? (
-                          'Find projects.'
-                        ) : (
-                          'Find users.'
-                        )}
-                      </h3>
-                  </label>
-                  <div className="col-xs-12 col-md-6 text-right">
+                <div className="form-group d-flex flex-column flex-md-row align-items-center justify-content-center pt-3">
+                  <div className="section__feature">
+                  <i className={this.state.isSearchToggleOn ? 'fa fa-book icon mb-0' : 'fa fa-users icon mb-0'}></i>
+                  </div>
+                  <div className="col-xs-12 col-md-6 p-0 p-md-4 mt-4 mb-2 mt-md-0 mb-md-0">
                     <SearchBar
                       placeholder={
                         this.state.isSearchToggleOn ? (
@@ -164,9 +166,10 @@ class Search extends Component {
               </form>
             </div>
 
+            <div className="d-flex flex-column flex-xl-row justify-content-center align-items-center pb-2">
             <span
               onClick={this.handleSearchToggleClick}
-              className="search__toggle btn btn-link"
+              className="search__toggle btn"
             >
               <i className="fa fa-refresh" aria-hidden="true" />
               {this.state.isSearchToggleOn ? 'Get users' : 'Get projects'}
@@ -174,17 +177,16 @@ class Search extends Component {
 
             <span
               onClick={this.handleSearchFilterClick}
-              className="search__toggle btn btn-link"
+              className="search__toggle btn"
             >
               <i className="fa fa-filter" aria-hidden="true" />
               {this.state.isSearchFilterOpen ? 'Show Filters' : 'Hide Filters'}
             </span>
-          </div>
+            </div>
 
-          <SearchFilter
-            isSearchFilterOpen={this.state.isSearchFilterOpen}
-            data={data}
-          />
+
+
+          </div>
 
           <div
             className={
@@ -216,6 +218,7 @@ class Search extends Component {
             />
           </div>
         </div>
+      </div>
       </div>
     );
   }

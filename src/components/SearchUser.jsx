@@ -15,6 +15,7 @@ class SearchUser extends Component {
             name: item.first_name + ' ' + item.last_name,
             desc: item.bio,
             skills: item.skills,
+            country: item.country,
             text: 'This user does not have any self introductions.'
         };
       }
@@ -52,10 +53,10 @@ class SearchUser extends Component {
                   )
                   .map((item, index) => (
                     <div
-                      className="search__user d-flex flex-column"
+                      className="search__user d-flex flex-column flex-md-row section--black justify-content-md-start"
                       key={this.props.search + '-' + index}
                     >
-                      <div className="d-flex flex-row align-items-center justify-content-center">
+                      <div className="d-flex flex-column flex align-items-center justify-content-center search__user--name">
                         <span className="search__thumbnail">
                           {this.getItemList(item).name && this.getItemList(item).name.slice(0, 1)}
                         </span>
@@ -63,26 +64,35 @@ class SearchUser extends Component {
                           <span className="search__result__title">
                             {this.getItemList(item).name && this.getItemList(item).name}
                           </span>
+                            {this.getItemList(item).country? this.getItemList(item).country.name : ''}
+                        </div>
+                      </div>
+
+                      <div className="d-flex flex-column justify-content-center search__user--desc">
+                      <p className="search__title--yellow text-center">About</p>
+
+                      <div className="search__desc">
+                        <p>{this.getItemList(item).desc? this.getItemList(item).desc : this.getItemList(item).text}</p>
+                      </div>
+
                           <div>
-                            <ul className="list__inline list__border">
+                          <p className="search__title--yellow text-center">Skills</p>
+                            <div className="list__inline">
                               {item.skills && item.skills.length > 0 ? (
                                 item.skills.map(item => (
-                                  <li
+                                  <span
                                     key={item.name + ' ' + item.id}
                                   >
                                     {item.name}
-                                  </li>
+                                  </span>
                                 ))
                               ) : (
-                                <li key="Not Specified">Not Specified</li>
+                                <span key="Not Specified">Not Specified</span>
                               )}
-                            </ul>
+                            </div>
+                            </div>
+
                           </div>
-                        </div>
-                      </div>
-                      <div className="search__desc">
-                        {this.getItemList(item).desc? this.getItemList(item).desc : this.getItemList(item).text}
-                      </div>
                     </div>
                   ))
               : ''}
