@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import create from '../assets/ic_create_white_48dp_2x.png'
+import face from '../assets/ic_face_white_48dp_2x.png'
+import group from '../assets/ic_group_white_48dp_2x.png'
+import check from '../assets/ic_check_white_48dp_2x.png'
 
 const getData = gql`
   query {
@@ -58,22 +62,22 @@ class Landing extends Component {
         <section className="section section--dark">
           <h3 className="section__header">How It Works</h3>
           <div className="section__feature">
-            <i className="fa fa-pencil icon" />
+            <img src={create} className="icon" />
             <p>Sign up with GitHub</p>
           </div>
 
           <div className="section__feature">
-            <i className="fa fa-smile-o icon" />
+            <img src={face} className="icon" />
             <p>Create a profile</p>
           </div>
 
           <div className="section__feature">
-            <i className="fa fa-users icon" />
+            <img src={group} className="icon" />
             <p>Match with teams via Chingu's API</p>
           </div>
 
           <div className="section__feature">
-            <i className="fa fa-check icon" />
+            <img src={check} className="icon" />
             <p>Finish projects</p>
           </div>
         </section>
