@@ -56,27 +56,27 @@ class SearchUser extends Component {
                       className="search__user d-flex flex-column flex-md-row section--black justify-content-md-start"
                       key={this.props.search + '-' + index}
                     >
-                      <div className="d-flex flex-column flex align-items-center justify-content-center search__user--name">
-                        <span className="search__thumbnail">
+                      <div className="d-flex flex-row flex-md-column align-items-center justify-content-left justify-content-md-center search__user--name">
+                        <span className="search__thumbnail mr-3 mr-md-0 mb-2">
                           {this.getItemList(item).name && this.getItemList(item).name.slice(0, 1)}
                         </span>
                         <div className="search__title__grid">
                           <span className="search__result__title">
-                            {this.getItemList(item).name && this.getItemList(item).name}
+                            <p class="mb-0">{this.getItemList(item).name && this.getItemList(item).name}</p>
                           </span>
-                            {this.getItemList(item).country? this.getItemList(item).country.name : ''}
+                            {this.getItemList(item).country? <p>{this.getItemList(item).country.name}</p> : ''}
                         </div>
                       </div>
 
-                      <div className="d-flex flex-column justify-content-center search__user--desc">
-                      <p className="search__title--yellow text-center">About</p>
-
-                      <div className="search__desc">
-                        <p>{this.getItemList(item).desc? this.getItemList(item).desc : this.getItemList(item).text}</p>
+                      <div className="d-flex flex-column justify-content-start search__user--desc">
+                      <div class="d-flex flex-row">
+                      <span className="search__title--yellow">About: </span><span className="search__desc">
+                        {this.getItemList(item).desc? this.getItemList(item).desc : this.getItemList(item).text}
+                      </span>
                       </div>
-
-                          <div>
-                          <p className="search__title--yellow text-center">Skills</p>
+                      <div>
+                          <div class="d-flex flex-row">
+                          <span className="search__title--yellow col-xs-2">Skills: </span>
                             <div className="list__inline">
                               {item.skills && item.skills.length > 0 ? (
                                 item.skills.map(item => (
@@ -91,7 +91,7 @@ class SearchUser extends Component {
                               )}
                             </div>
                             </div>
-
+                            </div>
                           </div>
                     </div>
                   ))
