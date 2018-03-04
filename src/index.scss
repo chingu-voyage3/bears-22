@@ -6,6 +6,7 @@ $browser-context: 16; // Default
 
 $theme-color: #1abc9c; //one of the theme color of Chingu
 $chingu-yellow: #ffeb3b;
+$chingu-yellow-opacity: rgba(255, 235, 59, 0.9);
 $chingu-grey: rgba(51, 51, 51, 1);
 $chingu-grey-opacity: rgba(51, 51, 51, 0.6);
 
@@ -21,7 +22,7 @@ $spacer-x: $spacer;
 $spacer-y: $spacer;
 
 //mobile query
-$phone: "only screen and (min-width : 320px)";
+$phone: "only screen and (min-width : 576px)";
 $tablet: "only screen and (min-width : 768px)";
 $laptop: "only screen and (min-width : 992px)";
 $desktop: "only screen and (min-width : 1200px)";
@@ -673,8 +674,8 @@ a {
   //   max-width: 35%;
   // }
   @media #{$tablet} {
-    flex: 0  20%;
-    max-width: 20%;
+    flex: 0  15%;
+    max-width: 15%;
   }
 }
 
@@ -686,8 +687,8 @@ max-width: 100%;
 //     max-width: 65%;
 //   }
 @media #{$tablet} {
-    flex: 0  80%;
-    max-width: 80%;
+    flex: 0  85%;
+    max-width: 85%;
     margin-left: em(15);
   }
 }
@@ -697,7 +698,7 @@ max-width: 100%;
   color: $chingu-yellow;
   flex: 0 0 20%;
   @media #{$tablet} {
-    flex: 0 10%;
+    flex: 0 0 10%;
   }
 }
 
@@ -716,21 +717,25 @@ max-width: 100%;
 
 .list__inline {
   display: inline-block;
-  font-family: 'Arial';
-  font-size: 16px;
   color: $doum-grey;
   margin: 0;
-    color: white;
+  color: white;
+  cursor: pointer;
   span {
     display: inline-block;
     // background-color: $chingu-yellow;
+    &:hover {
+      color: $chingu-yellow;
+    }
   }
   span:before {
     content: ' | ';
     color: white;
+    margin-left: 5px;
   }
   span:nth-child(1):before {
     content: '';
+    margin-left: 0;
   }
 }
 
@@ -763,6 +768,7 @@ max-width: 100%;
   &:hover {
     color: $chingu-grey;
     background: $chingu-yellow;
+    cursor: pointer;
   }
   &:active {
     color: $chingu-grey;
@@ -836,10 +842,6 @@ max-width: 100%;
   border-radius: 50%;
   border: solid 2px $chingu-yellow;
   flex: 0 0 10%;
-  &:hover {
-    color: white;
-    cursor: pointer;
-  }
   @media #{$desktop} {
     width: 80px;
     height: 80px;
@@ -862,7 +864,7 @@ max-width: 100%;
 
 .search__desc {
   text-align: left;
-  font-size: 16px;
+  font-size: 1em;
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -898,18 +900,40 @@ max-width: 100%;
   background-color: $doum-darkblue;
   height: 100%;
   border-right: solid 1px white;
-  min-width: 20%;
+  min-width: 65%;
   overflow-x: hidden;
-  @media #{$desktop} {
+  .fa-times {
+    position: absolute;
+    top: em(10);
+    right: em(5);
+    font-size: 1.2em;
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+  }
+  @media #{$phone} {
+     min-width: 40%;
+  }
+  @media #{$tablet} {
+     min-width: 25%;
+  }
+  @media #{$laptop} {
      min-width: 15%;
   }
 }
 
 .filter--translate {
   @extend .header__translate;
-  transform: translateX(20%);
+  transform: translateX(80%);
   transition: 250ms;
-  @media #{$desktop} {
+  @media #{$phone} {
+    transform: translateX(40%);
+  }
+  @media #{$tablet} {
+    transform: translateX(20%);
+  }
+  @media #{$laptop} {
     transform: translateX(5%);
   }
 }
@@ -978,10 +1002,14 @@ max-width: 100%;
   background-color: $chingu-yellow;
   padding: em(5) em(15);
   margin-right: em(10);
-  font-size: em(13);
+  font-size: 0.9em;
   font-weight: normal;
+  cursor: pointer;
   &:nth-child(1) {
     margin-left: em(5);
+  }
+  &:hover {
+    background-color: $chingu-yellow-opacity;
   }
 }
 

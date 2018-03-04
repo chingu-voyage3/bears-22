@@ -1,29 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { watchFilter } from '../actions'
 import { Transition } from 'react-transition-group'
 
 class SearchFilter extends Component {
   // constructor(props) {
   //   super(props)
   // }
-
-  isFiltered = e => {
-    if (this.selectedSkills.has(e.target.id)) {
-      this.selectedSkills.delete(e.target.id)
-    } else {
-      this.selectedSkills.add(e.target.id)
-    }
-    console.log(this.selectedSkills)
-    this.props.updateData({
-      skills: [...this.selectedSkills],
-      country: this.props.country
-    })
-  }
-
-  componentWillMount = () => {
-    this.selectedSkills = new Set()
-  }
 
   render() {
     const { data } = this.props
@@ -37,15 +19,17 @@ class SearchFilter extends Component {
           }
         >
           <span className="filter__title">Filter by skills</span>
+          <i className="fa fa-times pr-2" onClick={this.props.handleSearchFilterClick} />
           {data.skills ? (
             data.skills.map(item => (
               <div key={item.id} className="filter__item">
                 <input
-                  onClick={this.isFiltered}
+                  onClick={this.props.isFiltered}
                   id={item.name}
                   type="checkbox"
                   name={item.name}
-                  value={item.name}
+                  checked={this.props.skills && this.props.skills.includes(item.name)}
+                  title={item.name}
                 />
                 <label htmlFor={item.name}>{item.name}</label>
               </div>
@@ -67,13 +51,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    updateData: e => {
-      console.log(e)
-      dispatch(watchFilter(e))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchFilter)
+export default connect(mapStateToProps)(SearchFilter)

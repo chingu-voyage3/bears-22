@@ -62,26 +62,27 @@ class SearchUser extends Component {
                         </span>
                         <div className="search__title__grid">
                           <span className="search__result__title">
-                            <p class="mb-0">{this.getItemList(item).name && this.getItemList(item).name}</p>
+                            <p className="mb-0">{this.getItemList(item).name && this.getItemList(item).name}</p>
                           </span>
                             {this.getItemList(item).country? <p>{this.getItemList(item).country.name}</p> : ''}
                         </div>
                       </div>
 
                       <div className="d-flex flex-column justify-content-start search__user--desc">
-                      <div class="d-flex flex-row">
+                      <div className="d-flex flex-column flex-sm-row">
                       <span className="search__title--yellow">About: </span><span className="search__desc">
                         {this.getItemList(item).desc? this.getItemList(item).desc : this.getItemList(item).text}
                       </span>
                       </div>
-                      <div>
-                          <div class="d-flex flex-row">
+                          <div className="d-flex flex-column flex-sm-row">
                           <span className="search__title--yellow col-xs-2">Skills: </span>
                             <div className="list__inline">
                               {item.skills && item.skills.length > 0 ? (
                                 item.skills.map(item => (
                                   <span
                                     key={item.name + ' ' + item.id}
+                                    title={item.name}
+                                    onClick={this.props.isFiltered}
                                   >
                                     {item.name}
                                   </span>
@@ -89,7 +90,6 @@ class SearchUser extends Component {
                               ) : (
                                 <span key="Not Specified">Not Specified</span>
                               )}
-                            </div>
                             </div>
                             </div>
                           </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Transition } from 'react-transition-group';
+import { watchFilter } from '../actions';
 
 import SearchBar from './SearchBar';
 import SearchFilter from './SearchFilter';
@@ -73,9 +73,10 @@ class Search extends Component {
     this.state = {
       isSearchToggleOn: true,
       isSearchFilterOpen: true,
-      selectedItem: '',
+      selectedItem: '', //for search bar
       search: 'projects',
-      inputValue: ''
+      inputValue: '',
+      selectedSkills: []
     };
   }
 
@@ -86,7 +87,7 @@ class Search extends Component {
       isSearchToggleOn: !prevState.isSearchToggleOn,
       search: search(),
       selectedItem: '',
-      inputValue: ''
+      inputValue: '',
     }));
   };
 
@@ -96,14 +97,13 @@ class Search extends Component {
     }));
   };
 
-  onChange = selectedItem => {
+  onChange = selectedItem => { //for search bar
     this.setState((prevState, props) => ({
       selectedItem
     }));
   };
 
-  onInputValueChange = (e, i) => {
-    console.log(e);
+  onInputValueChange = (e, i) => {//for search bar
     this.setState({
       inputValue: String(e)
     });
@@ -117,6 +117,21 @@ class Search extends Component {
     this.props.data.refetch();
   };
 
+  isFiltered = e => {
+    if (e.target.title !== "" && this.selectedSkills.has(e.target.title)) {
+      this.selectedSkills.delete(e.target.title);
+    } else if(e.target.title !== "") {
+      this.selectedSkills.add(e.target.title);
+    }
+    this.props.updateData({
+      skills: [...this.selectedSkills]
+    })
+  }
+
+  componentWillMount = () => {
+    this.selectedSkills = new Set();
+  }
+
   render () {
     const { data } = this.props;
     return (
@@ -125,8 +140,11 @@ class Search extends Component {
 
           <div className={this.state.isSearchFilterOpen? "d-none" : "filter__list"}>
           <SearchFilter
+            handleSearchFilterClick={this.handleSearchFilterClick}
             isSearchFilterOpen={this.state.isSearchFilterOpen}
             data={data}
+            isFiltered={this.isFiltered}
+            selectedSkills={this.selectedSkills}
           />
           </div>
 
@@ -201,8 +219,9 @@ class Search extends Component {
             Filtered:{' '}
             {this.props.filter.skills && this.props.filter.skills.length > 0 ? (
               this.props.filter.skills.map(item => (
-                <div className="filter__item--filtered" key={item}>
-                  {item}
+                <div className="filter__item--filtered" title={item} key={item} onClick={this.isFiltered}>
+                  {item} 
+                  <i className="fa fa-times pl-2" />
                 </div>
               ))
             ) : (
@@ -215,6 +234,8 @@ class Search extends Component {
               data={data}
               selectedItem={this.state.selectedItem}
               resetSearch={this.resetSearch}
+              selectedSkills={this.selectedSkills}
+              isFiltered={this.isFiltered}
             />
           </div>
         </div>
@@ -231,15 +252,16 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//   return {
-//     updateData: e => {
-//       this.props.data.refetch();
-//     }
-//   }
-// }
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    updateData: e => {
+      console.log(e)
+      dispatch(watchFilter(e))
+    }
+  }
+}
 
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, mapDispatchToProps)(
   graphql(searchQuery, {
     options: ownProps => ({
       variables: {
