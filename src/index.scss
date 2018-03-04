@@ -961,10 +961,10 @@ max-width: 100%;
     display: none;
     transition: 300ms;
   }
-  input[value="true"] + label {
+  input[type="checkbox"][value="true"] + label {
     font-weight: bold;
   }
-  input[value="true"]+ label:before {
+  input[type="checkbox"][value="true"]+ label:before {
     content: '\f00c';
     font-family: 'FontAwesome';
     color: $chingu-yellow;
@@ -975,7 +975,7 @@ max-width: 100%;
     opacity: 1;
   }
 
-  input[value="false"] + label:before {
+  input[type="checkbox"] + label:before {
     content: '\f00c';
     font-family: 'FontAwesome';
     color: white;
