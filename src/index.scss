@@ -728,14 +728,14 @@ max-width: 100%;
       color: $chingu-yellow;
     }
   }
-  span:before {
+  span:after {
     content: ' | ';
     color: white;
-    margin-left: 5px;
+    margin-right: 5px;
   }
-  span:nth-child(1):before {
+  span:last-child:after {
     content: '';
-    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -961,10 +961,10 @@ max-width: 100%;
     display: none;
     transition: 300ms;
   }
-  input[type="checkbox"]:checked + label {
+  input[value="true"] + label {
     font-weight: bold;
   }
-  input[type="checkbox"]:checked + label:before {
+  input[value="true"]+ label:before {
     content: '\f00c';
     font-family: 'FontAwesome';
     color: $chingu-yellow;
@@ -975,7 +975,7 @@ max-width: 100%;
     opacity: 1;
   }
 
-  input[type="checkbox"] + label:before {
+  input[value="false"] + label:before {
     content: '\f00c';
     font-family: 'FontAwesome';
     color: white;
@@ -991,25 +991,35 @@ max-width: 100%;
 }
 
 .filter__item--grid {
-  margin: 0;
   font-weight: 600;
   text-align: center;
 }
 
 .filter__item--filtered {
+  position: relative;
   display: inline-block;
-  color: $chingu-grey;
-  background-color: $chingu-yellow;
-  padding: em(5) em(15);
+  // color: $chingu-grey;
+  color: white;
+  // background-color: $chingu-yellow;
+  padding: 0 em(15);
   margin-right: em(10);
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: normal;
+  text-align: left;
   cursor: pointer;
-  &:nth-child(1) {
-    margin-left: em(5);
+  &:hover {
+    // background-color: $chingu-yellow-opacity;
+  }
+  &:after {
+    content: '\f00d';
+    font-family: FontAwesome;
+    position: absolute;
+    top: em(1.5);
+    right: -0.1em;
+    font-size: 0.9em;
   }
   &:hover {
-    background-color: $chingu-yellow-opacity;
+    color: $chingu-yellow;
   }
 }
 

@@ -28,7 +28,7 @@ class SearchFilter extends Component {
                   id={item.name}
                   type="checkbox"
                   name={item.name}
-                  checked={this.props.skills && this.props.skills.includes(item.name)}
+                  value={this.props.skills && this.props.skills.includes(item.name)}
                   title={item.name}
                 />
                 <label htmlFor={item.name}>{item.name}</label>

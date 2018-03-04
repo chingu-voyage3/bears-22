@@ -210,23 +210,24 @@ class Search extends Component {
             className={
               this.props.filter.skills &&
               this.props.filter.skills.length > 0 ? (
-                'filter__item--grid'
+                'filter__item--grid search__user__grid d-flex flex-row'
               ) : (
                 'd-none'
               )
             }
           >
-            Filtered:{' '}
+            <p className="m-0">Filters</p>
+            <div className="text-left">
             {this.props.filter.skills && this.props.filter.skills.length > 0 ? (
               this.props.filter.skills.map(item => (
                 <div className="filter__item--filtered" title={item} key={item} onClick={this.isFiltered}>
                   {item} 
-                  <i className="fa fa-times pl-2" />
                 </div>
               ))
             ) : (
               ''
             )}
+            </div>
           </div>
           <div>
             <SearchUser
