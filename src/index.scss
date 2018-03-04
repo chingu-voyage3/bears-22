@@ -898,8 +898,8 @@ max-width: 100%;
   left: 0;
   z-index: 1;
   background-color: $doum-darkblue;
+  box-shadow: inset 0 0 5px $chingu-grey-opacity;
   height: 100%;
-  border-right: solid 1px white;
   min-width: 65%;
   overflow-x: hidden;
   .fa-times {
