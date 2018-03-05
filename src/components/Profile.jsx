@@ -35,6 +35,31 @@ const profileQuery = gql`
     }
   }
   `
+const routerQuery = gql`
+  query user($user_id: ID!) {
+      profile_image
+      first_name
+      last_name
+      username
+      email
+      city {
+        id
+        name
+      }
+      country {
+        id
+        name
+      }
+      portfolio_url
+      bio
+      skills {
+        id
+        name
+      }
+  }
+  `
+
+
   const updateUser = gql`
     mutation updateUser($email: String!) {
       user(email: $email) {
