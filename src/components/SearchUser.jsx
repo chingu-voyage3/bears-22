@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Transition } from 'react-transition-group'
+import { Link }  from 'react-router-dom'
 
 class SearchUser extends Component {
   getItemList = (item) => {
@@ -52,48 +53,50 @@ class SearchUser extends Component {
                         this.getItemList(item).name.match(this.props.selectedItem))
                   )
                   .map((item, index) => (
-                    <div
-                      className="search__user d-flex flex-column flex-md-row section--black justify-content-md-start"
-                      key={this.props.search + '-' + index}
-                    >
-                      <div className="d-flex flex-column flex align-items-center justify-content-center search__user--name">
-                        <span className="search__thumbnail">
-                          {this.getItemList(item).name && this.getItemList(item).name.slice(0, 1)}
-                        </span>
-                        <div className="search__title__grid">
-                          <span className="search__result__title">
-                            {this.getItemList(item).name && this.getItemList(item).name}
+                    <Link to="/Profile">
+                      <div
+                        className="search__user d-flex flex-column flex-md-row section--black justify-content-md-start"
+                        key={this.props.search + '-' + index}
+                      >
+                        <div className="d-flex flex-column flex align-items-center justify-content-center search__user--name">
+                          <span className="search__thumbnail">
+                            {this.getItemList(item).name && this.getItemList(item).name.slice(0, 1)}
                           </span>
-                            {this.getItemList(item).country? this.getItemList(item).country.name : ''}
-                        </div>
-                      </div>
-
-                      <div className="d-flex flex-column justify-content-center search__user--desc">
-                      <p className="search__title--yellow text-center">About</p>
-
-                      <div className="search__desc">
-                        <p>{this.getItemList(item).desc? this.getItemList(item).desc : this.getItemList(item).text}</p>
-                      </div>
-
-                          <div>
-                          <p className="search__title--yellow text-center">Skills</p>
-                            <div className="list__inline">
-                              {item.skills && item.skills.length > 0 ? (
-                                item.skills.map(item => (
-                                  <span
-                                    key={item.name + ' ' + item.id}
-                                  >
-                                    {item.name}
-                                  </span>
-                                ))
-                              ) : (
-                                <span key="Not Specified">Not Specified</span>
-                              )}
-                            </div>
-                            </div>
-
+                          <div className="search__title__grid">
+                            <span className="search__result__title">
+                              {this.getItemList(item).name && this.getItemList(item).name}
+                            </span>
+                              {this.getItemList(item).country? this.getItemList(item).country.name : ''}
                           </div>
-                    </div>
+                        </div>
+
+                        <div className="d-flex flex-column justify-content-center search__user--desc">
+                        <p className="search__title--yellow text-center">About</p>
+
+                        <div className="search__desc">
+                          <p>{this.getItemList(item).desc? this.getItemList(item).desc : this.getItemList(item).text}</p>
+                        </div>
+
+                            <div>
+                            <p className="search__title--yellow text-center">Skills</p>
+                              <div className="list__inline">
+                                {item.skills && item.skills.length > 0 ? (
+                                  item.skills.map(item => (
+                                    <span
+                                      key={item.name + ' ' + item.id}
+                                    >
+                                      {item.name}
+                                    </span>
+                                  ))
+                                ) : (
+                                  <span key="Not Specified">Not Specified</span>
+                                )}
+                              </div>
+                              </div>
+
+                            </div>
+                      </div>
+                    </Link>
                   ))
               : ''}
           </div>
