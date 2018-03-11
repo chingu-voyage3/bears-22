@@ -12,6 +12,7 @@ class SearchBar extends Component {
       <div className="searchbar">
         <Downshift
           onChange={this.props.onChange}
+          selectedItem={this.props.selectedItem}
           onInputValueChange={this.props.onInputValueChange}
           render={({
             getInputProps,
@@ -45,9 +46,9 @@ class SearchBar extends Component {
                 <div className="search__popup">
                   {[ ...new Set(this.props.items) ] // get unique values using "set"
                     .filter(
-                      i =>
-                        !inputValue ||
-                        i.toLowerCase().includes(inputValue.toLowerCase())
+                      (i, index) => 
+                        index >= 8 ? '': (!inputValue ||
+                        i.toLowerCase().includes(inputValue.toLowerCase())) //if search result items > 8, not shown in popup
                     )
                     .map((item, index) => (
                       <div

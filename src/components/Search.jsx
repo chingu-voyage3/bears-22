@@ -170,12 +170,13 @@ class Search extends Component {
                         data[this.state.search] &&
                         data[this.state.search].map(
                           item => item.title || item.first_name
-                        )
+                        ).sort()
                       }
                       onChange={this.onChange}
                       onInputValueChange={this.onInputValueChange}
                       search={this.state.search}
                       inputValue={this.state.inputValue}
+                      selectedItem={this.state.selectedItem}
                       data={data}
                       resetSearch={this.resetSearch}
                     />
@@ -185,21 +186,21 @@ class Search extends Component {
             </div>
 
             <div className="d-flex flex-column flex-xl-row justify-content-center align-items-center pb-2">
-            <span
+            <button
               onClick={this.handleSearchToggleClick}
               className="search__toggle btn"
             >
               <i className="fa fa-refresh" aria-hidden="true" />
               {this.state.isSearchToggleOn ? 'Get users' : 'Get projects'}
-            </span>
+            </button>
 
-            <span
+            <button
               onClick={this.handleSearchFilterClick}
               className="search__toggle btn"
             >
               <i className="fa fa-filter" aria-hidden="true" />
               {this.state.isSearchFilterOpen ? 'Show Filters' : 'Hide Filters'}
-            </span>
+            </button>
             </div>
 
 
