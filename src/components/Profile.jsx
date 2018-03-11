@@ -35,8 +35,10 @@ const profileQuery = gql`
     }
   }
   `
-const routerQuery = gql`
+const userQuery = gql`
   query user($user_id: ID!) {
+    user(user_id: $user_id) {
+      id
       profile_image
       first_name
       last_name
@@ -56,6 +58,7 @@ const routerQuery = gql`
         id
         name
       }
+    }
   }
   `
 
@@ -333,13 +336,14 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps)(
   compose(
-    graphql(profileQuery, {
-      options: ownProps => ({
+    graphql(userQuery, {
+      options: ownProps => {
+        return ({ 
         variables: {
-          user_id: ownProps.userInfo.id,
-          email: ownProps.userInfo.email
+          user_id: ownProps.match.params.id,
+          // email: ownProps.userInfo.email
         }
-      })
+      })}
     }),
     graphql(updateUser)
   )(Profile)
