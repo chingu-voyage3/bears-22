@@ -53,7 +53,7 @@ class SearchUser extends Component {
                         this.getItemList(item).name.match(this.props.selectedItem))
                   )
                   .map((item, index) => (
-                    <Link to="/Profile">
+                    <Link to={`/profile/${item.id}`}>
                       <div
                         className="search__user d-flex flex-column flex-md-row section--black justify-content-md-start"
                         key={this.props.search + '-' + index}
