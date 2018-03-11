@@ -120,6 +120,8 @@ class Search extends Component {
   isFiltered = e => {
     if (e.target.title !== "" && this.selectedSkills.has(e.target.title)) {
       this.selectedSkills.delete(e.target.title);
+    } else if(e.target.title === "Not Specified" || e.target.title === "Clear Filter") {
+      this.selectedSkills.clear();
     } else if(e.target.title !== "") {
       this.selectedSkills.add(e.target.title);
     }
@@ -228,6 +230,8 @@ class Search extends Component {
             ) : (
               ''
             )}
+
+              <button className="filter__item--clear" title="Clear Filter" onClick={this.isFiltered}>Clear Filter</button>
             </div>
           </div>
           <div>

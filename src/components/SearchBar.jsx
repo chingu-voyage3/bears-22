@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Downshift from 'downshift';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 class SearchBar extends Component {
-  constructor (props) {
-    super(props);
-  }
+  // constructor (props) {
+  //   super(props);
+  // }
 
   render () {
     return (
