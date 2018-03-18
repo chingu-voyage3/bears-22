@@ -6,7 +6,7 @@ $browser-context: 16; // Default
 
 $theme-color: #1abc9c; //one of the theme color of Chingu
 $chingu-yellow: #ffeb3b;
-$chingu-yellow-opacity: rgba(255, 235, 59, 0.9);
+$chingu-light-yellow: #ffe608;
 $chingu-grey: rgba(51, 51, 51, 1);
 $chingu-grey-opacity: rgba(51, 51, 51, 0.6);
 
@@ -78,7 +78,6 @@ a {
     color: white;
   }
   &:active,
-  &:focus,
   &:hover {
     text-decoration: none;
   }
@@ -411,6 +410,19 @@ a {
     background-color: $chingu-yellow;
     color: black;
   }
+  a {
+    color: $chingu-grey;
+  }
+  &:hover {
+    background: $chingu-light-yellow;
+  }
+  &:active {
+    box-shadow: inset 0 0 20px $chingu-grey-opacity; 
+  }
+  &:active,
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .btn::selection {
@@ -434,7 +446,7 @@ a {
   color: black;
   font-weight: 800;
   padding: em(10) 0;
-  box-shadow: inset 0 -3px 0 0 #f1c40f;
+  box-shadow: inset 0 -3px 0 0 $chingu-yellow;
 }
 
 .user__list {
@@ -540,31 +552,6 @@ a {
     width: 250px;
   }
 }
-
-/*.login__button-github {
-  display: inline-flex;
-  padding: em(10) em(20);
-  background-color: rgba(36, 41, 46, 1);
-  color: #ffffff;
-  transition: 300ms;
-  margin-top: em(9);
-  width: 100%;
-  vertical-align: middle;
-  i {
-    color: #ffffff;
-    margin-right: em(10);
-    margin-top: em(5);
-  }
-  &:hover {
-    background-color: rgba(36, 41, 46, 0.8);
-    cursor: pointer;
-  }
-  &:focus,
-  &:active,
-  &:hover {
-    text-decoration: none;
-  }
-}*/
 
 .login__text {
   position: relative;
@@ -727,15 +714,15 @@ max-width: 100%;
     &:hover {
       color: $chingu-yellow;
     }
-  }
-  span:after {
+  &:after {
     content: ' | ';
     color: white;
     margin-right: 5px;
   }
-  span:last-child:after {
+  &:last-child:after {
     content: '';
     margin-right: 0;
+  }
   }
 }
 
@@ -756,29 +743,12 @@ max-width: 100%;
   margin-bottom: em(10);
   transition: 300ms;
   min-width: 70%;
+  cursor: pointer;
   &:last-child {
     margin-bottom: 0;
   }
   i {
     margin-right: em(10);
-  }
-  a {
-    color: $chingu-grey;
-  }
-  &:hover {
-    color: $chingu-grey;
-    background: $chingu-yellow;
-    cursor: pointer;
-  }
-  &:active {
-    color: $chingu-grey;
-    background: $chingu-yellow;
-    transform: translateY(2px);
-  }
-  &:active,
-  &:focus,
-  &:hover {
-    text-decoration: none;
   }
   @media #{$tablet} {
     display: inline-block;
@@ -808,12 +778,11 @@ max-width: 100%;
 
 .search__result__title {
   display: block;
-  // padding: 0 0.65em;
   font-size: 1rem;
   font-weight: 600;
   word-wrap: break-word;
   overflow: hidden;
-  text-overflow: ellipsis;
+  font-kerning: none;
   @media #{$desktop} {
     font-size: 1rem;
   }
@@ -889,6 +858,11 @@ max-width: 100%;
   right: 0;
   width: 100%;
   z-index: 3;
+  border: solid 2px $doum-darkblue;
+  border-top: 0;
+  div {
+    padding: em(2) em(5);
+  }
 }
 
 
@@ -990,9 +964,20 @@ max-width: 100%;
   }
 }
 
-.filter__item--grid {
+.filter__item {
+  &--grid {
   font-weight: 600;
   text-align: center;
+  }
+  &--clear {
+    background-color: $doum-darkblue;
+    font-weight: bold;
+    border: 0;
+    color: white;
+    padding: em(2) em(5);
+    font-size: 0.9em;
+    cursor: pointer;
+  }
 }
 
 .filter__item--filtered {
@@ -1007,9 +992,6 @@ max-width: 100%;
   font-weight: normal;
   text-align: left;
   cursor: pointer;
-  &:hover {
-    // background-color: $chingu-yellow-opacity;
-  }
   &:after {
     content: '\f00d';
     font-family: FontAwesome;

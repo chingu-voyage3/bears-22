@@ -71,7 +71,7 @@ class SearchUser extends Component {
                       <div className="d-flex flex-column justify-content-start search__user--desc">
                       <div className="d-flex flex-column flex-sm-row">
                       <span className="search__title--yellow">About: </span><span className="search__desc">
-                        {this.getItemList(item).desc? this.getItemList(item).desc : this.getItemList(item).text}
+                        <p className="m-0">{this.getItemList(item).desc? (this.getItemList(item).desc.length > 200? this.getItemList(item).desc.slice(0,200) + ' ...' : this.getItemList(item).desc): this.getItemList(item).text}</p>
                       </span>
                       </div>
                           <div className="d-flex flex-column flex-sm-row">
@@ -88,7 +88,7 @@ class SearchUser extends Component {
                                   </span>
                                 ))
                               ) : (
-                                <span key="Not Specified">Not Specified</span>
+                                <span key="Not Specified" title="Not Specified" onClick={this.props.isFiltered}>Not Specified</span>
                               )}
                             </div>
                             </div>
