@@ -6,8 +6,7 @@ const graphqlHTTP = require('express-graphql')
 const schema = require('./schema')
 const mongoose = require('mongoose')
 require('dotenv').config()
-const api = require('./routes/api')
-const auth = require('./routes/auth')
+const auth = require('./authRouter')
 const passportSetup = require('./passport')
 
 const app = express()
@@ -28,23 +27,6 @@ app.use(passport.session())
 
 const authRouter = require('./authRouter')
 app.use('/', authRouter)
-
-/*
-// Set up routes
-app.get('/users', (req, res) => {
-  res.send(data)
-})
-
-app.get('/profile', (req, res) => {
-  if (req.user) res.send(req.user)
-  else res.send('Not logged in')
-})
-
-// app.use('/api', api);
-app.use('/auth', auth)
-
-
-*/
 
 // Cross Origin Resource Sharing
 app.use(cors())
@@ -76,5 +58,5 @@ app.route('*', function(request, response) {
 // Listen for requests on port 8080
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
-  console.log(`Server is listening on port http://localhost:${PORT}`)
+  console.log(`Server is listening on port ${PORT}`)
 })

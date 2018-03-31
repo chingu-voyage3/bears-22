@@ -6,4 +6,4 @@ const userSchema = new Schema({
   name: String
 })
 
-module.exports = mongoose.model('doum-user', userSchema)
+module.exports = mongoose.model('user', userSchema)
