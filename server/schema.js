@@ -16,21 +16,38 @@ const UserType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     githubID: { type: GraphQLString },
-    username: { type: GraphQLString }
+    username: { type: GraphQLString },
+    first_name: { type: GraphQLString },
+    last_name: { type: GraphQLString },
+    bio: { type: GraphQLString },
+    linkedin_url: { type: GraphQLString },
+    portfolio_url: { type: GraphQLString },
+    website_url: { type: GraphQLString },
+    twitter_url: { type: GraphQLString },
+    blog_url: { type: GraphQLString },
+    city: { type: GraphQLString },
+    country: { type: GraphQLString }
   })
 })
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   fields: {
-    user: {
+    getUserByID: {
       type: UserType,
-      args: { user: { type: GraphQLString } },
+      args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        return User.findOne({ user: args.id })
+        return User.findOne({ _id: args.id })
       }
     },
-    users: {
+    getUserByUsername: {
+      type: UserType,
+      args: { username: { type: GraphQLString } },
+      resolve(parent, args) {
+        return User.findOne({ username: args.username })
+      }
+    },
+    getAllUsers: {
       type: new GraphQLList(UserType),
       resolve(parent, args) {
         return User.find({})
