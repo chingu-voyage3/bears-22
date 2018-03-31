@@ -1,4 +1,4 @@
-// Imports
+/* Imports
 const express = require('express')
 const data = require('../data.json')
 
@@ -16,3 +16,4 @@ router.get('/users', (req, res) => {})
 
 // Export Routes
 module.exports = router
+*/

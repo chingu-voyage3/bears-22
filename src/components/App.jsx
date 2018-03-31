@@ -49,7 +49,7 @@ const enhancer = composeEnhancers(
 const store = createStore(mainReducer, enhancer);
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: 'https://chingu-api-dev.herokuapp.com/graphql' }),
+  link: new HttpLink({ uri: 'https://localhost:8080/graphql' }),
   cache: new InMemoryCache()
 });
 
