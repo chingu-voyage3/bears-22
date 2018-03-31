@@ -21,7 +21,7 @@ const UserType = new GraphQLObjectType({
 })
 
 const RootQuery = new GraphQLObjectType({
-  name: 'RootQueryType',
+  name: 'RootQuery',
   fields: {
     user: {
       type: UserType,
@@ -31,7 +31,7 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     users: {
-      type: UserType,
+      type: new GraphQLList(UserType),
       resolve(parent, args) {
         return User.find({})
       }
@@ -39,8 +39,8 @@ const RootQuery = new GraphQLObjectType({
   }
 })
 
-const Mutation = new GraphQLObjectType({
-  name: 'Mutation',
+const RootMutation = new GraphQLObjectType({
+  name: 'RootMutation',
   fields: {
     addUser: {
       type: UserType,
@@ -64,5 +64,5 @@ const Mutation = new GraphQLObjectType({
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
-  mutation: Mutation
+  mutation: RootMutation
 })
