@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import create from '../assets/ic_create_white_48dp_2x.png'
 import face from '../assets/ic_face_white_48dp_2x.png'
 import group from '../assets/ic_group_white_48dp_2x.png'
@@ -19,15 +19,14 @@ const getData = gql`
       title
     }
   }
-`;
+`
 
 class Landing extends Component {
-  render () {
-    const { users, projects } = this.props.data;
+  render() {
+    const { users, projects } = this.props.data
     return (
       <div>
         {/* Hero */}
-
 
         <section className="section section__hero d-flex flex-column">
           <div className="section__hero__branding mx-auto">
@@ -52,10 +51,9 @@ class Landing extends Component {
           </div>
 
           <button className="btn btn__login">
-            <i className="fa fa-github" />{' '}Sign up with GitHub
+            <i className="fa fa-github" /> Sign up with GitHub
           </button>
         </section>
-
 
         {/* How It Works */}
 
@@ -92,15 +90,13 @@ class Landing extends Component {
               devGaido provides easy to follow learning paths that help you
               reach your goal without the hassle.
             </p> */}
-            {projects ? (
-              projects.slice(0, 4).map(project => (
-                <div id={project.id} className="section__project">
-                  <h5>{project.title}</h5>
-                </div>
-              ))
-            ) : (
-              'Loading'
-            )}
+            {projects
+              ? projects.slice(0, 4).map(project => (
+                  <div id={project.id} className="section__project">
+                    <h5>{project.title}</h5>
+                  </div>
+                ))
+              : 'Loading'}
           </div>
         </section>
 
@@ -113,20 +109,18 @@ class Landing extends Component {
             finish their project.
           </p>
           <div className="section__users">
-            {users ? (
-              users
-                .slice(0, 24)
-                .map(user => (
-                  <img
-                    className="section__users__image"
-                    src="https://visualpharm.com/assets/336/User-595b40b65ba036ed117d26d4.svg"
-                    key={user.id}
-                    alt={`${user.first_name} ${user.last_name}`}
-                  />
-                ))
-            ) : (
-              'Loading'
-            )}
+            {users
+              ? users
+                  .slice(0, 24)
+                  .map(user => (
+                    <img
+                      className="section__users__image"
+                      src="https://visualpharm.com/assets/336/User-595b40b65ba036ed117d26d4.svg"
+                      key={user.id}
+                      alt={`${user.first_name} ${user.last_name}`}
+                    />
+                  ))
+              : 'Loading'}
           </div>
         </section>
 
@@ -140,12 +134,12 @@ class Landing extends Component {
           </p>
           <p className="section__text">The first step starts here.</p>
           <button className="btn btn__login">
-            <i className="fa fa-github" />{' '}Sign up with GitHub
+            <i className="fa fa-github" /> Sign up with GitHub
           </button>
         </section>
       </div>
-    );
+    )
   }
 }
 
-export default graphql(getData)(Landing);
+export default graphql(getData)(Landing)

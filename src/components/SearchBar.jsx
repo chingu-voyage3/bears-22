@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Downshift from 'downshift';
+import React, { Component } from 'react'
+import Downshift from 'downshift'
 // import { connect } from 'react-redux';
 
 class SearchBar extends Component {
@@ -7,7 +7,7 @@ class SearchBar extends Component {
   //   super(props);
   // }
 
-  render () {
+  render() {
     return (
       <div className="searchbar">
         <Downshift
@@ -25,11 +25,9 @@ class SearchBar extends Component {
             <div>
               <span
                 className={
-                  !isOpen && this.props.inputValue === '' ? (
-                    'd-none'
-                  ) : (
-                    'search__close'
-                  )
+                  !isOpen && this.props.inputValue === ''
+                    ? 'd-none'
+                    : 'search__close'
                 }
                 onClick={this.props.resetSearch}
               >
@@ -44,11 +42,13 @@ class SearchBar extends Component {
               />
               {isOpen ? (
                 <div className="search__popup">
-                  {[ ...new Set(this.props.items) ] // get unique values using "set"
+                  {[...new Set(this.props.items)] // get unique values using "set"
                     .filter(
-                      (i, index) => 
-                        index >= 8 ? '': (!inputValue ||
-                        i.toLowerCase().includes(inputValue.toLowerCase())) //if search result items > 8, not shown in popup
+                      (i, index) =>
+                        index >= 8
+                          ? ''
+                          : !inputValue ||
+                            i.toLowerCase().includes(inputValue.toLowerCase()) //if search result items > 8, not shown in popup
                     )
                     .map((item, index) => (
                       <div
@@ -69,8 +69,8 @@ class SearchBar extends Component {
           )}
         />
       </div>
-    );
+    )
   }
 }
 
-export default SearchBar;
+export default SearchBar
