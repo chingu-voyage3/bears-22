@@ -24,9 +24,7 @@ app.use(
 require('./passport')
 app.use(passport.initialize())
 app.use(passport.session())
-
-const authRouter = require('./authRouter')
-app.use('/', authRouter)
+app.use('/auth', auth)
 
 // Cross Origin Resource Sharing
 app.use(cors())

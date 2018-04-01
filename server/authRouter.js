@@ -1,46 +1,37 @@
 const express = require('express')
-const authRouter = express.Router()
 const passport = require('passport')
+const router = express.Router()
 
-authRouter.get('/auth/logout', (req, res) => {
-  req.logout()
-  res.redirect('http://localhost:3000/')
-})
-
-authRouter.get(
-  '/auth/github',
+router.get(
+  '/github',
   passport.authenticate('github', {
     scope: ['profile']
   })
 )
 
-authRouter.get(
-  '/auth/github/redirect',
-  passport.authenticate('github'),
-  (req, res) => {
-    // dev mode: http://localhost:3000/   prod mode: /
-    res.redirect('http://localhost:3000/')
-  }
+router.get(
+  '/github/redirect',
+  passport.authenticate('github', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  })
 )
 
-const authCheck = (req, res, next) => {
-  if (req.user) {
-    // If logged in
-    next()
-  } else {
-    // If user is not logged in
-    res.redirect('http://localhost:8080/auth/github')
-  }
+const isAuthenticated = (req, res, next) => {
+  if (req.user) return next()
+  else
+    return res.status(401).json({
+      error: 'Not authenticated'
+    })
 }
 
-authRouter.get('/isLoggedIn', function(req, res) {
-  if (req.user) {
-    console.log(req.user)
-    res.send(req.user)
-  } else {
-    console.log('Not logged in')
-    res.send('Not logged in')
-  }
+router.get('/user', isAuthenticated, function(req, res) {
+  res.status(200).json(req.user)
 })
 
-module.exports = authRouter
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
+
+module.exports = router
