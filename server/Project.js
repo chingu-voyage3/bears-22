@@ -10,4 +10,4 @@ const projectSchema = new Schema({
   users: [{ type: ObjectId, ref: 'User' }]
 })
 
-module.exports = mongoose.model('project', userSchema)
+module.exports = mongoose.model('project', projectSchema)
