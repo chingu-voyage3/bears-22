@@ -1,5 +1,6 @@
 const graphql = require('graphql')
 const User = require('./User')
+const Project = require('./Project')
 
 const {
   GraphQLObjectType,
@@ -8,10 +9,11 @@ const {
   GraphQLID,
   GraphQLInt,
   GraphQLList,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLBoolean
 } = graphql
 
-const UserType = new GraphQLObjectType({
+const userType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     id: { type: GraphQLID },
@@ -30,27 +32,44 @@ const UserType = new GraphQLObjectType({
   })
 })
 
+const projectType = new GraphQLObjectType({
+  name: 'Project',
+  fields: () => ({
+    title: { type: GraphQLString },
+    description: { type: GraphQLString },
+    skills: { type: GraphQLString },
+    help: { type: GraphQLBoolean },
+    users: { type: GraphQLID }
+  })
+})
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   fields: {
     getUserByID: {
-      type: UserType,
+      type: userType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return User.findOne({ _id: args.id })
       }
     },
     getUserByUsername: {
-      type: UserType,
+      type: userType,
       args: { username: { type: GraphQLString } },
       resolve(parent, args) {
         return User.findOne({ username: args.username })
       }
     },
     getAllUsers: {
-      type: new GraphQLList(UserType),
+      type: new GraphQLList(userType),
       resolve(parent, args) {
         return User.find({})
+      }
+    },
+    getAllProjects: {
+      type: new GraphQLList(projectType),
+      resolve(parent, args) {
+        return Project.find({})
       }
     }
   }
@@ -60,7 +79,7 @@ const RootMutation = new GraphQLObjectType({
   name: 'RootMutation',
   fields: {
     addUser: {
-      type: UserType,
+      type: userType,
       args: { githubID: { type: GraphQLString } },
       resolve(parent, args) {
         let user = new User({
@@ -70,10 +89,27 @@ const RootMutation = new GraphQLObjectType({
       }
     },
     deleteUser: {
-      type: UserType,
+      type: userType,
       args: { githubID: { type: GraphQLString } },
       resolve(parent, args) {
         return User.findOneAndRemove({ githubID: args.githubID })
+      }
+    },
+    addProject: {
+      type: projectType,
+      args: { title: { type: GraphQLString } },
+      resolve(parent, args) {
+        let project = new Project({
+          title: args.title
+        })
+        return title.save()
+      }
+    },
+    deleteProject: {
+      type: projectType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Project.findOneAndRemove({ _id: args.id })
       }
     }
   }
