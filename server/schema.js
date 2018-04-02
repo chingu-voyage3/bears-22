@@ -145,13 +145,34 @@ const RootMutation = new GraphQLObjectType({
         return project.save()
       }
     },
-    addUserToProject: {
+    toggleUserInProject: {
       type: ProjectType,
       args: {
         projectID: { type: GraphQLID },
         userID: { type: GraphQLID }
       },
-      resolve(parent, args) {}
+      resolve(parent, args) {
+        return Project.findOne(
+          { _id: args.projectID },
+          function(error, project) {
+            if (error) return error
+            // Check if user in project
+            let foundUser = project.users.find(function(e) {
+              return e == args.userID
+            })
+            // If user is in project, remove them from it
+            if (foundUser) {
+              project.users.pull(args.userID)
+              project.save()
+            } else {
+              // If user is not in project, add them to it
+              project.users.push(args.userID)
+              project.save()
+            }
+          },
+          { new: true }
+        )
+      }
     },
     toggleProjectNeedsHelp: {
       type: ProjectType,
