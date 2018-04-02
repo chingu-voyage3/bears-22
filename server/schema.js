@@ -25,14 +25,7 @@ const UserType = new GraphQLObjectType({
     bio: { type: GraphQLString },
     avatar_url: { type: GraphQLString },
     github_url: { type: GraphQLString },
-    blog_url: { type: GraphQLString },
-    projects: {
-      type: new GraphQLList(ProjectType),
-      resolve(parent, args) {
-        console.log(parent)
-        return Project.findById(parent.id)
-      }
-    }
+    blog_url: { type: GraphQLString }
   })
 })
 
@@ -43,12 +36,7 @@ const ProjectType = new GraphQLObjectType({
     title: { type: GraphQLString },
     description: { type: GraphQLString },
     skills: { type: new GraphQLList(GraphQLString) },
-    users: {
-      type: new GraphQLList(UserType),
-      resolve(parent, args) {
-        return User.findById('123')
-      }
-    },
+    users: { type: new GraphQLList(GraphQLID) },
     needsHelp: { type: GraphQLBoolean }
   })
 })
@@ -143,7 +131,7 @@ const RootMutation = new GraphQLObjectType({
         title: { type: GraphQLString },
         description: { type: GraphQLString },
         skills: { type: new GraphQLList(GraphQLString) },
-        users: { type: GraphQLString },
+        users: { type: new GraphQLList(GraphQLID) },
         needsHelp: { type: GraphQLBoolean }
       },
       resolve(parent, args) {
@@ -156,6 +144,14 @@ const RootMutation = new GraphQLObjectType({
         })
         return project.save()
       }
+    },
+    addUserToProject: {
+      type: ProjectType,
+      args: {
+        projectID: { type: GraphQLID },
+        userID: { type: GraphQLID }
+      },
+      resolve(parent, args) {}
     },
     toggleProjectNeedsHelp: {
       type: ProjectType,
