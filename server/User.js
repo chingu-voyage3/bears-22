@@ -3,17 +3,15 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
   githubID: String,
+  email: String,
   username: String,
-  first_name: String,
-  last_name: String,
+  name: String,
+  location: String,
   bio: String,
-  linkedin_url: String,
-  portfolio_url: String,
-  website_url: String,
-  twitter_url: String,
+  avatar_url: String,
+  github_url: String,
   blog_url: String,
-  city: String,
-  country: String
+  projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
 })
 
 module.exports = mongoose.model('user', userSchema)

@@ -22,29 +22,31 @@ passport.use(
       // scope: ['user:email']
     },
     (accessToken, refreshToken, profile, done) => {
+      console.log(profile)
       // passport callback function
       // check if user already exists
       User.findOne({ githubID: profile.id }).then(currentUser => {
         if (currentUser) {
           // If found
-          console.log('user is: ', currentUser)
+          console.log('Logged in as: ', currentUser)
           done(null, currentUser)
         } else {
           // If not, create user
           console.log('New profile:', profile)
           new User({
-            username: profile._json.login,
             githubID: profile._json.id,
-            first_name: profile._json.name,
-            bio: profile._json.bio,
             email: profile._json.email,
-            city: profile._json.location,
-            website_url: profile._json.html_url,
+            username: profile._json.login,
+            name: profile._json.name,
+            location: profile._json.location,
+            bio: profile._json.bio,
+            avatar_url: profile._json.avatar_url,
+            github_url: profile._json.html_url,
             blog_url: profile._json.blog
           })
             .save()
             .then(newUser => {
-              console.log('new user created: ' + newUser)
+              console.log('New user created: ' + newUser)
               done(null, newUser)
             })
         }
