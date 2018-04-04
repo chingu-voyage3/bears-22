@@ -5,7 +5,7 @@ const cookieSession = require('cookie-session')
 const graphqlHTTP = require('express-graphql')
 const schema = require('./schema')
 const mongoose = require('mongoose')
-require('dotenv').config()
+const dotenv = require('dotenv').config()
 const auth = require('./authRouter')
 const passportSetup = require('./passport')
 
