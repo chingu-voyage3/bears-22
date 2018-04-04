@@ -11,6 +11,10 @@ const passportSetup = require('./passport')
 
 const app = express()
 
+// Cross Origin Resource Sharing
+app.use(cors())
+app.options('*', cors())
+
 // Set up session handling
 app.use(
   cookieSession({
@@ -25,10 +29,6 @@ require('./passport')
 app.use(passport.initialize())
 app.use(passport.session())
 app.use('/auth', auth)
-
-// Cross Origin Resource Sharing
-app.use(cors())
-app.options('*', cors())
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
