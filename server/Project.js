@@ -5,7 +5,7 @@ const projectSchema = new Schema({
   title: String,
   description: String,
   skills: Array,
-  users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  users: [{ type: Schema.Types.String, ref: 'User' }],
   needsHelp: Boolean
 })
 

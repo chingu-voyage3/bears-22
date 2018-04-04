@@ -36,15 +36,10 @@ const ProjectType = new GraphQLObjectType({
     title: { type: GraphQLString },
     description: { type: GraphQLString },
     skills: { type: new GraphQLList(GraphQLString) },
-    //users: { type: new GraphQLList(GraphQLID) },
     users: {
       type: new GraphQLList(UserType),
       resolve(parent, args) {
-        return parent.map(function(obj) {
-          return User.findById(parent.id)
-        })
-
-        //Project.find({}).populate('users')
+        return User.find({ username: parent.users })
       }
     },
     needsHelp: { type: GraphQLBoolean }
@@ -141,7 +136,7 @@ const RootMutation = new GraphQLObjectType({
         title: { type: GraphQLString },
         description: { type: GraphQLString },
         skills: { type: new GraphQLList(GraphQLString) },
-        users: { type: new GraphQLList(GraphQLID) },
+        users: { type: new GraphQLList(GraphQLString) },
         needsHelp: { type: GraphQLBoolean }
       },
       resolve(parent, args) {
