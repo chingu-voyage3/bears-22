@@ -36,7 +36,17 @@ const ProjectType = new GraphQLObjectType({
     title: { type: GraphQLString },
     description: { type: GraphQLString },
     skills: { type: new GraphQLList(GraphQLString) },
-    users: { type: new GraphQLList(GraphQLID) },
+    //users: { type: new GraphQLList(GraphQLID) },
+    users: {
+      type: new GraphQLList(UserType),
+      resolve(parent, args) {
+        return parent.map(function(obj) {
+          return User.findById(parent.id)
+        })
+
+        //Project.find({}).populate('users')
+      }
+    },
     needsHelp: { type: GraphQLBoolean }
   })
 })
@@ -81,7 +91,7 @@ const RootQuery = new GraphQLObjectType({
     getAllProjects: {
       type: new GraphQLList(ProjectType),
       resolve(parent, args) {
-        return Project.find({})
+        return Project.find({}) // .populate('users')
       }
     }
   }

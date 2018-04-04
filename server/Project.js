@@ -9,4 +9,4 @@ const projectSchema = new Schema({
   needsHelp: Boolean
 })
 
-module.exports = mongoose.model('project', projectSchema)
+module.exports = mongoose.model('Project', projectSchema)
