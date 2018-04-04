@@ -25,7 +25,8 @@ const UserType = new GraphQLObjectType({
     bio: { type: GraphQLString },
     avatar_url: { type: GraphQLString },
     github_url: { type: GraphQLString },
-    blog_url: { type: GraphQLString }
+    blog_url: { type: GraphQLString },
+    skills: { type: new GraphQLList(GraphQLString) }
   })
 })
 
@@ -63,6 +64,20 @@ const RootQuery = new GraphQLObjectType({
         return User.findOne({ username: args.username })
       }
     },
+    getUserByEmail: {
+      type: UserType,
+      args: { email: { type: GraphQLString } },
+      resolve(parent, args) {
+        return User.findOne({ email: args.email })
+      }
+    },
+    getUsersBySkill: {
+      type: new GraphQLList(UserType),
+      args: { skill: { type: GraphQLString } },
+      resolve(parent, args) {
+        return User.find({ skills: args.skill })
+      }
+    },
     getAllUsers: {
       type: new GraphQLList(UserType),
       resolve(parent, args) {
@@ -86,7 +101,7 @@ const RootQuery = new GraphQLObjectType({
     getAllProjects: {
       type: new GraphQLList(ProjectType),
       resolve(parent, args) {
-        return Project.find({}) // .populate('users')
+        return Project.find({})
       }
     }
   }
@@ -106,7 +121,8 @@ const RootMutation = new GraphQLObjectType({
         bio: { type: GraphQLString },
         avatar_url: { type: GraphQLString },
         github_url: { type: GraphQLString },
-        blog_url: { type: GraphQLString }
+        blog_url: { type: GraphQLString },
+        skills: { type: new GraphQLList(GraphQLString) }
       },
       resolve(parent, args) {
         let user = new User({
@@ -118,12 +134,20 @@ const RootMutation = new GraphQLObjectType({
           bio: args.bio,
           avatar_url: args.avatar_url,
           github_url: args.github_url,
-          blog_url: args.blog_url
+          blog_url: args.blog_url,
+          skills: args.skills
         })
         return user.save()
       }
     },
     deleteUser: {
+      type: UserType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return User.findOneAndRemove({ _id: args.id })
+      }
+    },
+    deleteUserByGithubID: {
       type: UserType,
       args: { githubID: { type: GraphQLString } },
       resolve(parent, args) {
