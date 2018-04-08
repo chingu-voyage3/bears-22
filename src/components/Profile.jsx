@@ -34,16 +34,16 @@ const profileQuery = gql`
       }
     }
   }
-  `
-  const updateUser = gql`
-    mutation updateUser($email: String!) {
-      user(email: $email) {
-        updateUser(user_data: {username: "jordanleo7"}) {
-          id
-        }
+`
+const updateUser = gql`
+  mutation updateUser($email: String!) {
+    user(email: $email) {
+      updateUser(user_data: { username: "jordanleo7" }) {
+        id
       }
     }
-  `
+  }
+`
 class Profile extends React.Component {
   state = {
     EditProfile: true,
@@ -64,14 +64,16 @@ class Profile extends React.Component {
   }
   handleSaveChanges = () => {
     console.log(this.state)
-    this.props.mutate({
-      variables: { bio: "I'm learning how to use GraphQL." }
-    })
+    this.props
+      .mutate({
+        variables: { bio: "I'm learning how to use GraphQL." }
+      })
       .then(({ data }) => {
-        console.log('got data', data);
-      }).catch((error) => {
-        console.log('there was an error sending the query', error);
-      });
+        console.log('got data', data)
+      })
+      .catch(error => {
+        console.log('there was an error sending the query', error)
+      })
   }
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value })
@@ -319,4 +321,3 @@ export default connect(mapStateToProps)(
     graphql(updateUser)
   )(Profile)
 )
-

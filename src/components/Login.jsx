@@ -15,43 +15,48 @@ class Login extends Component {
   render() {
     return (
       <div className="section__hero">
-      <div className="login-container">
-        <div className="row">
-          <div className="login__width mx-auto section section--dark">
-            <div className="section__feature login-icon-container">
-              <img src={face} alt="abc" className="icon login-icon d-block mx-auto mb-1" />
-              <p className="user__headline--yellow mb-4">Member Login</p>
+        <div className="login-container">
+          <div className="row">
+            <div className="login__width mx-auto section section--dark">
+              <div className="section__feature login-icon-container">
+                <img
+                  src={face}
+                  alt="abc"
+                  className="icon login-icon d-block mx-auto mb-1"
+                />
+                <p className="user__headline--yellow mb-4">Member Login</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="login__width mx-auto section section--black">
+              <div className="login__button mb-4">
+                <a href="/auth/github">
+                  <div>
+                    <span className="btn btn__login">
+                      <i
+                        className="fa fa-github text-dark"
+                        aria-hidden="true"
+                      />{' '}
+                      Login via Github
+                    </span>
+                  </div>
+                </a>
+
+                <p className="login__text">Need an account?</p>
+                <a href="https://chingu-cohorts.github.io/chingu-directory/">
+                  <div className="login__button-register">
+                    <span className="btn btn__login">
+                      <img src={add} alt="" className="login--face" /> Register
+                      via Chingu
+                    </span>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="row">
-          <div className="login__width mx-auto section section--black">
-            <div className="login__button mb-4">
-              <a href="/auth/github">
-                <div>
-                  <span className="btn btn__login">
-                    <i className="fa fa-github text-dark" aria-hidden="true" />
-                    {' '}Login via Github
-                  </span>
-                </div>
-              </a>
-
-              <p className="login__text">
-                Need an account?
-              </p>
-              <a href="https://chingu-cohorts.github.io/chingu-directory/">
-                <div className="login__button-register">
-                  <span className="btn btn__login">
-                  <img src={add} alt="" className="login--face" />
-                    {' '} Register via Chingu
-                  </span>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-</div>
       </div>
     )
   }

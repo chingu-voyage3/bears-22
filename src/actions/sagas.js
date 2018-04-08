@@ -35,7 +35,10 @@ export function* watchLogin() {
 export function* checkLoginStatus() {
   try {
     console.log('fetching user login status...')
-    const response = yield call(fetch, '/auth/user', { credentials: 'include' })
+    const response = yield call(
+      fetch,
+      'http://localhost:8080/auth/user' /*{ credentials: 'include' }*/
+    )
     if (response.status === 200) {
       //logined user
       const res = yield response.json()

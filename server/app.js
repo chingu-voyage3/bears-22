@@ -1,48 +1,60 @@
-// Imports
 const express = require('express')
 const cors = require('cors')
 const passport = require('passport')
 const cookieSession = require('cookie-session')
+const graphqlHTTP = require('express-graphql')
+const schema = require('./schema')
+const mongoose = require('mongoose')
+const dotenv = require('dotenv').config()
+const auth = require('./authRouter')
+const passportSetup = require('./passport')
 
-const api = require('./routes/api')
-const auth = require('./routes/auth')
-const passportSetup = require('./config/passport-setup')
-const keys = require('./config/keys')
-const data = require('./data.json')
-
-// Set up express app
 const app = express()
 
-// Set up middlewares
+// Cross Origin Resource Sharing
 app.use(cors())
+app.options('*', cors())
 
-//Set up session handling
+// Set up session handling
 app.use(
   cookieSession({
-    maxAge: 60 * 60 * 1000, //Expires in an hour
-    keys: [keys.session.encryptionKey]
+    // 1 hour session
+    maxAge: 60 * 60 * 1000,
+    keys: [process.env.SESSION_COOKIE_KEY]
   })
 )
+
+// Initialize Passport
+require('./passport')
 app.use(passport.initialize())
 app.use(passport.session())
-
-// app.use(express.static('public')); // Serve static files
-
-// Set up routes
-app.get('/users', (req, res) => {
-  res.send(data)
-})
-
-app.get('/profile', (req, res) => {
-  if (req.user) res.send(req.user)
-  else res.send('Not logged in')
-})
-
-// app.use('/api', api);
 app.use('/auth', auth)
 
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI)
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB')
+})
+
+// GraphQL connection
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema: schema,
+    graphiql: true
+  })
+)
+
+// Priority serve any static files.
+app.use(express.static('build'))
+
+// All remaining requests return the React app, so it can handle routing
+app.route('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../build', 'index.html'))
+})
+
 // Listen for requests on port 8080
-const PORT = process.env.port || 8080
+const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
-  console.log(`Sever running at http://localhost:${PORT} ... `)
+  console.log(`Server is listening on port ${PORT}`)
 })
