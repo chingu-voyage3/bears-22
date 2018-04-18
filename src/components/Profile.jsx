@@ -6,7 +6,7 @@ import gql from 'graphql-tag'
 
 const profileQuery = gql`
   query profileQuery($email: String!) {
-    user(email: $email) {
+    getUserByEmail(email: $email) {
       email
       username
       name
@@ -14,15 +14,6 @@ const profileQuery = gql`
       location
       bio
       skills
-    }
-  }
-`
-const updateUser = gql`
-  mutation updateUser($email: String!) {
-    user(email: $email) {
-      updateUser(user_data: { username: "jordanleo7" }) {
-        id
-      }
     }
   }
 `
