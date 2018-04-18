@@ -109,6 +109,5 @@ export default connect(mapStateToProps)(
         }
       })
     }),
-    graphql(updateUser)
   )(Profile)
 )
