@@ -45,18 +45,6 @@ const updateUser = gql`
   }
 `
 class Profile extends React.Component {
-  state = {
-    EditProfile: true,
-    profile_img: '',
-    first_name: '',
-    last_name: '',
-    username: '',
-    email: '',
-    city: '',
-    country: '',
-    bio: '',
-    skills: ''
-  }
   render() {
     const { data } = this.props
     if (data.error) {
