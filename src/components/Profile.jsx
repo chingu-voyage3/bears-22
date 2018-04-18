@@ -45,21 +45,20 @@ class Profile extends React.Component {
                 </div>
                 <div className="profile__header-text col-8">
                   <h3 className="align-middle">
-                    {this.props.data.user.first_name}{' '}
-                    {this.props.data.user.last_name}
+                    {this.props.data.name}
                   </h3>
                   <p className="align-middle">
-                    {this.props.data.user.city}, {this.props.data.user.country}
+                    {this.props.data.location}
                   </p>
                   <a
-                    href={'mailto:' + this.props.data.user.email}
+                    href={'mailto:' + this.props.data.email}
                     className="align-middle"
                   >
-                    {this.props.data.user.email}
+                    {this.props.data.email}
                   </a>
                 </div>
                 <a
-                  href={'mailto:' + this.props.data.user.email}
+                  href={'mailto:' + this.props.data.email}
                   className="profile__button-contact"
                 >
                   Contact
@@ -69,9 +68,9 @@ class Profile extends React.Component {
               <section className="profile__bg-black row">
                 <div className="col-12">
                   <h3 className="profile__category-text">About</h3>
-                  <p>{this.props.data.user.bio}</p>
+                  <p>{this.props.data.bio}</p>
                   <h3 className="profile__category-text">Skills</h3>
-                  <p>{this.props.data.user.skills}</p>
+                  <p>{this.props.data.skills}</p>
                 </div>
               </section>
             </div>
