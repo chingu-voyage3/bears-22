@@ -9,29 +9,11 @@ const profileQuery = gql`
     user(email: $email) {
       email
       username
-      first_name
-      last_name
-      status
-      profile_image
-      portfolio_url
-      projects {
-        id
-        title
-        description
-      }
-      city {
-        id
-        name
-      }
-      country {
-        id
-        name
-      }
+      name
+      avatar_url
+      location
       bio
-      skills {
-        id
-        name
-      }
+      skills
     }
   }
 `
