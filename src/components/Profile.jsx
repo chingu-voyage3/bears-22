@@ -57,27 +57,6 @@ class Profile extends React.Component {
     bio: '',
     skills: ''
   }
-  handleViewProfile = () => {
-    this.setState(({ EditProfile }) => ({
-      EditProfile: false
-    }))
-  }
-  handleSaveChanges = () => {
-    console.log(this.state)
-    this.props
-      .mutate({
-        variables: { bio: "I'm learning how to use GraphQL." }
-      })
-      .then(({ data }) => {
-        console.log('got data', data)
-      })
-      .catch(error => {
-        console.log('there was an error sending the query', error)
-      })
-  }
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value })
-  }
   render() {
     const { data } = this.props
     if (data.error) {
