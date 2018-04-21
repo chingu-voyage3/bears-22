@@ -19,8 +19,7 @@ const profileQuery = gql`
 `
 class Profile extends React.Component {
   render() {
-    const { data } = this.props
-    if (data.error) {
+    if (!this.props.userInfo) {
       return (
         <div className="profile">
           <h1 className="profile__header">Profile</h1>
@@ -30,58 +29,56 @@ class Profile extends React.Component {
           </Link>
         </div>
       )
+    } else if (this.props.data.loading) {
+      return (
+        <div className="profile">
+          <h1 className="profile__header">Profile</h1>
+          <p>Loading...</p>
+          <Link to={'/'}>
+            <p>Back to Home</p>
+          </Link>
+        </div>
+      )
     } else {
-      if (!data.loading) {
-        return (
-          <div className="profile__body container-fluid">
-            {/*Image and Basic Info*/}
-            <section className="profile__view-bg-grey row">
-              <div className="col-4">
-                <img
-                  src="http://res.cloudinary.com/devvzv96d/image/upload/v1516176891/new_years_small_nvsldx.jpg"
-                  alt="Profile Image"
-                  className="profile__image col-4"
-                />
-              </div>
-              <div className="profile__header-text col-8">
-                <h3 className="align-middle">{this.props.data.name}</h3>
-                <p className="align-middle">{this.props.data.location}</p>
-                <a
-                  href={'mailto:' + this.props.data.email}
-                  className="align-middle"
-                >
-                  {this.props.data.email}
-                </a>
-              </div>
+      return (
+        <div className="profile__body container-fluid">
+          {/*Image and Basic Info*/}
+          <section className="profile__view-bg-grey row">
+            <div className="col-4">
+              <img
+                src="http://res.cloudinary.com/devvzv96d/image/upload/v1516176891/new_years_small_nvsldx.jpg"
+                alt="Profile Image"
+                className="profile__image col-4"
+              />
+            </div>
+            <div className="profile__header-text col-8">
+              <h3 className="align-middle">{this.props.userInfo.name}</h3>
+              <p className="align-middle">{this.props.userInfo.location}</p>
               <a
                 href={'mailto:' + this.props.data.email}
-                className="profile__button-contact"
+                className="align-middle"
               >
-                Contact
+                {this.props.userInfo.email}
               </a>
-            </section>
-            {/*About and Skills*/}
-            <section className="profile__bg-black row">
-              <div className="col-12">
-                <h3 className="profile__category-text">About</h3>
-                <p>{this.props.data.bio}</p>
-                <h3 className="profile__category-text">Skills</h3>
-                <p>{this.props.data.skills}</p>
-              </div>
-            </section>
-          </div>
-        )
-      } else {
-        return (
-          <div className="profile">
-            <h1 className="profile__header">Profile</h1>
-            <p>Loading...</p>
-            <Link to={'/'}>
-              <p>Back to Home</p>
-            </Link>
-          </div>
-        )
-      }
+            </div>
+            <a
+              href={'mailto:' + this.props.userInfo.email}
+              className="profile__button-contact"
+            >
+              Contact
+            </a>
+          </section>
+          {/*About and Skills*/}
+          <section className="profile__bg-black row">
+            <div className="col-12">
+              <h3 className="profile__category-text">About</h3>
+              <p>{this.props.userInfo.bio}</p>
+              <h3 className="profile__category-text">Skills</h3>
+              <p>{this.props.userInfo.skills}</p>
+            </div>
+          </section>
+        </div>
+      )
     }
   }
 }
