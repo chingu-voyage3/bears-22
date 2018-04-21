@@ -42,8 +42,7 @@ class Landing extends Component {
           </div>
           <div className="col-xs-12 col-sm-10 col-md-6 col-xl-4 mx-auto">
             <p>
-              <span className="text--primary">Doum </span> is a platform that
-              connects developers with{' '}
+              Doum is a platform that connects developers with{' '}
               <a
                 href="https://chingu-cohorts.github.io/chingu-directory/"
                 target="_blank"
@@ -57,9 +56,19 @@ class Landing extends Component {
             </p>
           </div>
 
-          <button className="btn btn__login">
-            <i className="fa fa-github" /> Sign up with GitHub
-          </button>
+          <div className="login__button mb-4">
+          <a href="/auth/github">
+            <div>
+              <span className="btn btn__login">
+                <i
+                  className="fa fa-github text-dark"
+                  aria-hidden="true"
+                />{' '}
+                Sign up with GitHub
+              </span>
+            </div>
+          </a>
+          </div>
         </section>
 
         {/* How It Works */}
@@ -140,9 +149,19 @@ class Landing extends Component {
             to new situations.
           </p>
           <p className="section__text">The first step starts here.</p>
-          <button className="btn btn__login">
-            <i className="fa fa-github" /> Sign up with GitHub
-          </button>
+          <div className="login__button mb-4">
+          <a href="/auth/github">
+            <div>
+              <span className="btn btn__login">
+                <i
+                  className="fa fa-github text-dark"
+                  aria-hidden="true"
+                />{' '}
+                Sign up with GitHub
+              </span>
+            </div>
+          </a>
+          </div>
         </section>
       </div>
     )
