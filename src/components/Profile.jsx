@@ -309,15 +309,12 @@ const mapStateToProps = state => {
 //export default connect(mapStateToProps)(Profile)
 
 export default connect(mapStateToProps)(
-  compose(
-    graphql(profileQuery, {
-      options: ownProps => ({
-        variables: {
-          user_id: ownProps.userInfo.id,
-          email: ownProps.userInfo.email
-        }
-      })
-    }),
-    graphql(updateUser)
-  )(Profile)
-)
+  graphql(profileQuery, {
+    options: ownProps => ({
+      variables: {
+        user_id: ownProps.userInfo.id,
+        email: ownProps.userInfo.email
+      }
+    })
+  })(Profile)
+) 
