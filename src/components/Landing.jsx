@@ -8,22 +8,29 @@ import check from '../assets/ic_check_white_48dp_2x.png'
 
 const getData = gql`
   query {
-    users {
+    getAllUsers {
       id
-      first_name
-      last_name
-      profile_image
+      username
+      name
+      avatar_url
+      bio
     }
-    projects {
+    getAllProjects { 
       id
       title
+      description
+      skills
+      users {
+        id
+      }
+      needsHelp
     }
   }
 `
 
 class Landing extends Component {
   render() {
-    const { users, projects } = this.props.data
+    console.log(this.props)
     return (
       <div>
         {/* Hero */}
@@ -90,10 +97,10 @@ class Landing extends Component {
               devGaido provides easy to follow learning paths that help you
               reach your goal without the hassle.
             </p> */}
-            {projects
-              ? projects.slice(0, 4).map(project => (
-                  <div id={project.id} className="section__project">
-                    <h5>{project.title}</h5>
+            {this.props.data.getAllProjects
+              ? this.props.data.getAllProjects.slice(0, 4).map(project => (
+                  <div key={project.id} id={project.id} className="section__project">
+                    <h5>{project.title} &middot; {project.description}</h5>
                   </div>
                 ))
               : 'Loading'}
@@ -109,13 +116,13 @@ class Landing extends Component {
             finish their project.
           </p>
           <div className="section__users">
-            {users
-              ? users
+            {this.props.data.getAllUsers
+              ? this.props.data.getAllUsers
                   .slice(0, 24)
                   .map(user => (
                     <img
                       className="section__users__image"
-                      src="https://visualpharm.com/assets/336/User-595b40b65ba036ed117d26d4.svg"
+                      src={user.avatar_url || "https://visualpharm.com/assets/336/User-595b40b65ba036ed117d26d4.svg"}
                       key={user.id}
                       alt={`${user.first_name} ${user.last_name}`}
                     />
