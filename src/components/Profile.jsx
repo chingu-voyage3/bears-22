@@ -33,47 +33,43 @@ class Profile extends React.Component {
     } else {
       if (!data.loading) {
         return (
-            <div className="profile__body container-fluid">
-              {/*Image and Basic Info*/}
-              <section className="profile__view-bg-grey row">
-                <div className="col-4">
-                  <img
-                    src="http://res.cloudinary.com/devvzv96d/image/upload/v1516176891/new_years_small_nvsldx.jpg"
-                    alt="Profile Image"
-                    className="profile__image col-4"
-                  />
-                </div>
-                <div className="profile__header-text col-8">
-                  <h3 className="align-middle">
-                    {this.props.data.name}
-                  </h3>
-                  <p className="align-middle">
-                    {this.props.data.location}
-                  </p>
-                  <a
-                    href={'mailto:' + this.props.data.email}
-                    className="align-middle"
-                  >
-                    {this.props.data.email}
-                  </a>
-                </div>
+          <div className="profile__body container-fluid">
+            {/*Image and Basic Info*/}
+            <section className="profile__view-bg-grey row">
+              <div className="col-4">
+                <img
+                  src="http://res.cloudinary.com/devvzv96d/image/upload/v1516176891/new_years_small_nvsldx.jpg"
+                  alt="Profile Image"
+                  className="profile__image col-4"
+                />
+              </div>
+              <div className="profile__header-text col-8">
+                <h3 className="align-middle">{this.props.data.name}</h3>
+                <p className="align-middle">{this.props.data.location}</p>
                 <a
                   href={'mailto:' + this.props.data.email}
-                  className="profile__button-contact"
+                  className="align-middle"
                 >
-                  Contact
+                  {this.props.data.email}
                 </a>
-              </section>
-              {/*About and Skills*/}
-              <section className="profile__bg-black row">
-                <div className="col-12">
-                  <h3 className="profile__category-text">About</h3>
-                  <p>{this.props.data.bio}</p>
-                  <h3 className="profile__category-text">Skills</h3>
-                  <p>{this.props.data.skills}</p>
-                </div>
-              </section>
-            </div>
+              </div>
+              <a
+                href={'mailto:' + this.props.data.email}
+                className="profile__button-contact"
+              >
+                Contact
+              </a>
+            </section>
+            {/*About and Skills*/}
+            <section className="profile__bg-black row">
+              <div className="col-12">
+                <h3 className="profile__category-text">About</h3>
+                <p>{this.props.data.bio}</p>
+                <h3 className="profile__category-text">Skills</h3>
+                <p>{this.props.data.skills}</p>
+              </div>
+            </section>
+          </div>
         )
       } else {
         return (
@@ -108,4 +104,4 @@ export default connect(mapStateToProps)(
       }
     })
   })(Profile)
-) 
+)
