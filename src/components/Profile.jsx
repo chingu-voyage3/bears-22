@@ -6,7 +6,7 @@ import gql from 'graphql-tag'
 
 const profileQuery = gql`
   query profileQuery($email: String!) {
-    getUserByEmail(email: $email) {
+    getUserByUsername(username: $username) {
       email
       username
       name
