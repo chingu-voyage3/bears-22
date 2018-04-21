@@ -72,5 +72,15 @@
     "url": "https://github.com/chingu-voyage3/bears-22/issues"
   },
   "homepage": "https://github.com/chingu-voyage3/bears-22#readme",
-  "proxy": "http://localhost:8080"
+  "proxy": {
+    "/auth": {
+      "target": "http://localhost:8080/"
+    },
+    "/users": {
+      "target": "http://localhost:8080/"
+    },
+    "/graphql": {
+      "target": "http://localhost:8080/"
+    }
+  }
 }
