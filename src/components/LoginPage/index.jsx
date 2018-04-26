@@ -5,9 +5,6 @@ import face from '../../assets/ic_face_white_48dp_2x.png'
 import add from '../../assets/ic_person_add_48pt_2x.png'
 
 class LoginPage extends Component {
-  constructor(props) {
-    super(props)
-  }
   componentDidMount() {
     this.props.checkLoginStatus()
     console.log(this.props.userInfo)
