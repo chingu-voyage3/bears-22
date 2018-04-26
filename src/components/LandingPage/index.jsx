@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import create from '../assets/ic_create_white_48dp_2x.png'
-import face from '../assets/ic_face_white_48dp_2x.png'
-import group from '../assets/ic_group_white_48dp_2x.png'
-import check from '../assets/ic_check_white_48dp_2x.png'
+import create from '../../assets/ic_create_white_48dp_2x.png'
+import face from '../../assets/ic_face_white_48dp_2x.png'
+import group from '../../assets/ic_group_white_48dp_2x.png'
+import check from '../../assets/ic_check_white_48dp_2x.png'
 
 const getData = gql`
   query {
@@ -15,7 +15,7 @@ const getData = gql`
       avatar_url
       bio
     }
-    getAllProjects { 
+    getAllProjects {
       id
       title
       description
@@ -28,7 +28,7 @@ const getData = gql`
   }
 `
 
-class Landing extends Component {
+class LandingPage extends Component {
   render() {
     console.log(this.props)
     return (
@@ -57,17 +57,14 @@ class Landing extends Component {
           </div>
 
           <div className="login__button mb-4">
-          <a href="/auth/github">
-            <div>
-              <span className="btn btn__login">
-                <i
-                  className="fa fa-github text-dark"
-                  aria-hidden="true"
-                />{' '}
-                Sign up with GitHub
-              </span>
-            </div>
-          </a>
+            <a href="/auth/github">
+              <div>
+                <span className="btn btn__login">
+                  <i className="fa fa-github text-dark" aria-hidden="true" />{' '}
+                  Sign up with GitHub
+                </span>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -108,8 +105,14 @@ class Landing extends Component {
             </p> */}
             {this.props.data.getAllProjects
               ? this.props.data.getAllProjects.slice(0, 4).map(project => (
-                  <div key={project.id} id={project.id} className="section__project">
-                    <h5>{project.title} &middot; {project.description}</h5>
+                  <div
+                    key={project.id}
+                    id={project.id}
+                    className="section__project"
+                  >
+                    <h5>
+                      {project.title} &middot; {project.description}
+                    </h5>
                   </div>
                 ))
               : 'Loading'}
@@ -131,7 +134,10 @@ class Landing extends Component {
                   .map(user => (
                     <img
                       className="section__users__image"
-                      src={user.avatar_url || "https://visualpharm.com/assets/336/User-595b40b65ba036ed117d26d4.svg"}
+                      src={
+                        user.avatar_url ||
+                        'https://visualpharm.com/assets/336/User-595b40b65ba036ed117d26d4.svg'
+                      }
                       key={user.id}
                       alt={`${user.first_name} ${user.last_name}`}
                     />
@@ -150,17 +156,14 @@ class Landing extends Component {
           </p>
           <p className="section__text">The first step starts here.</p>
           <div className="login__button mb-4">
-          <a href="/auth/github">
-            <div>
-              <span className="btn btn__login">
-                <i
-                  className="fa fa-github text-dark"
-                  aria-hidden="true"
-                />{' '}
-                Sign up with GitHub
-              </span>
-            </div>
-          </a>
+            <a href="/auth/github">
+              <div>
+                <span className="btn btn__login">
+                  <i className="fa fa-github text-dark" aria-hidden="true" />{' '}
+                  Sign up with GitHub
+                </span>
+              </div>
+            </a>
           </div>
         </section>
       </div>
@@ -168,4 +171,4 @@ class Landing extends Component {
   }
 }
 
-export default graphql(getData)(Landing)
+export default graphql(getData)(LandingPage)

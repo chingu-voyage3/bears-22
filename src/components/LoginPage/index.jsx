@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { verifyLogin } from '../actions'
-import face from '../assets/ic_face_white_48dp_2x.png'
-import add from '../assets/ic_person_add_48pt_2x.png'
+import { verifyLogin } from '../../actions'
+import face from '../../assets/ic_face_white_48dp_2x.png'
+import add from '../../assets/ic_person_add_48pt_2x.png'
 
-class Login extends Component {
+class LoginPage extends Component {
   constructor(props) {
     super(props)
   }
@@ -79,4 +79,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

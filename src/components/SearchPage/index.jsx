@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import { watchFilter } from '../actions'
+import { watchFilter } from '../../actions'
 
 import SearchBar from './SearchBar'
 import SearchFilter from './SearchFilter'
@@ -68,16 +68,13 @@ const searchQuery = gql`
 `
 
 class Search extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isSearchToggleOn: true,
-      isSearchFilterOpen: true,
-      selectedItem: '', //for search bar
-      search: 'projects',
-      inputValue: '',
-      selectedSkills: []
-    }
+  state = {
+    isSearchToggleOn: true,
+    isSearchFilterOpen: true,
+    selectedItem: '', //for search bar
+    search: 'projects',
+    inputValue: '',
+    selectedSkills: []
   }
 
   handleSearchToggleClick = () => {
