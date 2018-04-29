@@ -11,13 +11,13 @@
     "date-fns": "^1.29.0",
     "dotenv": "^5.0.1",
     "downshift": "^1.31.12",
-    "eslint": "^4.19.1",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
     "graphql-client": "^2.0.1",
     "graphql-tag": "^2.9.1",
-    "graphql-yoga": "^1.10.0",
+    "graphql-tools": "^3.0.0",
+    "graphql-yoga": "^1.12.1",
     "history": "^4.7.2",
     "mongoose": "^5.0.16",
     "node-sass-chokidar": "1.2.2",
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.7.0",
     "faker": "^4.1.0",
     "husky": "^0.14.3",
@@ -53,16 +54,20 @@
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "data": "node server/fakeDataGenerator.js",
-    "format":
-      "prettier --write --single-quote --no-semi --parser=flow --print-width=80 \"src/**/*.{js,jsx}\"   \"server/**/*.js\" ",
+    "format": "prettier --write --single-quote --no-semi --parser=flow --print-width=80 \"src/**/*.{js,jsx}\"   \"server/**/*.js\" ",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": ["npm run format", "git add"],
-    "*.jsx": ["npm run format", "git add"]
+    "*.js": [
+      "npm run format",
+      "git add"
+    ],
+    "*.jsx": [
+      "npm run format",
+      "git add"
+    ]
   },
   "description": "",
   "main": "app.js",

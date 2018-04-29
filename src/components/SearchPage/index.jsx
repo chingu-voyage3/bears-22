@@ -278,7 +278,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     updateData: e => {
-      console.log(e)
       dispatch(watchFilter(e))
     }
   }
