@@ -44,7 +44,7 @@ const updateUser = gql`
     }
   }
 `
-class Profile extends React.Component {
+class Profile extends Component {
   state = {
     EditProfile: true,
     profile_img: '',
@@ -57,6 +57,7 @@ class Profile extends React.Component {
     bio: '',
     skills: ''
   }
+
   handleViewProfile = () => {
     this.setState(({ EditProfile }) => ({
       EditProfile: false
@@ -106,7 +107,7 @@ class Profile extends React.Component {
                   alt=""
                 />
                 <button className="profile__edit-image-button">
-                  <i class="material-icons">add</i>
+                  <i className="material-icons">add</i>
                 </button>
               </div>
               <form>
@@ -235,7 +236,7 @@ class Profile extends React.Component {
                   onClick={this.handleSaveChanges}
                   className="profile__button-save"
                 >
-                  <i class="material-icons">save</i>Save Changes
+                  <i className="material-icons">save</i>Save Changes
                 </button>
               </footer>
             </div>
