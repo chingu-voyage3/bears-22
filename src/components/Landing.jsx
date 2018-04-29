@@ -44,7 +44,7 @@ class Landing extends Component {
             <p>
               Doum is a platform that connects developers with{' '}
               <a
-                href="https://chingu-cohorts.github.io/chingu-directory/"
+                href="https://chingu.io/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text--primary"
