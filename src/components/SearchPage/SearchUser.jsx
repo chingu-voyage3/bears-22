@@ -33,7 +33,7 @@ class SearchUser extends Component {
           </div>
         </div>
       )
-    } else if (!data.loading && data.networkStatus === 7) {
+    } else if (!data.loading && data.networkStatus === 8) {
       return (
         <Transition timeout={500}>
           <div
