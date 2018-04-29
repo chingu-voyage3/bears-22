@@ -275,11 +275,17 @@ a {
 
   &__hero {
     background-image: url('../src/assets/hero image.jpg');
-    background-size: 300%;
+    background-size: 320%;
     background-position: center;
 
-    @media screen and (min-width: 737px) {
-      background-size: 200%;
+    @media #{$tablet} {
+      background-size: 130%;
+    }
+    @media #{$laptop} {
+      background-size: 100%;
+    }
+    @media #{$desktop} {
+      background-size: 100%;
     }
 
     p {
