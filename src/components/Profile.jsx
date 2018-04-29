@@ -46,7 +46,7 @@ class Profile extends React.Component {
           <section className="profile__view-bg-grey row">
             <div className="col-4">
               <img
-                src="http://res.cloudinary.com/devvzv96d/image/upload/v1516176891/new_years_small_nvsldx.jpg"
+                src={this.props.userInfo.avatar_url}
                 alt="Profile Image"
                 className="profile__image col-4"
               />
