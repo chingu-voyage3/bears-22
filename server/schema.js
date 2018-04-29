@@ -40,7 +40,7 @@ const ProjectType = new GraphQLObjectType({
     users: {
       type: new GraphQLList(UserType),
       resolve(parent, args) {
-        return User.find({ username: parent.users })
+        return User.find({ githubID: parent.users })
       }
     },
     needsHelp: { type: GraphQLBoolean }
