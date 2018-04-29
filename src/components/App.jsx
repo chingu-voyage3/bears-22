@@ -18,13 +18,13 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import rootSaga from '../actions/sagas'
 //import thunk from 'redux-thunk'
 import mainReducer from '../reducers'
-import User from './User'
-import Landing from './Landing'
-import Login from './Login'
+import UserPage from './UserPage'
+import LandingPage from './LandingPage'
+import LoginPage from './LoginPage'
 import Header from './Header'
 import Footer from './Footer'
-import Profile from './Profile'
-import Search from './Search'
+import ProfilePage from './ProfilePage'
+import SearchPage from './SearchPage'
 
 const history = createBrowserHistory()
 // const store = createStore(mainReducer, applyMiddleware(thunk))
@@ -61,11 +61,11 @@ const App = () => (
           <Route path="/" component={Header} />
           <div id="body">
             <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/user-list" component={User} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/search" component={Search} />
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/user-list" component={UserPage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/profile" component={ProfilePage} />
+              <Route exact path="/search" component={SearchPage} />
             </Switch>
             <Route path="/" component={Footer} />
           </div>

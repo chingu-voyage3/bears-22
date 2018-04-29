@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { userListReq } from '../actions'
+import { userListReq } from '../../actions'
 import { Link } from 'react-router-dom'
 
 class User extends Component {

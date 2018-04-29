@@ -3,14 +3,11 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class Header extends Component {
-  constructor() {
-    super()
-    this.state = {
-      toggleMenu: false
-    }
-    this.onToggle = this.onToggle.bind(this)
+  state = {
+    toggleMenu: false
   }
-  onToggle() {
+
+  onToggle = () => {
     if (window.innerWidth < 1200) {
       this.setState((prevState, props) => ({
         toggleMenu: !prevState.toggleMenu
@@ -27,6 +24,7 @@ class Header extends Component {
       }
     }
   }
+
   render() {
     return (
       <div>
