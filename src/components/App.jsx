@@ -24,6 +24,7 @@ import LoginPage from './LoginPage'
 import Header from './Header'
 import Footer from './Footer'
 import ProfilePage from './ProfilePage'
+import ProjectPage from './ProjectPage'
 import SearchPage from './SearchPage'
 
 const history = createBrowserHistory()
@@ -65,6 +66,7 @@ const App = () => (
               <Route exact path="/user-list" component={UserPage} />
               <Route exact path="/login" component={LoginPage} />
               <Route exact path="/profile" component={ProfilePage} />
+              <Route exact path="/project" component={ProjectPage} />
               <Route exact path="/search" component={SearchPage} />
             </Switch>
             <Route path="/" component={Footer} />
