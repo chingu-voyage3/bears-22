@@ -133,12 +133,12 @@ class Search extends Component {
     })
   }
 
-  resetSearch = () => {
+  resetSearch = refetch => {
     this.setState((prevState, props) => ({
       selectedItem: '',
       inputValue: ''
     }))
-    this.props.data.refetch()
+    refetch()
   }
 
   isFiltered = e => {
@@ -164,7 +164,7 @@ class Search extends Component {
   render() {
     return (
       <Query query={searchQuery}>
-        {({ loading, error, data }) => (
+        {({ loading, error, data, refetch }) => (
           <div className="d-flex search">
             <div
               className={
@@ -220,7 +220,7 @@ class Search extends Component {
                             inputValue={this.state.inputValue}
                             selectedItem={this.state.selectedItem}
                             data={data}
-                            resetSearch={this.resetSearch}
+                            resetSearch={() => this.resetSearch(refetch)}
                           />
                         </div>
                       </div>
