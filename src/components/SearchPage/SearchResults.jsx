@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Transition } from 'react-transition-group'
 
-class SearchUser extends Component {
+class SearchResults extends Component {
   getItemList = item => {
-    if (this.props.search === 'projects') {
+    if (this.props.search === 'getAllProjects') {
       return {
         name: item.title,
         desc: item.description,
@@ -12,17 +12,18 @@ class SearchUser extends Component {
       }
     } else {
       return {
-        name: item.first_name + ' ' + item.last_name,
-        desc: item.bio,
+        name: item.name,
+        desc: item.description,
         skills: item.skills,
-        country: item.country,
+        country: item.location,
         text: 'This user does not have any self introductions.'
       }
     }
   }
   render() {
-    const { data } = this.props
-    if (data.loading) {
+    const { data, loading } = this.props
+
+    if (loading) {
       return (
         <div className="loading-animation">
           <div className="spots">
@@ -33,7 +34,7 @@ class SearchUser extends Component {
           </div>
         </div>
       )
-    } else if (!data.loading && data.networkStatus === 8) {
+    } else if (!loading) {
       return (
         <Transition timeout={500}>
           <div
@@ -43,7 +44,7 @@ class SearchUser extends Component {
                 : 'search__user__grid fade-in'
             }
           >
-            {!data.loading
+            {!loading
               ? data[this.props.search] &&
                 data[this.props.search]
                   .filter(
@@ -54,7 +55,7 @@ class SearchUser extends Component {
                   .map((item, index) => (
                     <div
                       className="search__user d-flex flex-column flex-md-row section--black justify-content-md-start"
-                      key={this.props.search + '-' + index}
+                      key={`${this.props.search}-${index}`}
                     >
                       <div className="d-flex flex-row flex-md-column align-items-center justify-content-left justify-content-md-center search__user--name">
                         <span className="search__thumbnail mr-3 mr-md-0 mb-2">
@@ -96,13 +97,13 @@ class SearchUser extends Component {
                           </span>
                           <div className="list__inline">
                             {item.skills && item.skills.length > 0 ? (
-                              item.skills.map(item => (
+                              item.skills.map((item, i) => (
                                 <span
-                                  key={item.name + ' ' + item.id}
-                                  title={item.name}
+                                  key={`${item}-${i}`}
+                                  title={item}
                                   onClick={this.props.isFiltered}
                                 >
-                                  {item.name}
+                                  {item}
                                 </span>
                               ))
                             ) : (
@@ -141,4 +142,4 @@ class SearchUser extends Component {
   }
 }
 
-export default SearchUser
+export default SearchResults
