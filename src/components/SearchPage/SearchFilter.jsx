@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 import { Transition } from 'react-transition-group'
 
 class SearchFilter extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
-
   render() {
     const { data } = this.props
 
