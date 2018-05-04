@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return (
       <div className="footer mb-auto">
-        <span>{this.getYear()} Do-um. All rights reserved.</span>
+        <span>{this.getYear()} DOUM. All rights reserved.</span>
       </div>
     )
   }
