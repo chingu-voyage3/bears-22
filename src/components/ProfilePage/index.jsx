@@ -5,15 +5,22 @@ import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const profileQuery = gql`
-  query profileQuery($email: String!) {
-    getUserByUsername(username: $username) {
+  query profileQuery($id: String!) {
+    getUserByID(id: $id) {
+      id
+      githubID
       email
       username
       name
-      avatar_url
       location
       bio
-      skills
+      avatar_url
+      github_url
+      blog_url
+      skills {
+        id
+        name
+      }
     }
   }
 `
@@ -74,7 +81,12 @@ class Profile extends React.Component {
               <h3 className="profile__category-text">About</h3>
               <p>{this.props.userInfo.bio}</p>
               <h3 className="profile__category-text">Skills</h3>
-              <p>{this.props.userInfo.skills}</p>
+              <p>
+                {this.props.userInfo.skills &&
+                  this.props.userInfo.skills.map((skill, index) => {
+                    return <span key={index}>{skill.name}</span>
+                  })}
+              </p>
             </div>
           </section>
         </div>
@@ -96,8 +108,7 @@ export default connect(mapStateToProps)(
   graphql(profileQuery, {
     options: ownProps => ({
       variables: {
-        user_id: ownProps.userInfo.id,
-        email: ownProps.userInfo.email
+        id: ownProps._id
       }
     })
   })(Profile)
