@@ -19,7 +19,6 @@ const getData = gql`
       id
       title
       description
-      skills
       users {
         id
       }

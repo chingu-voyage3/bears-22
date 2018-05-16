@@ -1,6 +1,9 @@
 {
-  "name": "bear-22",
+  "name": "bears-22",
   "version": "0.1.0",
+  "engines": {
+    "node": "9.11.1"
+  },
   "private": true,
   "dependencies": {
     "apollo-cache-inmemory": "^1.2.0",
@@ -46,12 +49,12 @@
     "prettier": "^1.12.1"
   },
   "scripts": {
-    "start": "node server/app.js",
+    "start": "node server/server.js",
     "dev": "npm-run-all -p server watch-css start-js",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "server": "nodemon server/app.js",
+    "server": "nodemon server/server.js",
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
     "build-css": "node-sass-chokidar src/ -o src/",
@@ -60,14 +63,15 @@
     "data": "node server/fakeDataGenerator.js",
     "format":
       "prettier --write --single-quote --no-semi --parser=flow --print-width=80 \"src/**/*.{js,jsx}\"   \"server/**/*.js\" ",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "heroku-postbuild": "npm run build"
   },
   "lint-staged": {
     "*.js": ["npm run format", "git add"],
     "*.jsx": ["npm run format", "git add"]
   },
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chingu-voyage3/bears-22.git"

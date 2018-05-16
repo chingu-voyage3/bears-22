@@ -21,7 +21,10 @@ const getData = gql`
       id
       title
       description
-      skills
+      skills {
+        id
+        name
+      }
       users {
         id
       }

@@ -3,11 +3,16 @@ const cors = require('cors')
 const passport = require('passport')
 const cookieSession = require('cookie-session')
 const graphqlHTTP = require('express-graphql')
-const schema = require('./schema')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv').config()
-const auth = require('./authRouter')
-const passportSetup = require('./passport')
+const auth = require('./authentication/authRouter')
+const passportSetup = require('./authentication/passport')
+
+// Create GraphQL Schema
+const typeDefs = require('./graphql/typeDefs')
+const resolvers = require('./graphql/resolvers')
+const { makeExecutableSchema } = require('graphql-tools')
+const schema = makeExecutableSchema({ typeDefs, resolvers })
 
 const app = express()
 
@@ -25,7 +30,7 @@ app.use(
 )
 
 // Initialize Passport
-require('./passport')
+require('./authentication/passport')
 app.use(passport.initialize())
 app.use(passport.session())
 app.use('/auth', auth)
