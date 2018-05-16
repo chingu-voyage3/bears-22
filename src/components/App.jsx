@@ -47,7 +47,7 @@ const enhancer = composeEnhancers(
 const store = createStore(mainReducer, enhancer)
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: process.env.HTTPLINK }),
+  link: new HttpLink({ uri: '/graphql', credentials: 'same-origin' }),
   cache: new InMemoryCache()
 })
 
