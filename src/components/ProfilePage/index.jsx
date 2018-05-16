@@ -30,7 +30,7 @@ class Profile extends React.Component {
       return (
         <div className="profile">
           <h1 className="profile__header">Profile</h1>
-          <p>Failed to fetch data now, please try again.</p>
+          <p>Failed to fetch data, please try again.</p>
           <Link to={'/'}>
             <p>Back to Home</p>
           </Link>
@@ -40,7 +40,13 @@ class Profile extends React.Component {
       return (
         <div className="profile">
           <h1 className="profile__header">Profile</h1>
-          <p>Loading...</p>
+
+          <div class="spinner">
+            <div class="bounce1" />
+            <div class="bounce2" />
+            <div class="bounce3" />
+          </div>
+
           <Link to={'/'}>
             <p>Back to Home</p>
           </Link>
@@ -102,14 +108,13 @@ const mapStateToProps = state => {
   }
 }
 
-//export default connect(mapStateToProps)(Profile)
-
-export default connect(mapStateToProps)(
+export default compose(
+  connect(mapStateToProps),
   graphql(profileQuery, {
     options: ownProps => ({
       variables: {
-        id: ownProps._id
+        id: ownProps.userInfo.id
       }
     })
-  })(Profile)
-)
+  })
+)(Profile)
