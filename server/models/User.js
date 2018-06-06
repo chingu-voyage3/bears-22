@@ -11,8 +11,7 @@ const userSchema = new Schema({
   avatar_url: String,
   github_url: String,
   blog_url: String,
-  skills: Array
-  //projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
+  skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }]
 })
 
 module.exports = mongoose.model('User', userSchema)
