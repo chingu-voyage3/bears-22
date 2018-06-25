@@ -2,30 +2,44 @@ const express = require('express')
 const cors = require('cors')
 const passport = require('passport')
 const cookieSession = require('cookie-session')
-const graphqlHTTP = require('express-graphql')
-const schema = require('./schema')
+const bodyParser = require('body-parser')
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
+const { createServer } = require('http')
+const { graphql, execute } = require('graphql')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv').config()
-const auth = require('./authRouter')
-const passportSetup = require('./passport')
+const auth = require('./authentication/authRouter')
+const passportSetup = require('./authentication/passport')
+
+// Create GraphQL Schema
+const typeDefs = require('./graphql/typeDefs')
+const resolvers = require('./graphql/resolvers')
+const { makeExecutableSchema } = require('graphql-tools')
+const schema = makeExecutableSchema({ typeDefs, resolvers })
 
 const app = express()
 
 // Cross Origin Resource Sharing
-app.use(cors())
-app.options('*', cors())
+var corsOptions = {
+  origin: ['http://localhost:3000', process.env.DOMAIN],
+  credentials: true
+}
+app.use(cors(corsOptions))
 
 // Set up session handling
 app.use(
   cookieSession({
-    // 1 hour session
-    maxAge: 60 * 60 * 1000,
+    // 24 hour session
+    maxAge: 24 * 60 * 60 * 1000,
     keys: [process.env.SESSION_COOKIE_KEY]
   })
 )
 
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
 // Initialize Passport
-require('./passport')
+require('./authentication/passport')
 app.use(passport.initialize())
 app.use(passport.session())
 app.use('/auth', auth)
@@ -36,12 +50,22 @@ mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB')
 })
 
-// GraphQL connection
+// Apollo GraphQL Server
 app.use(
   '/graphql',
-  graphqlHTTP({
-    schema: schema,
-    graphiql: true
+  bodyParser.json(),
+  graphqlExpress(req => ({
+    schema,
+    context: {
+      user: req.user
+    }
+  }))
+)
+
+app.use(
+  '/graphiql',
+  graphiqlExpress({
+    endpointURL: '/graphql'
   })
 )
 

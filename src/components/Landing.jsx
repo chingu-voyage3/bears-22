@@ -15,11 +15,10 @@ const getData = gql`
       avatar_url
       bio
     }
-    getAllProjects { 
+    getAllProjects {
       id
       title
       description
-      skills
       users {
         id
       }
@@ -57,17 +56,14 @@ class Landing extends Component {
           </div>
 
           <div className="login__button mb-4">
-          <a href="/auth/github">
-            <div>
-              <span className="btn btn__login">
-                <i
-                  className="fa fa-github text-dark"
-                  aria-hidden="true"
-                />{' '}
-                Sign up with GitHub
-              </span>
-            </div>
-          </a>
+            <a href="/auth/github">
+              <div>
+                <span className="btn btn__login">
+                  <i className="fa fa-github text-dark" aria-hidden="true" />{' '}
+                  Sign up with GitHub
+                </span>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -108,8 +104,14 @@ class Landing extends Component {
             </p> */}
             {this.props.data.getAllProjects
               ? this.props.data.getAllProjects.slice(0, 4).map(project => (
-                  <div key={project.id} id={project.id} className="section__project">
-                    <h5>{project.title} &middot; {project.description}</h5>
+                  <div
+                    key={project.id}
+                    id={project.id}
+                    className="section__project"
+                  >
+                    <h5>
+                      {project.title} &middot; {project.description}
+                    </h5>
                   </div>
                 ))
               : 'Loading'}
@@ -131,7 +133,10 @@ class Landing extends Component {
                   .map(user => (
                     <img
                       className="section__users__image"
-                      src={user.avatar_url || "https://visualpharm.com/assets/336/User-595b40b65ba036ed117d26d4.svg"}
+                      src={
+                        user.avatar_url ||
+                        'https://visualpharm.com/assets/336/User-595b40b65ba036ed117d26d4.svg'
+                      }
                       key={user.id}
                       alt={`${user.first_name} ${user.last_name}`}
                     />
@@ -150,17 +155,14 @@ class Landing extends Component {
           </p>
           <p className="section__text">The first step starts here.</p>
           <div className="login__button mb-4">
-          <a href="/auth/github">
-            <div>
-              <span className="btn btn__login">
-                <i
-                  className="fa fa-github text-dark"
-                  aria-hidden="true"
-                />{' '}
-                Sign up with GitHub
-              </span>
-            </div>
-          </a>
+            <a href="/auth/github">
+              <div>
+                <span className="btn btn__login">
+                  <i className="fa fa-github text-dark" aria-hidden="true" />{' '}
+                  Sign up with GitHub
+                </span>
+              </div>
+            </a>
           </div>
         </section>
       </div>

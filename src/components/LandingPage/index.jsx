@@ -21,7 +21,10 @@ const getData = gql`
       id
       title
       description
-      skills
+      skills {
+        id
+        name
+      }
       users {
         id
       }
@@ -35,7 +38,14 @@ class LandingPage extends Component {
     return (
       <Query query={getData}>
         {({ loading, error, data }) => {
-          if (loading) return 'Loading...'
+          if (loading)
+            return (
+              <div class="spinner">
+                <div class="bounce1" />
+                <div class="bounce2" />
+                <div class="bounce3" />
+              </div>
+            )
           if (error) return `Error! ${error.message}`
           return (
             <div>
