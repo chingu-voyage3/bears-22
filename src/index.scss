@@ -1153,6 +1153,9 @@ max-width: 100%;
   @media #{$laptop} {
     width: 50%;
   }
+  @media #{$desktop} {
+    width: 35%;
+  }
 }
 
 .profile__image {
@@ -1208,6 +1211,9 @@ max-width: 100%;
   justify-center: center;
   @media #{$laptop} {
     width: 50%;
+  }
+  @media #{$desktop} {
+    width: 35%;
   }
 }
 
