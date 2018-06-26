@@ -56,15 +56,13 @@ class Profile extends React.Component {
       return (
         <div className="profile__body container-fluid">
           {/*Image and Basic Info*/}
-          <section className="profile__view-bg-grey row">
-            <div className="col-4">
-              <img
-                src={this.props.userInfo.avatar_url}
-                alt="Profile Image"
-                className="profile__image col-4"
-              />
-            </div>
-            <div className="profile__header-text col-8">
+          <section className="profile__view-bg-grey">
+            <img
+              src={this.props.userInfo.avatar_url}
+              alt="Profile Image"
+              className="profile__image"
+            />
+            <div className="profile__header-text">
               <h3>{this.props.userInfo.name}</h3>
               <p>{this.props.userInfo.location}</p>
               <a href={'mailto:' + this.props.data.email}>
@@ -79,18 +77,16 @@ class Profile extends React.Component {
             </a>
           </section>
           {/*About and Skills*/}
-          <section className="profile__bg-black row">
-            <div className="col-12">
-              <h3 className="profile__category-text">About</h3>
-              <p>{this.props.userInfo.bio}</p>
-              <h3 className="profile__category-text">Skills</h3>
-              <p>
-                {this.props.userInfo.skills &&
-                  this.props.userInfo.skills.map((skill, index) => {
-                    return <span key={index}>{skill.name}</span>
-                  })}
-              </p>
-            </div>
+          <section className="profile__bg-black">
+            <h3 className="profile__category-text">About</h3>
+            <p>{this.props.userInfo.bio}</p>
+            <h3 className="profile__category-text">Skills</h3>
+            <p>
+              {this.props.userInfo.skills &&
+                this.props.userInfo.skills.map((skill, index) => {
+                  return <span key={index}>{skill.name}</span>
+                })}
+            </p>
           </section>
         </div>
       )
