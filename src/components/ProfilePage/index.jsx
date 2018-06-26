@@ -54,7 +54,7 @@ class Profile extends React.Component {
       )
     } else {
       return (
-        <div className="profile__body container-fluid">
+        <div className="profile__body">
           {/*Image and Basic Info*/}
           <section className="profile__view-bg-grey">
             <img
