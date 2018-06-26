@@ -65,12 +65,9 @@ class Profile extends React.Component {
               />
             </div>
             <div className="profile__header-text col-8">
-              <h3 className="align-middle">{this.props.userInfo.name}</h3>
-              <p className="align-middle">{this.props.userInfo.location}</p>
-              <a
-                href={'mailto:' + this.props.data.email}
-                className="align-middle"
-              >
+              <h3>{this.props.userInfo.name}</h3>
+              <p>{this.props.userInfo.location}</p>
+              <a href={'mailto:' + this.props.data.email}>
                 {this.props.userInfo.email}
               </a>
             </div>
