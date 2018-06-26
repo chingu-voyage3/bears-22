@@ -1127,6 +1127,19 @@ max-width: 100%;
 // =============
 
 .profile__body {
+  @media #{$laptop} {
+    background-image: url('../src/assets/hero image.jpg');
+    background-size: 132%;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    height: 88vh;
+    align-items: center;
+    justify-content: center;
+  }
+  @media #{$desktop} {
+    background-size: 120%;
+  }
   font-family: 'Lato', sans-serif;
   color: white;
 }
