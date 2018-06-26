@@ -1148,7 +1148,11 @@ max-width: 100%;
   background-color: $profile-grey;
   display: flex;
   align-items: center;
+  justify-center: center;
   padding-top: $spacer-y * 2;
+  @media #{$laptop} {
+    width: 50%;
+  }
 }
 
 .profile__image {
@@ -1157,6 +1161,9 @@ max-width: 100%;
   padding: 3px;
   max-width: 100%;
   height: auto;
+  @media #{$laptop} {
+    width: 50%;
+  }
 }
 
 .profile__header-text {
@@ -1196,6 +1203,12 @@ max-width: 100%;
 .profile__bg-black {
   background-color: $chingu-grey;
   padding-top: $spacer-y * 2;
+  display: flex;
+  align-items: center;
+  justify-center: center;
+  @media #{$laptop} {
+    width: 50%;
+  }
 }
 
 .profile__category-text {
