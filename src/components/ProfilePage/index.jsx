@@ -69,24 +69,28 @@ class Profile extends React.Component {
                 {this.props.userInfo.email}
               </a>
             </div>
-            <a
-              href={'mailto:' + this.props.userInfo.email}
-              className="profile__button-contact"
-            >
-              Contact
-            </a>
           </section>
+          <a
+            href={'mailto:' + this.props.userInfo.email}
+            className="profile__button-contact"
+          >
+            Contact
+          </a>
           {/*About and Skills*/}
           <section className="profile__bg-black">
-            <h3 className="profile__category-text">About</h3>
-            <p>{this.props.userInfo.bio}</p>
-            <h3 className="profile__category-text">Skills</h3>
-            <p>
-              {this.props.userInfo.skills &&
-                this.props.userInfo.skills.map((skill, index) => {
-                  return <span key={index}>{skill.name}</span>
-                })}
-            </p>
+            <div>
+              <h3 className="profile__category-text">About</h3>
+              <p>{this.props.userInfo.bio}</p>
+            </div>
+            <div>
+              <h3 className="profile__category-text">Skills</h3>
+              <p>
+                {this.props.userInfo.skills &&
+                  this.props.userInfo.skills.map((skill, index) => {
+                    return <span key={index}>{skill.name}</span>
+                  })}
+              </p>
+            </div>
           </section>
         </div>
       )

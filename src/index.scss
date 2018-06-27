@@ -1147,9 +1147,11 @@ max-width: 100%;
 .profile__view-bg-grey {
   background-color: $profile-grey;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  justify-center: center;
   padding-top: $spacer-y * 2;
+  padding-bottom: $spacer-y * 2;
   @media #{$laptop} {
     width: 50%;
   }
@@ -1164,6 +1166,7 @@ max-width: 100%;
   padding: 3px;
   width: 8em;
   height: auto;
+  margin-right: 1em;
   @media #{$laptop} {
     width: 10em;
   }
@@ -1171,7 +1174,7 @@ max-width: 100%;
 
 .profile__header-text {
   padding: 0;
-  margin: 0;
+  margin-left: 1em;
 }
 
 .profile__header-text h3 {
@@ -1192,15 +1195,19 @@ max-width: 100%;
 }
 
 .profile__button-contact {
-  background-color: $profile-yellow;
-  border: 2px solid $profile-black;
-  border-radius: 5px;
-  color: $profile-black;
-  font-weight: bold;
-  padding: 5px 20px;
-  margin: 0 auto;
-  position: relative;
-  top: 18px;
+  display: none;
+  @media #{$laptop} {
+    background-color: $profile-yellow;
+    border: 2px solid $profile-black;
+    border-radius: 5px;
+    color: $profile-black;
+    display: inline-block;
+    font-weight: bold;
+    padding: 5px 20px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    z-index: 1;
+  }
 }
 
 .profile__bg-black {
@@ -1209,6 +1216,7 @@ max-width: 100%;
   display: flex;
   align-items: center;
   justify-center: center;
+  flex-direction: column;
   @media #{$laptop} {
     width: 50%;
   }
