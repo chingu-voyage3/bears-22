@@ -1168,7 +1168,7 @@ max-width: 100%;
   height: auto;
   margin-right: 1em;
   @media #{$laptop} {
-    width: 10em;
+    width: 9em;
   }
 }
 
@@ -1213,6 +1213,7 @@ max-width: 100%;
 .profile__bg-black {
   background-color: $chingu-grey;
   padding-top: $spacer-y * 2;
+  padding-bottom: $spacer-y;
   display: flex;
   align-items: center;
   justify-center: center;
