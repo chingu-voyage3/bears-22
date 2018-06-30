@@ -54,38 +54,35 @@ class Profile extends React.Component {
       )
     } else {
       return (
-        <div className="profile__body container-fluid">
+        <div className="profile__body">
           {/*Image and Basic Info*/}
-          <section className="profile__view-bg-grey row">
-            <div className="col-4">
-              <img
-                src={this.props.userInfo.avatar_url}
-                alt="Profile Image"
-                className="profile__image col-4"
-              />
-            </div>
-            <div className="profile__header-text col-8">
-              <h3 className="align-middle">{this.props.userInfo.name}</h3>
-              <p className="align-middle">{this.props.userInfo.location}</p>
-              <a
-                href={'mailto:' + this.props.data.email}
-                className="align-middle"
-              >
+          <section className="profile__view-bg-grey">
+            <img
+              src={this.props.userInfo.avatar_url}
+              alt="Profile Image"
+              className="profile__image"
+            />
+            <div className="profile__header-text">
+              <h3>{this.props.userInfo.name}</h3>
+              <p>{this.props.userInfo.location}</p>
+              <a href={'mailto:' + this.props.data.email}>
                 {this.props.userInfo.email}
               </a>
             </div>
-            <a
-              href={'mailto:' + this.props.userInfo.email}
-              className="profile__button-contact"
-            >
-              Contact
-            </a>
           </section>
+          <a
+            href={'mailto:' + this.props.userInfo.email}
+            className="profile__button-contact"
+          >
+            Contact
+          </a>
           {/*About and Skills*/}
-          <section className="profile__bg-black row">
-            <div className="col-12">
+          <section className="profile__bg-black">
+            <div>
               <h3 className="profile__category-text">About</h3>
               <p>{this.props.userInfo.bio}</p>
+            </div>
+            <div>
               <h3 className="profile__category-text">Skills</h3>
               <p>
                 {this.props.userInfo.skills &&

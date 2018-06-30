@@ -1127,6 +1127,19 @@ max-width: 100%;
 // =============
 
 .profile__body {
+  @media #{$laptop} {
+    background-image: url('../src/assets/hero image.jpg');
+    background-size: 132%;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    height: 88vh;
+    align-items: center;
+    justify-content: center;
+  }
+  @media #{$desktop} {
+    background-size: 120%;
+  }
   font-family: 'Lato', sans-serif;
   color: white;
 }
@@ -1134,21 +1147,34 @@ max-width: 100%;
 .profile__view-bg-grey {
   background-color: $profile-grey;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   padding-top: $spacer-y * 2;
+  padding-bottom: $spacer-y * 2;
+  @media #{$laptop} {
+    width: 50%;
+  }
+  @media #{$desktop} {
+    width: 35%;
+  }
 }
 
 .profile__image {
   border-radius: 50%;
   background-color: $profile-yellow;
   padding: 3px;
-  max-width: 100%;
+  width: 8em;
   height: auto;
+  margin-right: 1em;
+  @media #{$laptop} {
+    width: 9em;
+  }
 }
 
 .profile__header-text {
   padding: 0;
-  margin: 0;
+  margin-left: 1em;
 }
 
 .profile__header-text h3 {
@@ -1169,20 +1195,35 @@ max-width: 100%;
 }
 
 .profile__button-contact {
-  background-color: $profile-yellow;
-  border: 2px solid $profile-black;
-  border-radius: 5px;
-  color: $profile-black;
-  font-weight: bold;
-  padding: 5px 20px;
-  margin: 0 auto;
-  position: relative;
-  top: 18px;
+  display: none;
+  @media #{$laptop} {
+    background-color: $profile-yellow;
+    border: 2px solid $profile-black;
+    border-radius: 5px;
+    color: $profile-black;
+    display: inline-block;
+    font-weight: bold;
+    padding: 5px 20px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    z-index: 1;
+  }
 }
 
 .profile__bg-black {
   background-color: $chingu-grey;
   padding-top: $spacer-y * 2;
+  padding-bottom: $spacer-y;
+  display: flex;
+  align-items: center;
+  justify-center: center;
+  flex-direction: column;
+  @media #{$laptop} {
+    width: 50%;
+  }
+  @media #{$desktop} {
+    width: 35%;
+  }
 }
 
 .profile__category-text {
